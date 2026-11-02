@@ -1,0 +1,2171 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mission Méthode</title>
+<meta name="description" content="Apprends à apprendre, mission par mission : teste les méthodes de travail et construis la tienne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0F3B82;--teal:#14B8A6;--coral:#FF7F6E;--amber:#FBBF24;--violet:#8B5CF6;--blue:#2C6BD6;
+  --bg:#F7FAFD;--surface:#FFFFFF;--soft:#EEF6FC;--ink:#0F3B82;--text:#22324F;--muted:#5A6A86;--line:#DCE7F2;
+  --primary:#0F3B82;--primary-ink:#FFFFFF;--danger:#D9533F;
+  --ok:#0B8A7C;--warn:#A86F00;--ko:#D9533F;
+  --shadow:0 1px 2px rgba(15,59,130,.06),0 8px 24px rgba(15,59,130,.08);
+  --radius:16px;
+  color-scheme:light;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B1730;--surface:#122449;--soft:#172D58;--ink:#E8F4FB;--text:#D5E1F2;--muted:#9AABC8;--line:#26416F;
+    --primary:#2C6BD6;--primary-ink:#FFFFFF;--danger:#FF8E7F;
+    --ok:#2DD4BF;--warn:#FBBF24;--ko:#FF8E7F;
+    --shadow:0 8px 24px rgba(0,0,0,.35);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B1730;--surface:#122449;--soft:#172D58;--ink:#E8F4FB;--text:#D5E1F2;--muted:#9AABC8;--line:#26416F;
+  --primary:#2C6BD6;--primary-ink:#FFFFFF;--danger:#FF8E7F;
+  --ok:#2DD4BF;--warn:#FBBF24;--ko:#FF8E7F;
+  --shadow:0 8px 24px rgba(0,0,0,.35);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;min-height:100%;font-family:'Lexend',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:16px;line-height:1.55;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;right:-170px;top:-170px;width:440px;height:440px;border-radius:50%;background:var(--soft);z-index:-1}
+body::after{content:"";position:fixed;left:-130px;bottom:-130px;width:300px;height:300px;border-radius:50%;background:color-mix(in srgb,var(--amber) 15%,transparent);z-index:-1}
+button,input,select,textarea{font-family:inherit}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.i{flex:none}
+
+/* En-tête */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1240px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:22px}
+.brand{display:flex;align-items:center;gap:10px;padding:4px;color:var(--ink);border-radius:10px;text-decoration:none}
+.logo{width:38px;height:38px;flex:none}
+.word{font-size:24px;font-weight:700;letter-spacing:-.03em;line-height:1;white-space:nowrap}
+.word .u{color:var(--teal)}
+.tabs{display:flex;gap:2px;margin-right:auto}
+.tab{font-size:15px;font-weight:500;color:var(--muted);text-decoration:none;padding:10px 14px;border-radius:10px;position:relative;white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab.on{color:var(--ink);font-weight:600}
+.tab.on::after{content:"";position:absolute;left:14px;right:14px;bottom:1px;height:3px;border-radius:3px;background:var(--teal)}
+
+.wrap{max-width:1240px;margin:0 auto;padding:30px 20px 72px}
+.narrow{max-width:820px;margin:0 auto}
+h1{font-size:clamp(28px,3.2vw,38px);line-height:1.15;color:var(--ink);margin:0;font-weight:700;letter-spacing:-.02em}
+h2{font-size:20px;line-height:1.3;color:var(--ink);font-weight:600;margin:0}
+h3{font-size:17px;line-height:1.3;color:var(--ink);font-weight:600;margin:0}
+.lead{color:var(--muted);margin:8px 0 0;max-width:62ch}
+.muted{color:var(--muted)}
+.small{font-size:14px}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:38px 0 14px}
+.sec-h h2{font-size:14px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+
+/* Boutons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:15px;border-radius:10px;padding:11px 18px;cursor:pointer;border:1.5px solid transparent;line-height:1.2;text-align:center;text-decoration:none}
+.btn.primary{background:var(--primary);color:var(--primary-ink)}
+.btn.primary:hover{filter:brightness(1.12)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.teal{background:var(--teal);color:#fff}
+.btn.teal:hover{filter:brightness(1.06)}
+.btn.ghost{background:var(--surface);color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--teal)}
+.btn.danger{background:transparent;color:var(--danger);border-color:color-mix(in srgb,var(--coral) 55%,transparent)}
+.btn.danger.armed{background:var(--coral);color:#fff;border-color:var(--coral)}
+.btn.sm{font-size:14px;padding:8px 12px}
+.btn.lg{font-size:16.5px;padding:14px 24px;border-radius:12px}
+.link{display:inline-flex;align-items:center;gap:6px;background:none;border:0;font-weight:500;font-size:15px;color:var(--muted);cursor:pointer;padding:6px 4px;border-radius:8px;text-decoration:none}
+.link:hover{color:var(--ink)}
+.icon-btn{width:34px;height:34px;border-radius:50%;border:0;background:transparent;color:var(--muted);display:grid;place-items:center;cursor:pointer;flex:none;padding:0}
+.icon-btn:hover{background:var(--soft);color:var(--ink)}
+.btns{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btns.end{justify-content:flex-end}
+.pill{text-decoration:none;display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:500;color:var(--muted);background:var(--soft);padding:3px 10px;border-radius:999px;white-space:nowrap}
+.pill.ok{color:var(--ok);background:color-mix(in srgb,var(--ok) 13%,var(--surface))}
+.pill.hot{color:var(--warn);background:color-mix(in srgb,var(--amber) 22%,var(--surface))}
+.pill.rec{color:var(--ink);background:color-mix(in srgb,var(--teal) 16%,var(--surface))}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:clamp(18px,3vw,30px);box-shadow:var(--shadow);min-width:0}
+.crumbs{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.m-chip{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--ink);background:color-mix(in srgb,var(--dot) 16%,var(--surface));padding:4px 12px 4px 10px;border-radius:999px;margin-bottom:10px}
+.m-chip::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--dot)}
+.page-head{margin-bottom:24px}
+
+/* Accueil */
+.hero{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:24px;align-items:center;margin-bottom:8px}
+.hero-txt{display:flex;flex-direction:column;justify-content:center;gap:4px;padding:6px 0}
+.hello{font-size:15px;font-weight:600;color:var(--teal);margin:0 0 4px}
+.hero-stats{background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:20px 22px;display:flex;flex-direction:column;gap:14px}
+.stat-row{display:flex;gap:12px}
+.stat{flex:1;background:var(--soft);border-radius:14px;padding:12px 14px}
+.stat strong{display:block;font-size:28px;line-height:1.1;color:var(--ink);font-weight:700}
+.stat span{font-size:13px;color:var(--muted)}
+.bar{height:8px;border-radius:8px;background:var(--line);overflow:hidden}
+.bar span{display:block;height:100%;background:var(--teal);border-radius:8px;transition:width .5s}
+.alerts{display:flex;flex-direction:column;gap:10px;margin-top:22px}
+.alert{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--dot,var(--teal));border-radius:14px;padding:12px 14px 12px 16px;text-decoration:none;color:inherit}
+.alert .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--dot,var(--teal)) 16%,var(--surface));color:var(--ink);flex:none}
+.alert .t{flex:1;min-width:0}
+.alert strong{display:block;color:var(--ink);font-weight:600;line-height:1.3}
+.alert span{font-size:14px;color:var(--muted)}
+.alert.go:hover{border-color:var(--dot,var(--teal))}
+
+.missions{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:18px}
+.mcard{position:relative;display:flex;flex-direction:column;gap:12px;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow);transition:transform .15s,box-shadow .15s;overflow:hidden}
+a.mcard:hover{transform:translateY(-3px);box-shadow:0 2px 4px rgba(15,59,130,.08),0 14px 30px rgba(15,59,130,.12)}
+.m-top{position:relative;min-height:112px;border-radius:12px;padding:12px 14px;background:color-mix(in srgb,var(--dot) 14%,var(--surface));display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.m-num{font-size:44px;font-weight:700;line-height:1;color:var(--dot);letter-spacing:-.04em;opacity:.95}
+.m-top .m-ic{position:absolute;right:12px;bottom:10px;color:color-mix(in srgb,var(--dot) 80%,var(--ink));opacity:.85}
+.m-top .m-ic svg{width:46px;height:46px}
+.m-body{display:flex;flex-direction:column;gap:3px;padding:0 4px}
+.m-body strong{color:var(--ink);font-weight:600;font-size:17px;line-height:1.3}
+.m-body .muted{font-size:14px;line-height:1.4}
+.m-foot{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:0 4px 2px;margin-top:auto;flex-wrap:wrap}
+.m-reward{font-size:12.5px;color:var(--muted);display:inline-flex;align-items:center;gap:5px}
+.mcard.locked{box-shadow:none;background:color-mix(in srgb,var(--surface) 60%,transparent);border-style:dashed}
+.mcard.locked .m-top{filter:grayscale(.85);opacity:.6}
+.mcard.locked .m-body{opacity:.7}
+.mcard.done .m-top::after{content:"";position:absolute;top:10px;right:10px;width:28px;height:28px;border-radius:50%;background:var(--ok) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12 5 5 9-10'/%3E%3C/svg%3E") center/16px no-repeat}
+
+.collection{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.rw{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.rw .badge{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--dot) 18%,var(--surface));color:var(--ink);flex:none}
+.rw strong{display:block;font-size:14.5px;color:var(--ink);font-weight:600;line-height:1.25}
+.rw span{font-size:12.5px;color:var(--muted)}
+.rw.off{border-style:dashed;background:transparent}
+.rw.off .badge{background:var(--soft);color:var(--muted)}
+.rw.off strong{color:var(--muted)}
+
+/* Questionnaire */
+.qhead{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.qhead .bar{flex:1}
+.qcount{font-size:13.5px;color:var(--muted);white-space:nowrap}
+.qtext{font-size:clamp(20px,2.6vw,25px);font-weight:600;color:var(--ink);line-height:1.3;margin:0 0 20px;letter-spacing:-.01em}
+.choices{display:flex;flex-direction:column;gap:10px}
+.choice{display:flex;align-items:center;gap:14px;font:inherit;font-size:16px;color:var(--text);text-align:left;background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;cursor:pointer;transition:border-color .12s,background .12s,transform .12s}
+.choice:hover{border-color:var(--teal);transform:translateX(2px)}
+.choice .k{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:13.5px;font-weight:600;background:var(--soft);color:var(--muted);flex:none}
+.choice.on{border-color:var(--teal);background:color-mix(in srgb,var(--teal) 12%,var(--surface));color:var(--ink);font-weight:500}
+.choice.on .k{background:var(--teal);color:#fff}
+.pop{animation:pop .35s ease-out}
+@keyframes pop{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:none}}
+
+/* Carte de départ */
+.carte{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.axes{display:flex;flex-direction:column;gap:14px}
+.axis{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:center}
+.axis b{font-weight:600;color:var(--ink);font-size:15px}
+.axis .bar{height:10px}
+.axis .bar span{background:var(--dot)}
+.note{font-size:14px;color:var(--muted);background:var(--soft);border-radius:12px;padding:12px 14px;margin:0;display:flex;gap:10px;align-items:flex-start}
+.note svg{color:var(--teal);margin-top:2px}
+.prio{display:flex;flex-direction:column;gap:12px}
+.prio-it{border:1px solid var(--line);border-left:5px solid var(--dot);border-radius:14px;padding:14px 16px;background:var(--surface)}
+.prio-it h3{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.prio-it p{margin:0 0 10px;font-size:14.5px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+
+/* Laboratoire */
+.labs{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
+.lcard{display:flex;flex-direction:column;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);text-decoration:none;color:inherit;transition:transform .15s;position:relative}
+.lcard:hover{transform:translateY(-2px)}
+.lcard .l-ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:color-mix(in srgb,var(--dot) 16%,var(--surface));color:var(--ink)}
+.lcard strong{color:var(--ink);font-size:17px;font-weight:600;line-height:1.3}
+.lcard p{margin:0;font-size:14.5px;color:var(--muted)}
+.lcard .l-foot{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:4px}
+.stamp{position:absolute;top:14px;right:14px;width:58px;height:58px;border-radius:50%;border:2.5px solid var(--ok);color:var(--ok);display:grid;place-items:center;transform:rotate(-14deg);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;text-align:center;line-height:1.1;background:color-mix(in srgb,var(--ok) 8%,var(--surface))}
+
+.steps{display:flex;gap:6px;margin-bottom:22px;flex-wrap:wrap}
+.stp{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:500;color:var(--muted);padding:5px 12px 5px 6px;border-radius:999px;background:var(--soft)}
+.stp i{font-style:normal;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--surface);font-size:12px;font-weight:600}
+.stp.on{color:var(--ink);background:color-mix(in srgb,var(--teal) 16%,var(--surface));font-weight:600}
+.stp.on i{background:var(--teal);color:#fff}
+.stp.ok i{background:var(--ok);color:#fff}
+
+.proto{counter-reset:p;list-style:none;padding:0;margin:14px 0 20px;display:flex;flex-direction:column;gap:10px}
+.proto li{counter-increment:p;display:flex;gap:12px;align-items:flex-start}
+.proto li::before{content:counter(p);width:28px;height:28px;border-radius:50%;background:var(--soft);color:var(--ink);font-weight:600;font-size:14px;display:grid;place-items:center;flex:none}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:15px;font-weight:500;padding:10px 16px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--text);cursor:pointer;text-align:left}
+.opt:hover{border-color:var(--teal)}
+.opt.on{border-color:var(--teal);background:color-mix(in srgb,var(--teal) 12%,var(--surface));color:var(--ink);font-weight:600}
+
+/* Minuteur */
+.phase{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+.phase-top{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;flex-wrap:wrap;text-align:left}
+.method-tag{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--ink);font-size:15px;background:color-mix(in srgb,var(--dot) 16%,var(--surface));padding:6px 14px;border-radius:999px}
+.timer{position:relative;width:76px;height:76px;flex:none}
+.timer svg{width:76px;height:76px;transform:rotate(-90deg)}
+.timer circle{fill:none;stroke-width:6}
+.timer .tr{stroke:var(--line)}
+.timer .tp{stroke:var(--teal);stroke-linecap:round;transition:stroke-dashoffset .25s linear}
+.timer.low .tp{stroke:var(--coral)}
+.timer b{position:absolute;inset:0;display:grid;place-items:center;font-size:17px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.pairs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:100%;max-width:620px}
+.pair{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;background:var(--soft);font-size:17px}
+.pair .sw{font-weight:600;color:var(--ink)}
+.pair .fr{color:var(--text)}
+.drill{width:100%;max-width:520px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.dr-ask{font-size:14px;color:var(--muted);margin:6px 0 0}
+.dr-word{font-size:clamp(30px,5vw,42px);font-weight:700;color:var(--ink);margin:0 0 6px;line-height:1.15;letter-spacing:-.02em}
+.dr-row{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;width:100%}
+.dr-in{font:inherit;font-size:22px;font-weight:600;color:var(--ink);text-align:center;width:min(320px,100%);padding:6px 10px;background:var(--surface);border:0;border-bottom:2.5px solid var(--muted);border-radius:6px 6px 0 0;outline:none}
+.dr-in:focus{border-bottom-color:var(--teal);background:color-mix(in srgb,var(--teal) 10%,var(--surface))}
+.dr-in.ok{border-bottom-color:var(--ok);color:var(--ok)}
+.dr-in.ko{border-bottom-color:var(--ko);color:var(--ko)}
+.fb{margin:6px 0 0;font-size:16px;min-height:1.6em;display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap}
+.fb.ok{color:var(--ok)}.fb.ko{color:var(--ko)}
+.fb b{color:var(--ink)}
+.dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:8px}
+.dot{width:11px;height:11px;border-radius:50%;background:var(--line)}
+.dot.cur{background:var(--surface);box-shadow:0 0 0 2.5px var(--teal)}
+.dot.done{background:var(--muted)}
+.timesup{display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px 20px;border-radius:16px;background:color-mix(in srgb,var(--teal) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--teal) 35%,transparent)}
+.timesup strong{color:var(--ink);font-size:18px}
+
+/* Résultats */
+.duel{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%}
+.duel-c{border-radius:16px;padding:18px;background:color-mix(in srgb,var(--dot) 11%,var(--surface));border:1px solid color-mix(in srgb,var(--dot) 35%,var(--line));text-align:left}
+.duel-c h3{display:flex;align-items:center;gap:8px;margin-bottom:12px;font-size:16px}
+.duel-c .big{font-size:40px;font-weight:700;color:var(--ink);line-height:1}
+.duel-c .big small{font-size:18px;color:var(--muted);font-weight:500}
+.duel-c .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:14px;color:var(--muted);margin-top:10px}
+.duel-c .row b{color:var(--ink);font-size:18px}
+.vbars{display:flex;align-items:flex-end;gap:10px;height:120px;margin-top:14px}
+.vbar{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+.vbar span{width:100%;max-width:56px;border-radius:8px 8px 4px 4px;background:var(--dot);min-height:4px;transition:height .6s}
+.vbar.light span{background:color-mix(in srgb,var(--dot) 45%,var(--surface))}
+.vbar em{font-style:normal;font-size:12px;color:var(--muted)}
+.vbar b{font-size:14px;color:var(--ink)}
+.callout{border-radius:16px;padding:16px 18px;background:var(--soft);display:flex;gap:12px;align-items:flex-start;text-align:left}
+.callout svg{color:var(--teal);margin-top:2px}
+.callout p{margin:4px 0 0}
+.recap{list-style:none;margin:6px 0 0;padding:0;width:100%;text-align:left;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:6px}
+.recap li{background:var(--soft);border-radius:10px;padding:8px 14px;font-size:14.5px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.recap .y{color:var(--ko);text-decoration:line-through}
+.recap .a{color:var(--ink);font-weight:600}
+.recap li.good{background:color-mix(in srgb,var(--ok) 11%,var(--surface))}
+
+/* Formulaires */
+.field{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500;color:var(--ink)}
+.field input,.field textarea,.field select{font:inherit;font-size:15.5px;font-weight:400;color:var(--text);background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;width:100%}
+.field textarea{resize:vertical;line-height:1.55;min-height:96px}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px color-mix(in srgb,var(--teal) 20%,transparent)}
+.help{font-size:13px;font-weight:400;color:var(--muted);line-height:1.5}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fields .full{grid-column:1/-1}
+.stack{display:flex;flex-direction:column;gap:16px}
+.qa{display:grid;grid-template-columns:28px minmax(0,1fr) minmax(0,1fr) 34px;gap:10px;align-items:start;padding:12px;border-radius:14px;background:var(--soft)}
+.qa .n{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--surface);color:var(--ink);font-weight:600;font-size:13px;margin-top:4px}
+.qa textarea{min-height:64px}
+.starters{display:flex;flex-wrap:wrap;gap:6px}
+.starter{font:inherit;font-size:13.5px;padding:5px 11px;border-radius:999px;border:1.5px dashed var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.starter:hover{border-color:var(--teal);border-style:solid}
+.example{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+.lesson{background:var(--soft);border-radius:14px;padding:16px 18px;font-size:15px}
+.lesson h3{font-size:14px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.lesson p{margin:0}
+.lesson mark{background:color-mix(in srgb,var(--amber) 40%,transparent);color:inherit;border-radius:3px;padding:0 2px}
+.made{display:flex;flex-direction:column;gap:8px}
+.made div{border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:var(--surface);font-size:14.5px}
+.made b{color:var(--ink);font-weight:600;display:block}
+
+/* Carte retournable */
+.fc{width:100%;max-width:560px;min-height:220px;perspective:1200px;cursor:pointer;border:0;background:none;padding:0;font:inherit;color:inherit}
+.fc-in{position:relative;width:100%;min-height:220px;transition:transform .45s;transform-style:preserve-3d}
+.fc.flip .fc-in{transform:rotateY(180deg)}
+.fc-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:26px;text-align:center;border:1px solid var(--line);box-shadow:var(--shadow);background:var(--surface)}
+.fc-face.back{transform:rotateY(180deg);background:color-mix(in srgb,var(--dot) 10%,var(--surface));border-color:color-mix(in srgb,var(--dot) 45%,var(--line))}
+.fc-lab{font-size:12.5px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.fc-txt{font-size:clamp(19px,3vw,24px);font-weight:600;color:var(--ink);line-height:1.35;white-space:pre-wrap;overflow-wrap:anywhere}
+.fc-hint{font-size:13px;color:var(--muted)}
+.grade3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;max-width:560px}
+.g{font:inherit;font-size:15px;font-weight:600;padding:12px 10px;border-radius:12px;cursor:pointer;border:1.5px solid}
+.g.ko{color:var(--ko);border-color:color-mix(in srgb,var(--coral) 55%,transparent);background:color-mix(in srgb,var(--coral) 10%,var(--surface))}
+.g.mid{color:var(--warn);border-color:color-mix(in srgb,var(--amber) 70%,transparent);background:color-mix(in srgb,var(--amber) 14%,var(--surface))}
+.g.ok{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 50%,transparent);background:color-mix(in srgb,var(--ok) 11%,var(--surface))}
+
+/* Vrai / faux */
+.vf{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;max-width:440px}
+.vf .opt{justify-content:center;font-size:17px;padding:14px}
+.verdict{border-radius:16px;padding:16px 18px;text-align:left;width:100%;border:1px solid}
+.verdict.ok{background:color-mix(in srgb,var(--ok) 10%,var(--surface));border-color:color-mix(in srgb,var(--ok) 40%,transparent)}
+.verdict.ko{background:color-mix(in srgb,var(--coral) 10%,var(--surface));border-color:color-mix(in srgb,var(--coral) 45%,transparent)}
+.verdict strong{display:flex;align-items:center;gap:8px;font-size:17px;color:var(--ink)}
+.verdict p{margin:8px 0 0}
+.statement{font-size:clamp(20px,3vw,26px);font-weight:600;color:var(--ink);line-height:1.3;max-width:30ch;margin:4px 0 8px}
+
+/* Passeport */
+.pass{display:flex;flex-direction:column;gap:20px}
+.pass-card{background:linear-gradient(135deg,#0F3B82,#173f8a 60%,#1b5a8f);color:#E8F4FB;border-radius:22px;padding:24px 26px;display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.pass-card::after{content:"";position:absolute;right:-60px;bottom:-80px;width:240px;height:240px;border-radius:50%;background:rgba(20,184,166,.18)}
+.pass-card .logo{width:62px;height:62px}
+.pass-card h2{color:#fff;font-size:24px}
+.pass-card p{margin:2px 0 0;color:#B9CDEA;font-size:14px}
+.pass-card input{font:inherit;font-size:20px;font-weight:600;color:#fff;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.2);border-radius:10px;padding:6px 12px;width:min(260px,100%)}
+.pass-card input::placeholder{color:#8FA8CC}
+.pass-card .seal{position:relative;z-index:1;width:76px;height:76px;border-radius:50%;border:2.5px dashed rgba(255,255,255,.35);display:grid;place-items:center;text-align:center;font-size:11px;font-weight:600;color:#B9CDEA;line-height:1.2;padding:6px}
+.pass-card .seal.ok{border:2.5px solid var(--amber);color:var(--amber);transform:rotate(-10deg)}
+.meth{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 16px;align-items:center;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.meth.untested{opacity:.6;border-style:dashed}
+.meth strong{color:var(--ink);font-weight:600;display:block}
+.meth .ev{font-size:13.5px;color:var(--muted)}
+.meth .seg{display:inline-flex;background:var(--soft);border-radius:12px;padding:4px;gap:4px}
+.meth .seg button{font:inherit;font-size:14px;font-weight:500;color:var(--muted);background:none;border:0;border-radius:9px;padding:7px 12px;cursor:pointer}
+.meth .seg button.on{background:var(--surface);color:var(--ink);font-weight:600;box-shadow:0 1px 3px rgba(15,59,130,.12)}
+.meth .seg button.on.k{color:var(--ok)}
+.meth .seg button.on.a{color:var(--warn)}
+.meth .seg button.on.l{color:var(--ko)}
+.meth .note-in{grid-column:1/-1}
+.meth .note-in input{font:inherit;font-size:14px;width:100%;border:1.5px solid var(--line);border-radius:10px;padding:8px 12px;background:var(--surface);color:var(--text)}
+.eng{display:flex;flex-direction:column;gap:10px}
+.eng-it{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;text-align:left;font:inherit;color:var(--text);font-size:15px}
+.eng-it:hover{border-color:var(--teal)}
+.eng-it .box{width:24px;height:24px;border-radius:7px;border:2px solid var(--line);display:grid;place-items:center;flex:none;color:#fff;margin-top:1px}
+.eng-it.on{border-color:var(--teal);background:color-mix(in srgb,var(--teal) 10%,var(--surface))}
+.eng-it.on .box{background:var(--teal);border-color:var(--teal)}
+.eng-it.on span{color:var(--ink)}
+.custom{display:grid;grid-template-columns:auto minmax(0,1fr) auto minmax(0,1fr) auto;gap:8px;align-items:center;font-size:15px;color:var(--ink);font-weight:500}
+.custom input{font:inherit;font-size:15px;border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;background:var(--surface);color:var(--text);min-width:0}
+.print-only{display:none}
+
+/* Fenêtres */
+.modal-bg{position:fixed;inset:0;z-index:40;background:rgba(11,23,48,.55);display:grid;place-items:center;padding:20px;animation:fade .2s}
+@keyframes fade{from{opacity:0}}
+.modal{background:var(--surface);color:var(--text);border-radius:22px;padding:28px;width:min(440px,100%);box-shadow:0 24px 60px rgba(0,0,0,.3);display:flex;flex-direction:column;gap:14px;max-height:90vh;overflow:auto;text-align:center;align-items:center}
+.modal h2{font-size:22px}
+.modal p{margin:0;color:var(--muted)}
+.reward{width:150px;height:186px;border-radius:18px;background:linear-gradient(160deg,color-mix(in srgb,var(--dot) 85%,#fff),var(--dot));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#fff;box-shadow:0 18px 40px color-mix(in srgb,var(--dot) 40%,transparent);animation:reveal .7s cubic-bezier(.2,1.4,.4,1);position:relative}
+.reward svg{width:58px;height:58px}
+.reward span{font-size:13px;font-weight:600;padding:0 12px;line-height:1.25}
+@keyframes reveal{0%{transform:scale(.3) rotate(-14deg);opacity:0}60%{opacity:1}100%{transform:none}}
+.spark{position:absolute;width:8px;height:8px;border-radius:50%;animation:spark 1s ease-out forwards;opacity:0}
+@keyframes spark{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--x),var(--y)) scale(.4)}}
+.kick{font-size:12.5px;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:.08em}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);opacity:0;pointer-events:none;background:#0F3B82;color:#fff;padding:12px 18px;border-radius:12px;font-size:14.5px;max-width:min(90vw,480px);box-shadow:0 10px 30px rgba(0,0,0,.25);transition:opacity .2s,transform .2s;z-index:50}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+.credit{max-width:1240px;margin:0 auto;padding:22px 20px 30px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.credit .logo{width:22px;height:22px}
+.credit .spacer{flex:1}
+.credit .link{font-size:13px}
+.code-box{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;word-break:break-all}
+.demo-flag{position:fixed;left:12px;bottom:12px;z-index:30;font-size:12px;font-weight:600;background:var(--amber);color:#3b2a00;padding:4px 10px;border-radius:999px}
+
+
+/* Missions 03 et 04, suivi, espace enseignant */
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}
+.today{display:flex;flex-direction:column;gap:12px;align-items:flex-start;background:linear-gradient(135deg,color-mix(in srgb,var(--dot) 14%,var(--surface)),var(--surface))}
+.today-n{font-size:52px;font-weight:700;line-height:1;color:var(--ink);letter-spacing:-.03em}
+.today-n small{font-size:17px;font-weight:500;color:var(--muted);letter-spacing:0}
+.objs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.objs li{display:flex;gap:10px;align-items:flex-start;font-size:15px}
+.objs .box{width:22px;height:22px;border-radius:7px;border:2px solid var(--line);display:grid;place-items:center;flex:none;color:#fff;margin-top:1px}
+.objs li.ok{color:var(--muted)}
+.objs li.ok span:last-child{text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--muted) 50%,transparent)}
+.objs li.ok .box{background:var(--ok);border-color:var(--ok)}
+.decks{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.deck{display:flex;flex-direction:column;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.deck strong{color:var(--ink);font-size:17px;font-weight:600;line-height:1.3}
+.deck-top{display:flex;gap:6px;flex-wrap:wrap}
+.deck .btns{margin-top:auto;gap:6px}
+.deck.new{border:2px dashed color-mix(in srgb,var(--violet) 45%,var(--line));background:var(--soft);align-items:center;justify-content:center;text-align:center;min-height:200px;color:var(--ink);box-shadow:none;text-decoration:none}
+.deck.new svg{color:var(--violet)}
+.deck.new span{color:var(--muted);font-size:14px}
+.boxes{display:flex;gap:6px;align-items:flex-end;height:54px;padding:4px 0}
+.bx{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:2px}
+.bx span{width:100%;border-radius:4px;background:color-mix(in srgb,var(--violet) 65%,var(--surface))}
+.bx em{font-style:normal;font-size:11px;color:var(--muted);line-height:1}
+.week-bars{height:150px}
+.act-bars{height:140px;gap:6px}
+.act-bars em{text-align:center;line-height:1.2}
+.g small{display:block;font-size:11.5px;font-weight:500;opacity:.8}
+.qcm{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
+.qo{font:inherit;font-size:15.5px;font-weight:500;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;cursor:pointer;text-align:center;min-height:58px;overflow-wrap:anywhere}
+.qo:hover:not(:disabled){border-color:var(--teal)}
+.qo:disabled{cursor:default}
+.qo.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 13%,var(--surface));color:var(--ok);font-weight:600;opacity:1}
+.qo.ko{border-color:var(--ko);background:color-mix(in srgb,var(--coral) 13%,var(--surface));color:var(--ko);opacity:1}
+.qo.dim{opacity:.45}
+.dot.okd{background:var(--ok)}.dot.kod{background:var(--ko)}
+details.bulk{background:var(--soft);border-radius:14px;padding:12px 16px}
+details.bulk summary{cursor:pointer;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:8px;list-style:none}
+details.bulk summary::-webkit-details-marker{display:none}
+details.bulk[open] summary{margin-bottom:10px}
+details.bulk code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;background:var(--surface);padding:1px 6px;border-radius:5px}
+.seg{display:inline-flex;background:var(--soft);border-radius:12px;padding:4px;gap:4px;flex-wrap:wrap;margin-bottom:18px}
+.seg-b{display:inline-flex;align-items:center;gap:7px;font:inherit;font-size:14.5px;font-weight:500;color:var(--muted);background:none;border:0;border-radius:9px;padding:8px 14px;cursor:pointer;text-decoration:none}
+.seg-b.on{background:var(--surface);color:var(--ink);font-weight:600;box-shadow:0 1px 3px rgba(15,59,130,.12)}
+.m4top{grid-template-columns:auto minmax(260px,340px);justify-content:space-between;align-items:start}
+.m4top .seg{margin:0}
+.objbox{padding:12px 16px}
+.objbox summary{cursor:pointer;font-weight:600;color:var(--ink);font-size:14.5px}
+.objbox[open] summary{margin-bottom:10px}
+.fields.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.field select{appearance:auto}
+.tasks{display:flex;flex-direction:column;gap:8px}
+.task{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;flex-wrap:wrap}
+.task.done{opacity:.6}
+.task.done strong{text-decoration:line-through}
+.t-main{flex:1;min-width:200px;display:flex;flex-direction:column}
+.t-main strong{color:var(--ink);font-weight:600;line-height:1.3}
+.t-tags{display:flex;gap:6px;flex-wrap:wrap}
+.t-act{display:flex;gap:4px;align-items:center}
+.tick{width:26px;height:26px;border-radius:8px;border:2px solid var(--line);background:var(--surface);display:grid;place-items:center;flex:none;cursor:pointer;color:#fff;padding:0}
+.tick[aria-pressed="true"],.tick.on{background:var(--ok);border-color:var(--ok)}
+.tick.on{cursor:default}
+.tick.sm{width:20px;height:20px;border-radius:6px}
+.empty-s{display:flex;align-items:center;gap:12px;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:14px;padding:16px}
+.empty-s p{margin:0}
+.empty-s svg{color:var(--teal)}
+.warns{display:flex;flex-direction:column;gap:8px;margin-top:18px}
+.note.warn{background:color-mix(in srgb,var(--amber) 16%,var(--surface));color:var(--text)}
+.note.warn svg{color:var(--warn)}
+.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;margin-top:18px}
+.day{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:8px;min-height:160px;min-width:0}
+.day.today-d{border-color:var(--teal);box-shadow:0 0 0 2px color-mix(in srgb,var(--teal) 25%,transparent)}
+.day-h{display:flex;justify-content:space-between;align-items:baseline;gap:6px}
+.day-h strong{color:var(--ink);font-size:14px;text-transform:capitalize}
+.day-h .over{color:var(--ko);font-weight:600}
+.sess{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px;align-items:start;background:color-mix(in srgb,var(--amber) 14%,var(--surface));border-radius:10px;padding:7px 6px 7px 8px;font-size:13px}
+.sess b{display:block;color:var(--ink);font-weight:600;line-height:1.3;overflow-wrap:anywhere}
+.sess .small{font-size:11.5px}
+.sess.done{opacity:.6}
+.sess .tick{margin-top:2px}
+.icon-btn.xs{width:24px;height:24px}
+.due-chip{font-size:12px;font-weight:600;color:var(--ko);background:color-mix(in srgb,var(--coral) 12%,var(--surface));border-radius:8px;padding:4px 8px;display:flex;align-items:center;gap:5px}
+.free{margin:0;font-style:italic}
+.dists{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.dist{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.dist.on{border-color:var(--teal)}
+.dist-h{display:flex;gap:10px;align-items:center;background:none;border:0;padding:0;font:inherit;font-size:15.5px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left}
+.dist-h .box{width:22px;height:22px;border-radius:7px;border:2px solid var(--line);display:grid;place-items:center;flex:none;color:#fff}
+.dist.on .dist-h .box{background:var(--teal);border-color:var(--teal)}
+.opt.sm{font-size:13.5px;padding:8px 12px}
+.timer.big{width:170px;height:170px}
+.timer.big svg{width:170px;height:170px}
+.timer.big b{font-size:36px}
+.timer.big circle{stroke-width:5}
+.stats4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.stat.big{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:2px;padding:16px}
+.stat .s-ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--soft);color:var(--teal);margin-bottom:6px}
+ul.plain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+ul.plain li{display:flex;gap:8px;align-items:flex-start}
+ul.plain li svg{color:var(--teal);margin-top:4px}
+ul.plain.sm{font-size:14px;gap:4px}
+ul.plain.sm li{display:block}
+.checks{display:flex;flex-wrap:wrap;gap:6px}
+.chk{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:500;padding:4px 10px;border-radius:999px}
+.chk.oui{color:var(--ok);background:color-mix(in srgb,var(--ok) 13%,var(--surface))}
+.chk.partie{color:var(--warn);background:color-mix(in srgb,var(--amber) 20%,var(--surface))}
+.chk.non{color:var(--ko);background:color-mix(in srgb,var(--coral) 14%,var(--surface))}
+.bar.cmp{position:relative;overflow:visible}
+.bar.cmp i{position:absolute;top:-4px;width:3px;height:18px;border-radius:2px;background:var(--ink);opacity:.55;transform:translateX(-1px)}
+.axis em{font-style:normal;font-size:12.5px;color:var(--ok);display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
+.axes:has(em) .axis{grid-template-columns:150px 1fr 80px}
+.axes.sm{gap:8px}
+.axes.sm .axis{grid-template-columns:120px 1fr}
+.axes.sm .axis b{font-size:13px}
+.axes.sm .bar{height:7px}
+.assign{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#0F3B82,#1b5a8f);color:#E8F4FB;border-radius:16px;padding:14px 16px;margin-top:22px}
+.assign .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.12);color:var(--amber);flex:none}
+.assign .t{flex:1;min-width:0}
+.assign strong{display:block;color:#fff}
+.assign span{font-size:14px;color:#B9CDEA}
+.assign .btn{background:var(--amber);color:#3b2a00}
+.assign .icon-btn{color:#B9CDEA}
+.assign .icon-btn:hover{background:rgba(255,255,255,.1);color:#fff}
+.tbl-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:14px}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;min-width:640px}
+.tbl th{text-align:left;font-size:12.5px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;padding:10px 14px;border-bottom:1px solid var(--line)}
+.tbl td{padding:10px 14px;border-bottom:1px solid color-mix(in srgb,var(--line) 60%,transparent)}
+.tbl tr:last-child td{border-bottom:0}
+.tbl a{color:var(--ink)}
+.fiche{margin-top:18px;scroll-margin-top:90px}
+.fiche-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.fiche-grid h3{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin:0 0 8px}
+.fiche-grid h3:not(:first-child){margin-top:14px}
+ul.tips{margin:6px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.guide{display:flex;flex-direction:column;gap:16px}
+.bnav{display:none}
+.meth .seg{margin:0;flex-wrap:nowrap}
+@media (max-width:1000px){
+  .week{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .fiche-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:860px){
+  .hero,.carte,.example,.two,.m4top{grid-template-columns:1fr}
+  .fields.four{grid-template-columns:1fr 1fr}
+  .stats4{grid-template-columns:1fr 1fr}
+  .fiche-grid{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .top-in{gap:10px;padding:8px 14px}
+  .word{font-size:19px}
+  .logo{width:32px;height:32px}
+  .tabs{display:none}
+  .wrap{padding:22px 16px 64px}
+  .fields{grid-template-columns:1fr}
+  .pairs{grid-template-columns:1fr}
+  .duel{grid-template-columns:1fr}
+  .axis{grid-template-columns:110px 1fr}
+  .qa{grid-template-columns:28px minmax(0,1fr) 34px}
+  .qa .qa-a{grid-column:2/3}
+  .meth{grid-template-columns:1fr}
+  .custom{grid-template-columns:1fr}
+  .pass-card{grid-template-columns:1fr;text-align:left}
+  .pass-card .seal{display:none}
+  .grade3 .g{font-size:14px;padding:12px 6px}
+  .week{grid-template-columns:1fr}
+  .day{min-height:0}
+  .fields.four{grid-template-columns:1fr}
+  .qcm{grid-template-columns:1fr}
+  .dists{grid-template-columns:1fr}
+  .axes:has(em) .axis{grid-template-columns:110px 1fr 70px}
+  body{padding-bottom:64px}
+  .bnav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:25;background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px))}
+  .bnav a{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;font-weight:500;color:var(--muted);text-decoration:none;padding:4px 0;border-radius:10px}
+  .bnav a.on{color:var(--ink);font-weight:600}
+  .bnav a.on svg{color:var(--teal)}
+  .demo-flag{bottom:76px}
+  .toast{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{
+  :root{--bg:#fff;--surface:#fff;--soft:#F1F5FA;--ink:#0F3B82;--text:#22324F;--muted:#5A6A86;--line:#CBD8E6;color-scheme:light}
+  body{background:#fff;font-size:12pt}
+  body::before,body::after,.top,.credit,.no-print,.btns,.toast,.demo-flag,.bnav{display:none!important}
+  .week{grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+  .day{min-height:0;break-inside:avoid}
+  .sess{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .fiche{break-before:page}
+  .wrap{padding:0;max-width:none}
+  .panel{box-shadow:none;break-inside:avoid}
+  .print-only{display:block}
+  .pass-card{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .pass-card input{border:0;background:none;padding:0}
+  .meth .seg button:not(.on){display:none}
+  .meth .seg{background:none}
+  .meth.untested,.meth.nov{display:none}
+  .note-in input:placeholder-shown{display:none}
+  .print-only.eng-it{display:flex}
+  .eng-it:not(.on){display:none}
+  .eng-it{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+(function(){
+'use strict';
+
+/* =========================================================
+   Mission Méthode — MVP
+   Missions 01 (diagnostic), 02 (laboratoire) et 05 (passeport).
+   Tout est enregistré dans le navigateur de l'élève : aucun compte,
+   aucune donnée envoyée. Ajoute ?demo à l'adresse pour raccourcir
+   les minuteurs et supprimer l'attente du test différé (pour tester).
+   ========================================================= */
+
+var DEMO=/[?&]demo\b/.test(location.search);
+var KEY='mission-methode';
+var CREDIT_TXT='Copyright Lucas Le Coadou - Professeur d’espagnol dans l’académie de Montpellier';
+var HOUR=3600e3,DAY=24*HOUR;
+var T={relire:DEMO?12:120,lecture:DEMO?4:20,quiz:DEMO?10:100,wait:DEMO?0:20*HOUR,space1:DEMO?0:2*DAY,space2:DEMO?0:5*DAY,recall:DEMO?10:180,oral:DEMO?8:60};
+
+var ICONS={
+  back:'<path d="M15 18l-6-6 6-6"/>',
+  chev:'<path d="m9 6 6 6-6 6"/>',
+  check:'<path d="m5 12 5 5 9-10"/>',
+  x:'<path d="M6 6l12 12M18 6 6 18"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>',
+  lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
+  user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+  flask:'<path d="M9 3h6M10 3v6L4.5 18.5A2 2 0 0 0 6.2 21.5h11.6a2 2 0 0 0 1.7-3L14 9V3"/><path d="M7.5 15h9"/>',
+  brain:'<path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 3 3 3 3 0 0 0 3-3V7a3 3 0 0 0-3-3z"/><path d="M15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-3 3 3 3 0 0 1-3-3"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  passport:'<rect x="5" y="2.5" width="14" height="19" rx="2"/><circle cx="12" cy="10" r="3.2"/><path d="M8.5 17h7"/>',
+  map:'<path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/>',
+  notebook:'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v18M12 8h4M12 12h4"/>',
+  toolbox:'<rect x="3" y="8" width="18" height="12" rx="2"/><path d="M9 8V5h6v3M3 13h18"/>',
+  calendar:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+  eye:'<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+  target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+  cards:'<rect x="3" y="6" width="14" height="15" rx="2"/><path d="M7 3h12a2 2 0 0 1 2 2v12"/>',
+  mic:'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>',
+  scale:'<path d="M12 3v18M7 21h10M5 7h14"/><path d="M5 7 2 14a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/>',
+  bulb:'<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/>',
+  star:'<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>',
+  bell:'<path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/>',
+  print:'<path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/>',
+  save:'<path d="M5 3h11l3 3v15H5z"/><path d="M8 3v5h7V3M8 21v-7h8v7"/>',
+  trash:'<path d="M4 7h16M10 11v6M14 11v6M6 7l1 14h10l1-14M9 7V4h6v3"/>',
+  copy:'<rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/>',
+  info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>',
+  refresh:'<path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/>',
+  focus:'<path d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4"/><circle cx="12" cy="12" r="3"/>',
+  read:'<path d="M2 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H2zM22 5h-7a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h8z"/>',
+  zap:'<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>',
+  play:'<path d="M7 4v16l13-8z"/>',
+  pen:'<path d="M4 20h4L19 9l-4-4L4 16v4z"/>',
+  chart:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>'
+};
+function ic(n,s){s=s||20;return '<svg class="i" viewBox="0 0 24 24" width="'+s+'" height="'+s+'" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+ICONS[n]+'</svg>';}
+
+/* Logo : une carte de mission (bleu) avec un escalier (turquoise) qui monte vers un fanion (ambre) */
+var LOGO='<svg class="logo" viewBox="0 0 48 48" aria-hidden="true"><rect x="3" y="8" width="38" height="36" rx="8" fill="#0F3B82"/><path d="M10 37h8v-7h8v-7h8" fill="none" stroke="#14B8A6" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M34 23V5" stroke="#FBBF24" stroke-width="3" stroke-linecap="round"/><path d="M35 5.5h9l-3 4 3 4h-9z" fill="#FBBF24"/></svg>';
+
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var x=a[i];a[i]=a[j];a[j]=x;}return a;}
+function noAcc(s){return String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'');}
+function fold(s){return noAcc(String(s||'').toLowerCase()).replace(/[’`]/g,"'").replace(/[!?.,;:«»"()]/g,' ').replace(/\s+/g,' ').trim();}
+function stripArt(s){return s.replace(/^(le|la|les|un|une|des|du|l')\s*/,'');}
+function correct(v,ans){var n=stripArt(fold(v));if(!n)return false;return ans.split('/').some(function(a){return stripArt(fold(a))===n;});}
+function pct(n,d){return d?Math.round(n/d*100):0;}
+function now(){return Date.now();}
+function fmtDate(t){return new Date(t).toLocaleDateString('fr-FR',{day:'numeric',month:'long'});}
+function fmtWait(ms){
+  if(ms<=0)return 'maintenant';
+  var h=Math.ceil(ms/HOUR);
+  if(h<=1)return 'dans moins d’une heure';
+  if(h<24)return 'dans '+h+' h';
+  var d=Math.ceil(ms/DAY);return d===1?'demain':'dans '+d+' jours';
+}
+
+/* ================= Contenu pédagogique ================= */
+
+/* Axes du diagnostic : des besoins concrets, pas des « profils » */
+var AXES={
+  mem:{label:'Mémoriser',color:'#14B8A6',icon:'brain',
+    need:'Ce que tu apprends s’efface vite.',
+    tip:'La relecture donne l’impression de savoir, mais c’est en essayant de te souvenir (cours caché) que tu retiens vraiment.',
+    labs:['duel','questions']},
+  check:{label:'Vérifier ce que je sais',color:'#FF7F6E',icon:'target',
+    need:'Tu te sens prêt(e), mais le contrôle te surprend.',
+    tip:'Une leçon qui te paraît familière n’est pas forcément sue. Seul un test sans le cours te dit la vérité.',
+    labs:['duel','expliquer']},
+  comp:{label:'Comprendre',color:'#8B5CF6',icon:'read',
+    need:'Tu lis, mais le sens ou la consigne t’échappe.',
+    tip:'Reformuler avec tes mots, ou expliquer à quelqu’un, montre tout de suite ce qui est encore flou.',
+    labs:['expliquer','questions']},
+  orga:{label:'M’organiser',color:'#FBBF24',icon:'calendar',
+    need:'Tu repousses ou tu révises tout la veille.',
+    tip:'Plusieurs petites séances étalées dans la semaine valent mieux qu’une grosse séance la veille.',
+    labs:['idees','questions']},
+  conc:{label:'Me concentrer',color:'#2C6BD6',icon:'focus',
+    need:'Tu décroches vite, les distractions gagnent.',
+    tip:'Des séances courtes, sans téléphone à portée de main, rendent chaque minute plus efficace.',
+    labs:['idees','duel']}
+};
+var AXIS_KEYS=['mem','check','comp','orga','conc'];
+
+var DIAG=[
+  {q:'Tu as une leçon à apprendre pour demain. Le plus souvent, tu…',o:[
+    {t:'la relis plusieurs fois, jusqu’à ce qu’elle te paraisse familière',w:{check:2,mem:1}},
+    {t:'la recopies ou tu surlignes l’essentiel',w:{check:2}},
+    {t:'caches le cours et tu essaies de te la réciter',w:{}},
+    {t:'te fais interroger par quelqu’un',w:{}}]},
+  {q:'Deux semaines après un contrôle, il te reste de la leçon…',o:[
+    {t:'presque rien, tout s’est envolé',w:{mem:2}},
+    {t:'les grandes lignes',w:{mem:1}},
+    {t:'l’essentiel : je pourrais encore l’expliquer',w:{}}]},
+  {q:'Le soir, au moment de te mettre au travail…',o:[
+    {t:'tu repousses, tu commences très tard (ou pas du tout)',w:{orga:2}},
+    {t:'tu ne sais pas par quoi commencer, tout paraît urgent',w:{orga:2}},
+    {t:'tu commences, mais tu as du mal à t’y tenir',w:{conc:1,orga:1}},
+    {t:'tu sais ce que tu as à faire et tu t’y mets',w:{}}]},
+  {q:'Pendant que tu travailles, ton téléphone est…',o:[
+    {t:'à côté de toi, et tu réponds aux notifications',w:{conc:2}},
+    {t:'à côté de toi, en silencieux',w:{conc:1}},
+    {t:'dans une autre pièce, ou éteint',w:{}},
+    {t:'je n’ai pas de téléphone',w:{}}]},
+  {q:'Face à la consigne d’un exercice, il t’arrive de…',o:[
+    {t:'répondre à côté parce que tu as lu trop vite',w:{comp:2}},
+    {t:'ne pas comprendre ce qu’on attend de toi',w:{comp:2}},
+    {t:'bien comprendre, la plupart du temps',w:{}}]},
+  {q:'Après avoir révisé, tu te sens prêt(e). Au contrôle…',o:[
+    {t:'tu découvres souvent que tu savais moins bien que tu pensais',w:{check:2}},
+    {t:'ça dépend des matières',w:{check:1}},
+    {t:'ta note correspond à peu près à ce que tu avais prévu',w:{}}]},
+  {q:'Quand tu lis un texte ou un document de cours…',o:[
+    {t:'tu arrives au bout sans savoir ce que tu viens de lire',w:{comp:2,conc:1}},
+    {t:'tu comprends les mots, mais pas toujours l’idée principale',w:{comp:1}},
+    {t:'tu peux dire de quoi ça parle, avec tes mots',w:{}}]},
+  {q:'Un contrôle est annoncé dans une semaine. Tu révises…',o:[
+    {t:'la veille au soir, tout d’un coup',w:{orga:2,mem:1}},
+    {t:'un peu la veille et le matin même',w:{orga:1}},
+    {t:'en plusieurs petites fois dans la semaine',w:{}}]},
+  {q:'Combien de temps tiens-tu sur un exercice sans décrocher ?',o:[
+    {t:'moins de 5 minutes',w:{conc:2}},
+    {t:'entre 5 et 15 minutes',w:{conc:1}},
+    {t:'plus de 15 minutes',w:{}}]},
+  {q:'Une copie corrigée te revient avec des erreurs. Tu…',o:[
+    {t:'regardes la note et tu passes à autre chose',w:{check:1,mem:1}},
+    {t:'recopies la correction',w:{check:1}},
+    {t:'cherches pourquoi tu t’es trompé(e)',w:{}}]},
+  {q:'Aujourd’hui, ce qui te gêne le plus, c’est…',o:[
+    {t:'« J’apprends mes leçons, mais j’oublie tout ! »',w:{mem:2}},
+    {t:'« Je ne comprends pas toujours ce que je lis ou ce qu’on me demande. »',w:{comp:2}},
+    {t:'« Je n’arrive pas à m’organiser. »',w:{orga:2}},
+    {t:'« Je me disperse très vite. »',w:{conc:2}},
+    {t:'« Je crois savoir, mais mes notes disent le contraire. »',w:{check:2}}]}
+];
+
+/* Expérience « duel » : deux listes de mots swahilis, une par méthode */
+var SETS=[
+  [{w:'maji',a:'eau'},{w:'kitabu',a:'livre'},{w:'rafiki',a:'ami/amie/copain/copine'},{w:'nyumba',a:'maison'},
+   {w:'ndege',a:'oiseau'},{w:'mti',a:'arbre'},{w:'jua',a:'soleil'},{w:'chakula',a:'nourriture/repas'}],
+  [{w:'mvua',a:'pluie'},{w:'samaki',a:'poisson'},{w:'mlango',a:'porte'},{w:'kalamu',a:'stylo/crayon'},
+   {w:'mbwa',a:'chien'},{w:'gari',a:'voiture'},{w:'mwezi',a:'lune'},{w:'shule',a:'école'}]
+];
+var METHODS={
+  relire:{label:'Relire',long:'Relire la liste',color:'#FBBF24',icon:'eye'},
+  tester:{label:'Me tester',long:'Me tester (rappel actif)',color:'#14B8A6',icon:'target'}
+};
+
+var MYTHS=[
+  {s:'Relire plusieurs fois sa leçon, c’est la meilleure façon de la retenir.',v:false,
+   e:'La relecture rend la leçon familière, ce qui donne l’impression de la savoir. Les études montrent qu’essayer de se souvenir sans regarder (se tester) fait bien mieux retenir, surtout plusieurs jours après.'},
+  {s:'Certains élèves sont « visuels », d’autres « auditifs » : il faut apprendre selon son style.',v:false,
+   e:'C’est l’une des idées reçues les plus répandues, mais les recherches n’ont pas montré qu’apprendre « dans son style » aide à mieux retenir. Ce qui compte, c’est la méthode (se tester, espacer, expliquer) et le contenu : une carte se regarde, une langue s’écoute… pour tout le monde.'},
+  {s:'Réviser 4 fois 15 minutes dans la semaine vaut mieux qu’une heure la veille.',v:true,
+   e:'C’est l’effet d’espacement. En laissant ton cerveau oublier un peu entre deux séances, chaque révision le force à « aller rechercher » l’information, ce qui la fixe plus durablement.'},
+  {s:'Se tromper pendant qu’on s’entraîne, c’est perdre son temps.',v:false,
+   e:'Au contraire : une erreur suivie de la correction aide à retenir la bonne réponse. Ce qui fait perdre du temps, c’est de ne jamais se tester… et de découvrir ses erreurs le jour du contrôle.'},
+  {s:'Surligner son cours, c’est déjà réviser.',v:false,
+   e:'Surligner donne l’impression d’avoir travaillé, mais on reste passif. C’est utile seulement si tu t’en sers ensuite, par exemple pour fabriquer des questions sur ce que tu as surligné.'},
+  {s:'Répondre à un message au milieu d’un exercice ne coûte que quelques secondes.',v:false,
+   e:'Le message prend quelques secondes, mais il faut ensuite du temps pour se replonger dans l’exercice. Et chaque interruption fait perdre le fil. Faire une seule chose à la fois va plus vite.'},
+  {s:'Expliquer une notion à quelqu’un aide à repérer ce qu’on n’a pas compris.',v:true,
+   e:'En expliquant, tu dois remettre les idées dans l’ordre avec tes mots. Les trous apparaissent tout de suite : c’est exactement ce qu’il faut retravailler.'},
+  {s:'Dormir après avoir appris aide à retenir.',v:true,
+   e:'Pendant le sommeil, le cerveau trie et consolide ce que tu as appris dans la journée. Réviser tard au détriment du sommeil est souvent un mauvais calcul.'}
+];
+
+var LABS={
+  duel:{title:'Le duel : relire ou se tester ?',short:'Compare deux méthodes sur des mots que tu ne connais pas encore. Le verdict tombe… quelques jours plus tard.',icon:'scale',color:'#14B8A6',time:'2 × 2 min, puis 3 min un autre jour'},
+  questions:{title:'Transforme ton cours en questions',short:'Prends une vraie leçon, fabrique tes propres questions, puis teste-toi aujourd’hui et dans quelques jours.',icon:'cards',color:'#FF7F6E',time:'15 min, puis 5 min deux fois'},
+  expliquer:{title:'Explique-le comme à un camarade',short:'Note ce dont tu te souviens, explique à voix haute, puis compare avec ton cours pour trouver tes trous.',icon:'mic',color:'#8B5CF6',time:'10 min'},
+  idees:{title:'Vrai ou faux ? Les idées reçues',short:'Huit affirmations sur l’apprentissage. Certaines vont te surprendre.',icon:'bulb',color:'#FBBF24',time:'5 min'}
+};
+var LAB_KEYS=['duel','questions','expliquer','idees'];
+
+/* Méthodes du passeport */
+var PMETHODS=[
+  {k:'tester',t:'Me tester sans regarder mon cours',href:'#/lab/duel',hl:'Le duel'},
+  {k:'relire',t:'Relire mon cours',href:'#/lab/duel',hl:'Le duel'},
+  {k:'questions',t:'Transformer mon cours en questions',href:'#/lab/questions',hl:'Transforme ton cours en questions'},
+  {k:'espacer',t:'Réviser en plusieurs petites fois',href:'#/lab/questions',hl:'Transforme ton cours en questions'},
+  {k:'expliquer',t:'Expliquer à voix haute',href:'#/lab/expliquer',hl:'Explique-le comme à un camarade'},
+  {k:'cartes',t:'Réviser avec des cartes mémoire',href:'#/m3',hl:'Mission 03'},
+  {k:'planifier',t:'Planifier mes séances dans la semaine',href:'#/m4/planning',hl:'Mission 04'},
+  {k:'focus',t:'Travailler en séances courtes, sans téléphone',href:'#/m4/focus',hl:'Mission 04'}
+];
+var ENGAGE={
+  mem:'Quand j’ai une leçon à apprendre, je cache mon cours et j’essaie de me la réciter avant de la relire.',
+  check:'Avant un contrôle, je me teste sur des questions au lieu de seulement relire.',
+  orga:'Quand un contrôle est annoncé, je prévois trois petites séances dans la semaine plutôt qu’une seule la veille.',
+  conc:'Quand je travaille, je mets mon téléphone dans une autre pièce pendant 20 minutes.',
+  comp:'Quand je lis une consigne, je repère le verbe d’action et je la reformule avec mes mots avant de répondre.',
+  q:'Après un cours important, j’écris trois questions sur ce que je viens d’apprendre.',
+  x:'Le soir, j’explique à quelqu’un (ou à voix haute) une notion vue dans la journée.'
+};
+
+var MISSIONS=[
+  {n:'01',k:'m1',title:'Mon profil de travail',sub:'Repère tes habitudes, tes difficultés et tes besoins.',reward:'Ma carte de départ',rk:'carte',icon:'map',color:'#14B8A6',href:'#/m1'},
+  {n:'02',k:'m2',title:'Le laboratoire des méthodes',sub:'Compare plusieurs façons d’apprendre, preuves à l’appui.',reward:'Mon carnet d’expériences',rk:'carnet',icon:'flask',color:'#FF7F6E',href:'#/m2'},
+  {n:'03',k:'m3',title:'Muscle ta mémoire',sub:'Flashcards, quiz et entraînements espacés.',reward:'Ma boîte à outils de révision',rk:'boite',icon:'toolbox',color:'#8B5CF6',href:'#/m3'},
+  {n:'04',k:'m4',title:'Maîtrise ton temps',sub:'Planning réaliste, priorités et distractions.',reward:'Mon programme de travail',rk:'programme',icon:'clock',color:'#FBBF24',href:'#/m4'},
+  {n:'05',k:'m5',title:'Construis ta méthode',sub:'Garde ce qui marche pour toi et prends des engagements.',reward:'Mon passeport méthode',rk:'passeport',icon:'passport',color:'#2C6BD6',href:'#/m5'}
+];
+var REWARDS={
+  carte:{t:'Ma carte de départ',icon:'map',color:'#14B8A6'},
+  carnet:{t:'Mon carnet d’expériences',icon:'notebook',color:'#FF7F6E'},
+  boite:{t:'Ma boîte à outils de révision',icon:'toolbox',color:'#8B5CF6'},
+  programme:{t:'Mon programme de travail',icon:'calendar',color:'#FBBF24'},
+  passeport:{t:'Mon passeport méthode',icon:'passport',color:'#2C6BD6'}
+};
+
+/* ================= Enregistrement local ================= */
+function blank(){return {v:1,name:'',diag:null,lab:{duel:null,questions:null,expliquer:null,idees:null},pass:{verdicts:{},notes:{},eng:[],custom:{when:'',then:''},done:0},rewards:{},m3:{decks:[],sessions:[],quizzes:[]},m4:{tasks:[],plan:[],dist:{},focus:[]},log:[],checks:[],diagHist:[],assigned:null};}
+var S=load();
+function load(){
+  try{var d=JSON.parse(localStorage.getItem(KEY)||'null');if(d&&d.v===1)return fix(d);}catch(e){}
+  return blank();
+}
+function fix(d){var b=blank();for(var k in b)if(d[k]==null)d[k]=b[k];for(var l in b.lab)if(!(l in d.lab))d.lab[l]=null;for(var p in b.pass)if(d.pass[p]==null)d.pass[p]=b.pass[p];return d;}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+
+/* ================= État de l'écran ================= */
+var ui={view:'home',lab:null,diag:null,duel:null,q:null,x:null,idees:null,armed:false,importErr:'',importOpen:false,modal:null};
+
+/* ---------- Résultats calculés ---------- */
+function diagResult(ans){
+  var sc={},mx={};AXIS_KEYS.forEach(function(a){sc[a]=0;mx[a]=0;});
+  DIAG.forEach(function(q,i){
+    AXIS_KEYS.forEach(function(a){var m=0;q.o.forEach(function(o){m=Math.max(m,o.w[a]||0);});mx[a]+=m;});
+    var o=q.o[ans[i]];if(o)for(var a in o.w)sc[a]+=o.w[a];
+  });
+  var r={};AXIS_KEYS.forEach(function(a){r[a]=mx[a]?sc[a]/mx[a]:0;});
+  return r;
+}
+function priorities(){
+  if(!S.diag)return [];
+  var r=S.diag.res;
+  var sorted=AXIS_KEYS.slice().sort(function(a,b){return r[b]-r[a];});
+  var top=sorted.filter(function(a){return r[a]>=.3;}).slice(0,2);
+  if(!top.length)top=[sorted[0]];
+  return top;
+}
+function strengths(){if(!S.diag)return [];var r=S.diag.res;return AXIS_KEYS.filter(function(a){return r[a]<.2;});}
+function recommended(){var rec=[];priorities().forEach(function(a){AXES[a].labs.forEach(function(l){if(rec.indexOf(l)<0)rec.push(l);});});return rec;}
+
+function labDone(k){
+  var d=S.lab[k];if(!d)return false;
+  if(k==='duel')return !!d.concl;
+  if(k==='questions')return d.sessions&&d.sessions.length>0;
+  return !!d.done;
+}
+function labStarted(k){return !!S.lab[k];}
+function labsDone(){return LAB_KEYS.filter(labDone).length;}
+function duelReadyAt(){var d=S.lab.duel;return d&&d.imm&&!d.def?d.immAt+T.wait:null;}
+function qDueAt(){
+  var d=S.lab.questions;if(!d||!d.sessions||!d.sessions.length||d.sessions.length>=3)return null;
+  var last=d.sessions[d.sessions.length-1].at;
+  return last+(d.sessions.length===1?T.space1:T.space2);
+}
+function m2Done(){return labsDone()>=2;}
+function m5Open(){return !!S.diag&&(labsDone()>=1||!!(S.lab.duel&&S.lab.duel.imm));}
+function testedMethods(){
+  var t={};
+  if(S.lab.duel&&S.lab.duel.imm){t.tester=1;t.relire=1;}
+  if(labDone('questions'))t.questions=1;
+  if(S.lab.questions&&S.lab.questions.sessions&&S.lab.questions.sessions.length>=2)t.espacer=1;
+  if(labDone('expliquer'))t.expliquer=1;
+  if(S.m3.sessions.length)t.cartes=1;
+  if(S.m4.plan.length>=3)t.planifier=1;
+  if(S.m4.focus.length)t.focus=1;
+  return t;
+}
+function missionState(m){
+  if(m.soon)return 'soon';
+  if(m.k==='m1')return S.diag?'done':'todo';
+  if(m.k==='m2')return m2Done()?'done':(LAB_KEYS.some(labStarted)?'going':'todo');
+  if(m.k==='m3')return allOk(m3Obj())?'done':(S.m3.decks.length?'going':'todo');
+  if(m.k==='m4')return allOk(m4Obj())?'done':(S.m4.tasks.length||S.m4.plan.length||S.m4.focus.length?'going':'todo');
+  if(m.k==='m5')return S.pass.done?'done':(m5Open()?'todo':'locked');
+}
+
+/* ---------- Récompenses ---------- */
+var queue=[];
+function checkRewards(){
+  var give=function(k){if(!S.rewards[k]){S.rewards[k]=now();queue.push(k);}};
+  if(S.diag)give('carte');
+  if(m2Done())give('carnet');
+  if(allOk(m3Obj()))give('boite');
+  if(allOk(m4Obj()))give('programme');
+  if(S.pass.done)give('passeport');
+  save();
+  if(queue.length&&!ui.modal)showNextReward();
+}
+function showNextReward(){var k=queue.shift();if(!k)return;ui.modal={type:'reward',k:k};render();}
+
+/* ================= Vues ================= */
+function header(){
+  var v=ui.view;
+  var tab=function(h,l,on){return '<a class="tab '+(on?'on':'')+'" href="'+h+'">'+l+'</a>';};
+  return '<header class="top"><div class="top-in">'+
+    '<a class="brand" href="#/" aria-label="Mission Méthode, retour à l’accueil">'+LOGO+'<span class="word">Mission <span class="u">Méthode</span></span></a>'+
+    '<nav class="tabs" aria-label="Navigation">'+
+      tab('#/','Missions',v==='home'||v==='m1'||v==='m3'||v==='m4')+tab('#/m2','Laboratoire',v==='m2'||v==='lab')+tab('#/suivi','Mon suivi',v==='suivi')+tab('#/m5','Passeport',v==='m5')+
+    '</nav></div></header>';
+}
+function credit(){
+  return '<footer class="credit">'+LOGO+'<span>© '+CREDIT_TXT+'</span><span class="spacer"></span>'+
+    '<a class="link" href="#/donnees">'+ic('save',14)+' Mes données</a><a class="link" href="#/prof">'+ic('user',14)+' Espace enseignant</a></footer>';
+}
+function bnav(){
+  var v=ui.view,it=function(h,l,i,on){return '<a href="'+h+'" class="'+(on?'on':'')+'">'+ic(i,20)+l+'</a>';};
+  return '<nav class="bnav" aria-label="Navigation">'+it('#/','Missions','map',v==='home'||v==='m1'||v==='m3'||v==='m4')+it('#/m2','Labo','flask',v==='m2'||v==='lab')+it('#/suivi','Suivi','chart',v==='suivi')+it('#/m5','Passeport','passport',v==='m5')+'</nav>';
+}
+function crumbs(href,label,extra){return '<div class="crumbs no-print"><a class="link" href="'+href+'">'+ic('back',16)+' '+label+'</a>'+(extra||'')+'</div>';}
+function chip(color,txt){return '<span class="m-chip" style="--dot:'+color+'">'+txt+'</span>';}
+function barHtml(p,color){return '<div class="bar"><span style="width:'+Math.round(p*100)+'%'+(color?';background:'+color:'')+'"></span></div>';}
+
+/* ----- Accueil ----- */
+function viewHome(){
+  var done=MISSIONS.filter(function(m){return missionState(m)==='done';}).length;
+  var avail=MISSIONS.filter(function(m){return !m.soon;}).length;
+  var h='<section class="hero"><div class="hero-txt">'+
+    '<p class="hello">'+(S.name?'Salut '+esc(S.name)+' !':'Salut !')+'</p>'+
+    '<h1>Apprends à apprendre,<br>mission par mission.</h1>'+
+    '<p class="lead">Ici, personne ne te dit comment travailler. Tu testes des méthodes, tu regardes ce qui marche vraiment pour toi, et tu construis ta façon de faire.</p>'+
+    '<div class="btns" style="margin-top:16px">'+nextStepBtn()+'</div>'+
+  '</div><div class="hero-stats">'+
+    '<div class="stat-row"><div class="stat"><strong>'+done+'<small style="font-size:16px;color:var(--muted)"> / '+avail+'</small></strong><span>missions terminées</span></div>'+
+    '<div class="stat"><strong>'+labsDone()+'<small style="font-size:16px;color:var(--muted)"> / 4</small></strong><span>expériences menées</span></div></div>'+
+    '<div><div class="small muted" style="margin-bottom:6px">Ta progression</div>'+barHtml(((S.diag?1:0)+labsDone()+(allOk(m3Obj())?1:0)+(allOk(m4Obj())?1:0)+(S.pass.done?1:0))/8)+'</div>'+
+  '</div></section>';
+  var al=alerts();
+  if(al)h+='<div class="alerts">'+al+'</div>';
+  h+='<div class="sec-h"><h2>Les missions</h2><span class="small muted">À faire dans l’ordre que tu veux</span></div><div class="missions">';
+  MISSIONS.forEach(function(m){
+    var st=missionState(m);
+    var status={done:'<span class="pill ok">'+ic('check',13)+' Terminée</span>',going:'<span class="pill hot">En cours</span>',todo:'<span class="pill">À faire</span>',
+      locked:'<span class="pill">'+ic('lock',12)+' Après 01 + 1 expérience</span>',soon:'<span class="pill">'+ic('lock',12)+' Bientôt</span>'}[st];
+    var inner='<div class="m-top"><span class="m-num">'+m.n+'</span><span class="m-ic">'+ic(m.icon,46)+'</span></div>'+
+      '<div class="m-body"><strong>'+m.title+'</strong><span class="muted">'+m.sub+'</span></div>'+
+      '<div class="m-foot">'+status+'</div>'+
+      '<div class="m-foot"><span class="m-reward">'+ic('star',13)+' '+m.reward+'</span></div>';
+    var cls='mcard '+(st==='done'?'done ':'')+(st==='soon'||st==='locked'?'locked':'');
+    h+=(st==='soon'||st==='locked')?'<div class="'+cls+'" style="--dot:'+m.color+'" aria-disabled="true">'+inner+'</div>':'<a class="'+cls+'" style="--dot:'+m.color+'" href="'+m.href+'">'+inner+'</a>';
+  });
+  h+='</div><div class="sec-h"><h2>Ma collection</h2><span class="small muted">'+Object.keys(S.rewards).length+' / 5 récompenses</span></div><div class="collection">';
+  Object.keys(REWARDS).forEach(function(k){
+    var r=REWARDS[k],got=S.rewards[k];
+    h+='<div class="rw '+(got?'':'off')+'" style="--dot:'+r.color+'"><div class="badge">'+ic(got?r.icon:'lock',22)+'</div><div><strong>'+r.t+'</strong><span>'+(got?'Obtenue le '+fmtDate(got):'À débloquer')+'</span></div></div>';
+  });
+  return h+'</div>';
+}
+function nextStepBtn(){
+  if(!S.diag)return '<a class="btn teal lg" href="#/m1">'+ic('play',18)+' Commencer la mission 01</a>';
+  var dr=duelReadyAt();if(dr&&now()>=dr)return '<a class="btn teal lg" href="#/lab/duel">'+ic('bell',18)+' Faire mon test différé</a>';
+  var qd=qDueAt();if(qd&&now()>=qd)return '<a class="btn teal lg" href="#/lab/questions">'+ic('bell',18)+' Revoir mes questions</a>';
+  if(dueCards().length)return '<a class="btn teal lg" href="#/m3/review">'+ic('cards',18)+' Réviser mes cartes</a>';
+  if(!m2Done())return '<a class="btn teal lg" href="#/m2">'+ic('flask',18)+' Aller au laboratoire</a>';
+  if(!allOk(m3Obj()))return '<a class="btn teal lg" href="#/m3">'+ic('toolbox',18)+' Continuer la mission 03</a>';
+  if(!allOk(m4Obj()))return '<a class="btn teal lg" href="#/m4">'+ic('clock',18)+' Continuer la mission 04</a>';
+  if(!S.pass.done)return '<a class="btn teal lg" href="#/m5">'+ic('passport',18)+' Compléter mon passeport</a>';
+  return '<a class="btn ghost lg" href="#/m5">'+ic('passport',18)+' Voir mon passeport</a>';
+}
+function alerts(){
+  var h='';
+  if(S.assigned)h+='<div class="assign"><div class="ic">'+ic('star',20)+'</div><div class="t"><strong>Ton professeur te propose : '+esc(targetLabel(S.assigned.t))+'</strong>'+(S.assigned.m?'<span>« '+esc(S.assigned.m)+' »</span>':'')+'</div><a class="btn sm" href="'+S.assigned.t+'">Y aller</a><button class="icon-btn" data-action="assign-close" aria-label="Masquer la proposition">'+ic('x',16)+'</button></div>';
+  var dc=dueCards().length;
+  if(dc)h+='<a class="alert go" style="--dot:#8B5CF6" href="#/m3/review"><div class="ic">'+ic('cards')+'</div><div class="t"><strong>'+dc+' carte'+(dc>1?'s':'')+' à réviser aujourd’hui</strong><span>Quelques minutes suffisent. Les cartes que tu sais reviendront plus tard.</span></div>'+ic('chev')+'</a>';
+  if(checkDue())h+='<a class="alert go" style="--dot:#2C6BD6" href="#/suivi"><div class="ic">'+ic('check')+'</div><div class="t"><strong>C’est l’heure du bilan de la semaine</strong><span>As-tu tenu tes engagements ? Une minute pour faire le point.</span></div>'+ic('chev')+'</a>';
+  var dr=duelReadyAt();
+  if(dr){var ok=now()>=dr;
+    h+='<a class="alert '+(ok?'go':'')+'" style="--dot:#14B8A6" href="#/lab/duel"><div class="ic">'+ic(ok?'bell':'clock')+'</div><div class="t"><strong>'+(ok?'Ton test différé est prêt !':'Test différé du duel')+'</strong><span>'+(ok?'C’est maintenant qu’on voit quelle méthode a vraiment marché.':'Disponible '+fmtWait(dr-now())+'. Ne révise pas les mots d’ici là !')+'</span></div>'+(ok?ic('chev'):'')+'</a>';}
+  var qd=qDueAt();
+  if(qd){var ok2=now()>=qd,n=S.lab.questions.sessions.length;
+    h+='<a class="alert '+(ok2?'go':'')+'" style="--dot:#FF7F6E" href="#/lab/questions"><div class="ic">'+ic(ok2?'bell':'calendar')+'</div><div class="t"><strong>'+(ok2?'Tes questions t’attendent':'Prochaine révision de tes questions')+'</strong><span>'+(ok2?'Révision n° '+(n+1)+' : 5 minutes pour voir ce qui est resté.':'Disponible '+fmtWait(qd-now())+' (révision n° '+(n+1)+').')+'</span></div>'+(ok2?ic('chev'):'')+'</a>';}
+  return h;
+}
+
+/* ----- Mission 01 : diagnostic ----- */
+function viewM1(){
+  var M=MISSIONS[0];
+  if(S.diag&&!ui.diag)return viewCarte();
+  var d=ui.diag||(ui.diag={i:-1,ans:[]});
+  var h=crumbs('#/','Missions');
+  if(d.i<0){
+    return h+'<div class="narrow"><div class="page-head">'+chip(M.color,'Mission 01')+'<h1>Mon profil de travail</h1>'+
+      '<p class="lead">Onze situations de tous les jours. Pour chacune, choisis la réponse qui te ressemble le plus <b>aujourd’hui</b>. Il n’y a ni bonne ni mauvaise réponse, et personne d’autre ne verra tes réponses.</p></div>'+
+      '<div class="panel stack"><p class="note">'+ic('info',18)+'<span>Le but n’est pas de te ranger dans une case (« visuel », « auditif »…). On cherche ce qui te pose problème concrètement, pour te proposer les bonnes expériences à tester.</span></p>'+
+      '<div class="btns"><button class="btn teal lg" data-action="diag-start">'+ic('play',18)+' C’est parti</button><span class="small muted">Environ 3 minutes</span></div></div></div>';
+  }
+  var q=DIAG[d.i];
+  h+='<div class="narrow"><div class="panel pop" id="qpanel">'+
+    '<div class="qhead"><button class="icon-btn" data-action="diag-prev" aria-label="Question précédente">'+ic('back',18)+'</button>'+barHtml(d.i/DIAG.length)+'<span class="qcount">'+(d.i+1)+' / '+DIAG.length+'</span></div>'+
+    '<p class="qtext">'+q.q+'</p><div class="choices" role="radiogroup">';
+  q.o.forEach(function(o,k){
+    var on=d.ans[d.i]===k;
+    h+='<button class="choice '+(on?'on':'')+'" role="radio" aria-checked="'+on+'" data-action="diag-pick" data-k="'+k+'"><span class="k">'+'ABCDE'[k]+'</span><span>'+o.t+'</span></button>';
+  });
+  return h+'</div></div></div>';
+}
+function viewCarte(){
+  var M=MISSIONS[0],r=S.diag.res,pr=priorities(),st=strengths(),rec=recommended();
+  var h=crumbs('#/','Missions','<button class="link" data-action="diag-redo">'+ic('refresh',15)+' Refaire le questionnaire</button>');
+  h+='<div class="page-head">'+chip(M.color,'Mission 01 · Terminée')+'<h1>Ma carte de départ</h1>'+
+    '<p class="lead">Faite le '+fmtDate(S.diag.at)+'. Ce n’est ni une note ni un profil définitif : c’est une photo de tes habitudes aujourd’hui. Elle va bouger.</p></div>';
+  h+='<div class="carte"><div class="panel stack"><h2>Où tu en es</h2><p class="small muted" style="margin:-8px 0 0">Plus la barre est longue, plus c’est un point à travailler.</p><div class="axes">';
+  AXIS_KEYS.forEach(function(a){h+='<div class="axis" style="--dot:'+AXES[a].color+'"><b>'+AXES[a].label+'</b>'+barHtml(Math.max(.03,r[a]))+'</div>';});
+  h+='</div>';
+  if(st.length)h+='<p class="note">'+ic('star',18)+'<span><b style="color:var(--ink)">Tes points d’appui :</b> '+st.map(function(a){return AXES[a].label.toLowerCase();}).join(', ')+'. Continue comme ça.</span></p>';
+  h+='</div><div class="prio"><h2>Tes deux priorités</h2>';
+  pr.forEach(function(a){var A=AXES[a];
+    h+='<div class="prio-it" style="--dot:'+A.color+'"><h3>'+ic(A.icon,20)+' '+A.label+'</h3><p class="muted">'+A.need+'</p><p>'+A.tip+'</p><div class="tags">'+
+      A.labs.map(function(l){return '<a class="pill rec" href="#/lab/'+l+'">'+ic('flask',12)+' '+LABS[l].title+'</a>';}).join('')+'</div></div>';
+  });
+  h+='</div></div><div class="callout" style="margin-top:22px">'+ic('flask',22)+'<div><strong style="color:var(--ink)">Prochaine étape : le laboratoire</strong><p class="muted">Les expériences conseillées pour toi y sont signalées. Commence par celle qui te tente.</p><div class="btns" style="margin-top:12px"><a class="btn teal" href="#/m2">Entrer dans le laboratoire '+ic('chev',16)+'</a></div></div></div>';
+  return h;
+}
+
+/* ----- Mission 02 : laboratoire ----- */
+function viewM2(){
+  var M=MISSIONS[1],rec=recommended(),n=labsDone();
+  var h=crumbs('#/','Missions');
+  h+='<div class="page-head">'+chip(M.color,'Mission 02'+(m2Done()?' · Terminée':''))+'<h1>Le laboratoire des méthodes</h1>'+
+    '<p class="lead">Ici, on ne te croit pas sur parole : tu essaies, tu mesures, tu compares. Mène au moins deux expériences pour obtenir ton carnet d’expériences.</p>'+
+    '<div style="max-width:360px;margin-top:14px"><div class="small muted" style="margin-bottom:6px">'+n+' / 4 expériences menées</div>'+barHtml(n/4,'var(--coral)')+'</div></div>';
+  if(!S.diag)h+='<p class="note" style="margin-bottom:18px">'+ic('info',18)+'<span>Astuce : fais d’abord la <a href="#/m1">mission 01</a>, le laboratoire te conseillera alors les expériences les plus utiles pour toi.</span></p>';
+  h+='<div class="labs">';
+  LAB_KEYS.forEach(function(k){var L=LABS[k],done=labDone(k),started=labStarted(k)&&!done;
+    var extra='';
+    if(k==='duel'&&S.lab.duel&&S.lab.duel.imm&&!S.lab.duel.def){var dr=duelReadyAt();extra=now()>=dr?'<span class="pill hot">'+ic('bell',12)+' Test différé prêt</span>':'<span class="pill">'+ic('clock',12)+' Test différé '+fmtWait(dr-now())+'</span>';}
+    if(k==='questions'){var qd=qDueAt();if(qd)extra=now()>=qd?'<span class="pill hot">'+ic('bell',12)+' Révision prête</span>':'<span class="pill">'+ic('calendar',12)+' Révision '+fmtWait(qd-now())+'</span>';}
+    h+='<a class="lcard" style="--dot:'+L.color+'" href="#/lab/'+k+'">'+(done?'<span class="stamp">Expé<br>menée</span>':'')+
+      '<div class="l-ic">'+ic(L.icon,24)+'</div><strong>'+L.title+'</strong><p>'+L.short+'</p>'+
+      '<div class="l-foot">'+(rec.indexOf(k)>=0&&!done?'<span class="pill rec">'+ic('star',12)+' Conseillé pour toi</span>':'')+
+      (started&&!extra?'<span class="pill hot">En cours</span>':'')+extra+'<span class="pill">'+ic('clock',12)+' '+L.time+'</span></div></a>';
+  });
+  h+='</div>';
+  var notes=LAB_KEYS.filter(labDone);
+  if(notes.length){
+    h+='<div class="sec-h"><h2>Mon carnet d’expériences</h2></div><div class="stack">';
+    notes.forEach(function(k){h+='<div class="panel" style="padding:16px 20px"><div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><div class="l-ic" style="--dot:'+LABS[k].color+';width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--dot) 16%,var(--surface));color:var(--ink)">'+ic(LABS[k].icon,20)+'</div><div style="flex:1;min-width:200px"><strong style="color:var(--ink)">'+LABS[k].title+'</strong><div class="small muted">'+labSummary(k)+'</div></div></div></div>';});
+    h+='</div>';
+  }
+  return h;
+}
+function labSummary(k){
+  var d=S.lab[k];
+  if(k==='duel'){return 'Relire : '+d.imm.relire+'/8 juste après, '+d.def.relire+'/8 plus tard · Me tester : '+d.imm.tester+'/8 juste après, '+d.def.tester+'/8 plus tard.';}
+  if(k==='questions'){return esc(d.subject)+(d.title?' – '+esc(d.title):'')+' · '+d.cards.length+' questions · '+d.sessions.map(function(s,i){return 'séance '+(i+1)+' : '+sessScore(s)+' %';}).join(', ');}
+  if(k==='expliquer'){return esc(d.subject)+(d.notion?' – '+esc(d.notion):'')+' · '+['','ne m’a pas aidé','m’a un peu aidé','m’a aidé','m’a beaucoup aidé'][d.help]+' à voir ce qui me manquait.';}
+  if(k==='idees'){return d.score+' / '+MYTHS.length+' bonnes réponses.';}
+}
+function sessScore(s){var t=0;s.res.forEach(function(r){t+=r;});return pct(t,s.res.length*2);}
+
+function labShell(k,body,stepsHtml){
+  var L=LABS[k];
+  return crumbs('#/m2','Laboratoire')+'<div class="narrow"><div class="page-head">'+chip(L.color,'Expérience')+'<h1>'+L.title+'</h1></div>'+(stepsHtml||'')+body+'</div>';
+}
+function stepsBar(labels,cur){
+  return '<div class="steps" aria-label="Étapes">'+labels.map(function(l,i){return '<span class="stp '+(i===cur?'on':(i<cur?'ok':''))+'"><i>'+(i<cur?ic('check',12):(i+1))+'</i>'+l+'</span>';}).join('')+'</div>';
+}
+
+/* ===== Expérience 1 : le duel ===== */
+function viewDuel(){
+  var d=S.lab.duel,u=ui.duel;
+  var labels=['Prédiction','Méthode 1','Méthode 2','Test immédiat','Test différé','Conclusion'];
+  if(u&&u.step==='phase')return labShell('duel',duelPhase(),stepsBar(labels,1+u.idx));
+  if(u&&u.step==='test')return labShell('duel',duelTest(),stepsBar(labels,u.kind==='imm'?3:4));
+  if(!d)return labShell('duel',duelIntro(),stepsBar(labels,0));
+  if(!d.def){
+    var ready=now()>=d.immAt+T.wait;
+    return labShell('duel',duelImmResult(ready),stepsBar(labels,ready?4:3));
+  }
+  return labShell('duel',duelFinal(),stepsBar(labels,d.concl?6:5));
+}
+function duelIntro(){
+  var p=ui.duelPred||'';
+  return '<div class="panel stack"><p style="margin:0">Tu vas apprendre <b>16 mots de swahili</b> (une langue d’Afrique de l’Est que tu ne connais sûrement pas : c’est ce qui rend le duel équitable). Une moitié avec une méthode, l’autre moitié avec l’autre.</p>'+
+    '<ol class="proto"><li><span><b>Relire</b> : tu as 2 minutes pour lire et relire une liste de 8 mots.</span></li>'+
+    '<li><span><b>Me tester</b> : 2 minutes aussi, mais tu lis la liste une fois, puis on cache les réponses et tu essaies de les retrouver.</span></li>'+
+    '<li><span>Un <b>test immédiat</b> sur les 16 mots.</span></li>'+
+    '<li><span>Un <b>test différé</b> au moins un jour plus tard. C’est lui qui compte : apprendre, c’est se souvenir dans plusieurs jours, pas dans deux minutes.</span></li></ol>'+
+    '<div><h3 style="margin-bottom:10px">Avant de commencer : d’après toi, quelle méthode va gagner ?</h3><div class="opts">'+
+      [['relire','Relire'],['tester','Me tester'],['pareil','Ça ne changera rien']].map(function(o){return '<button class="opt '+(p===o[0]?'on':'')+'" data-action="duel-pred" data-v="'+o[0]+'">'+o[1]+'</button>';}).join('')+
+    '</div></div>'+
+    '<p class="note">'+ic('info',18)+'<span>Installe-toi au calme pour 5 minutes, sans interruption. Tu ne pourras pas mettre en pause.</span></p>'+
+    '<div class="btns"><button class="btn teal lg" data-action="duel-start" '+(p?'':'disabled')+'>'+ic('play',18)+' Lancer le duel</button></div></div>';
+}
+function timerHtml(){return '<div class="timer" id="timer"><svg viewBox="0 0 76 76"><circle class="tr" cx="38" cy="38" r="33"/><circle class="tp" cx="38" cy="38" r="33" stroke-dasharray="207.3" stroke-dashoffset="0"/></svg><b>--</b></div>';}
+function duelPhase(){
+  var u=ui.duel,m=u.order[u.idx],M=METHODS[m],set=SETS[u.sets[m]];
+  var h='<div class="panel phase"><div class="phase-top"><span class="method-tag" style="--dot:'+M.color+'">'+ic(M.icon,18)+' Méthode '+(u.idx+1)+' : '+M.long+'</span>'+(u.timeUp?'':timerHtml())+'</div>';
+  if(u.timeUp){
+    return h+'<div class="timesup">'+ic('clock',26)+'<strong>Temps écoulé !</strong><span class="muted">'+(u.idx===0?'On passe à la deuxième méthode, avec une nouvelle liste.':'Place au test immédiat sur les 16 mots.')+'</span>'+
+      '<button class="btn teal" data-action="duel-next" data-autofocus>'+(u.idx===0?'Méthode suivante':'Commencer le test')+' '+ic('chev',16)+'</button></div></div>';
+  }
+  if(m==='relire'||u.sub==='read'){
+    h+='<p class="muted" style="margin:0">'+(m==='relire'?'Lis et relis cette liste jusqu’à la fin du temps. Tu peux la lire dans l’ordre que tu veux.':'Lis cette liste une fois, attentivement. Dans quelques secondes, les réponses seront cachées.')+'</p>';
+    h+='<div class="pairs">'+set.map(function(p){return '<div class="pair"><span class="sw">'+p.w+'</span><span class="fr">'+p.a.split('/')[0]+'</span></div>';}).join('')+'</div>';
+    return h+'</div>';
+  }
+  var qz=u.quiz,it=qz.cur;
+  h+='<div class="drill"><p class="dr-ask">Que veut dire ce mot ? Essaie de t’en souvenir, même si tu n’es pas sûr(e).</p><p class="dr-word">'+it.w+'</p>'+
+    '<form class="dr-row" data-form="duel-quiz"><input class="dr-in '+(qz.fb?(qz.fb==='ok'?'ok':'ko'):'')+'" id="answer" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Ta réponse en français" '+(qz.fb?'readonly value="'+esc(qz.val)+'"':'')+' data-autofocus>'+
+    (qz.fb?'<button class="btn primary" type="submit" id="nextbtn">Suivant '+ic('chev',16)+'</button>':'<button class="btn primary" type="submit">Valider</button>')+'</form>'+
+    '<p class="fb '+(qz.fb||'')+'" aria-live="polite">'+(qz.fb==='ok'?ic('check',18)+' Bravo !':(qz.fb==='ko'?'C’était <b>'+it.a.split('/')[0]+'</b>. Retiens-le pour la prochaine fois.':''))+'</p>'+
+    '<p class="small muted">'+qz.tries+' essai'+(qz.tries>1?'s':'')+' · '+qz.ok+' réussi'+(qz.ok>1?'s':'')+'</p></div>';
+  return h+'</div>';
+}
+function duelTest(){
+  var u=ui.duel,t=u.test,it=t.items[t.i];
+  var h='<div class="panel phase"><p class="muted" style="margin:0">'+(u.kind==='imm'?'Test immédiat':'Test différé')+' : écris le sens en français de chaque mot. Si tu ne sais pas, laisse vide et passe.</p>'+
+    '<div class="dots">'+t.items.map(function(x,i){return '<span class="dot '+(i===t.i?'cur':(i<t.i?'done':''))+'"></span>';}).join('')+'</div>'+
+    '<div class="drill"><p class="dr-word">'+it.w+'</p><form class="dr-row" data-form="duel-test"><input class="dr-in" id="answer" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Ta réponse en français" data-autofocus><button class="btn primary" type="submit">'+(t.i===t.items.length-1?'Terminer':'Suivant')+'</button></form>'+
+    '<p class="small muted" style="margin-top:8px">'+(u.kind==='imm'?'Pas de correction pendant ce test : la voir maintenant fausserait l’expérience.':'Les corrections arrivent à la fin.')+'</p></div></div>';
+  return h;
+}
+function duelImmResult(ready){
+  var d=S.lab.duel;
+  var h='<div class="panel stack"><h2>Résultats du test immédiat</h2><div class="duel">'+
+    ['relire','tester'].map(function(m){var M=METHODS[m];return '<div class="duel-c" style="--dot:'+M.color+'"><h3>'+ic(M.icon,18)+' '+M.label+'</h3><div class="big">'+d.imm[m]+'<small> / 8</small></div></div>';}).join('')+'</div>';
+  var diff=d.imm.tester-d.imm.relire;
+  h+='<div class="callout">'+ic('info',22)+'<div><strong style="color:var(--ink)">'+(diff>0?'Avantage « me tester »… pour l’instant.':(diff<0?'Avantage « relire »… pour l’instant.':'Égalité… pour l’instant.'))+'</strong>'+
+    '<p class="muted">Juste après avoir appris, les deux méthodes donnent souvent des résultats proches. La vraie différence se voit quand le temps a fait son travail d’oubli.</p></div></div>';
+  if(ready){
+    h+='<div class="timesup">'+ic('bell',26)+'<strong>Ton test différé est prêt !</strong><span class="muted">Mêmes 16 mots, sans les revoir avant.</span><button class="btn teal" data-action="duel-def">Commencer le test différé '+ic('chev',16)+'</button></div>';
+  }else{
+    var at=d.immAt+T.wait;
+    h+='<div class="timesup">'+ic('calendar',26)+'<strong>Rendez-vous '+fmtWait(at-now())+'</strong><span class="muted">Le test différé s’ouvrira à partir du '+new Date(at).toLocaleString('fr-FR',{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'})+'. Le mieux : dans 2 à 7 jours. Surtout, ne révise pas ces mots d’ici là !</span>'+
+      '<a class="btn ghost" href="#/m2">Retour au laboratoire</a></div>';
+  }
+  return h+'</div>';
+}
+function duelFinal(){
+  var d=S.lab.duel;
+  var gap=Math.round((d.defAt-d.immAt)/HOUR);
+  var h='<div class="panel stack"><h2>Le verdict</h2><p class="muted" style="margin:-6px 0 0">Test différé passé '+(gap>=48?Math.round(gap/24)+' jours':(gap>=1?gap+' h':'quelques minutes'))+' après le premier.</p><div class="duel">';
+  ['relire','tester'].map(function(m){var M=METHODS[m];
+    var lost=d.imm[m]-d.def[m];
+    h+='<div class="duel-c" style="--dot:'+M.color+'"><h3>'+ic(M.icon,18)+' '+M.label+'</h3>'+
+      '<div class="vbars"><div class="vbar light"><b>'+d.imm[m]+'</b><span style="height:'+(d.imm[m]/8*100)+'%"></span><em>Juste après</em></div><div class="vbar"><b>'+d.def[m]+'</b><span style="height:'+(d.def[m]/8*100)+'%"></span><em>Plus tard</em></div></div>'+
+      '<div class="row"><span>Mots oubliés</span><b>'+Math.max(0,lost)+'</b></div></div>';
+  });
+  h+='</div>';
+  var win=d.def.tester>d.def.relire?'tester':(d.def.relire>d.def.tester?'relire':'');
+  var predTxt={relire:'Relire',tester:'Me tester',pareil:'Ça ne changera rien'}[d.pred];
+  h+='<div class="callout">'+ic('scale',22)+'<div><strong style="color:var(--ink)">'+(win?'Vainqueur : '+METHODS[win].label:'Match nul')+'</strong>'+
+    '<p class="muted">Ta prédiction : « '+predTxt+' ». '+(win==='tester'?'C’est le résultat le plus fréquent : chercher dans sa mémoire la renforce, alors que relire donne surtout l’impression de savoir.':(win==='relire'?'Cette fois, la relecture l’emporte. Ça arrive, surtout avec peu de mots ! Ce qui compte, c’est de refaire l’essai sur un vrai cours.':'Les deux méthodes ont fait jeu égal cette fois. Refais l’essai sur un vrai cours pour voir ce qui se passe.'))+'</p></div></div>';
+  h+='<div><h3 style="margin-bottom:8px">Les corrections</h3><ul class="recap">'+d.defAns.map(function(r){return '<li class="'+(r.ok?'good':'')+'"><span class="a">'+r.w+'</span>'+(r.ok?'':(r.v?'<span class="y">'+esc(r.v)+'</span>':''))+'<span>→ '+r.a.split('/')[0]+'</span></li>';}).join('')+'</ul></div>';
+  var c=d.concl||ui.duelConcl||'';
+  h+='<div><h3 style="margin-bottom:10px">Et toi, qu’est-ce que tu en conclus ?</h3><div class="opts">'+
+    [['tester','Je vais me tester plus souvent'],['mix','Je relis une fois, puis je me teste'],['relire','Je continue à surtout relire']].map(function(o){return '<button class="opt '+(c===o[0]?'on':'')+'" data-action="duel-concl" data-v="'+o[0]+'">'+o[1]+'</button>';}).join('')+'</div></div>';
+  if(!d.concl)h+='<div class="btns"><button class="btn teal" data-action="duel-save" '+(c?'':'disabled')+'>'+ic('check',18)+' Ranger dans mon carnet</button></div>';
+  else h+='<div class="btns"><a class="btn ghost" href="#/m2">Retour au laboratoire</a><button class="link" data-action="duel-reset">'+ic('refresh',15)+' Refaire le duel</button></div>';
+  return h+'</div>';
+}
+
+/* ===== Expérience 2 : questions ===== */
+var EX_LESSON='<p>En février 1916, l’armée allemande lance une offensive contre <mark>Verdun</mark>. La bataille dure <mark>dix mois</mark> et fait environ <mark>700 000 victimes</mark>, tués, blessés et disparus. Les soldats vivent dans des <mark>tranchées</mark>, sous les bombardements, dans la boue et le froid. Pour tenir, l’armée française organise une <mark>rotation des troupes</mark> : la plupart des soldats français passent par Verdun. La bataille devient le symbole de la violence de masse de la Première Guerre mondiale.</p>';
+var EX_Q=[['Quand commence la bataille de Verdun ?','En février 1916.'],['Combien de temps dure-t-elle ?','Dix mois.'],['Pourquoi presque tous les soldats français sont-ils passés par Verdun ?','À cause de la rotation des troupes, organisée pour tenir.'],['Pourquoi Verdun est-elle un symbole ?','Elle représente la violence de masse de la guerre : 700 000 victimes en dix mois.']];
+var STARTERS=['Qui… ?','Quand… ?','Où… ?','Qu’est-ce que… ?','Pourquoi… ?','Quelle est la différence entre… ?','Donne un exemple de…','Définis…','Explique…'];
+function viewQuestions(){
+  var d=S.lab.questions,u=ui.q||(ui.q={});
+  var labels=['Exemple','Mes questions','Je me teste','Je reviens plus tard'];
+  if(u.run)return labShell('questions',qRun(),stepsBar(labels,2));
+  if(!d){
+    if(!u.build)return labShell('questions',qExample(),stepsBar(labels,0));
+    return labShell('questions',qBuild(),stepsBar(labels,1));
+  }
+  return labShell('questions',qHub(),stepsBar(labels,d.sessions.length?3:2));
+}
+function qExample(){
+  return '<div class="panel stack"><p style="margin:0">Le principe : au lieu de relire ta leçon, tu la transformes en <b>questions</b>. Ensuite, tu te testes avec, sans regarder la réponse. C’est du rappel actif, sur ton vrai cours.</p>'+
+    '<div class="example"><div class="lesson"><h3>La leçon (histoire)</h3>'+EX_LESSON+'</div><div class="made"><h3 style="font-size:14px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin:0 0 2px">Les questions fabriquées</h3>'+
+    EX_Q.map(function(q){return '<div><b>'+q[0]+'</b>'+q[1]+'</div>';}).join('')+'</div></div>'+
+    '<p class="note">'+ic('bulb',18)+'<span>Les meilleures questions demandent de <b>comprendre</b>, pas seulement de recopier : les « Pourquoi ? » et « Quelle différence ? » valent de l’or.</span></p>'+
+    '<div class="btns"><button class="btn teal lg" data-action="q-build">'+ic('cards',18)+' À mon tour, avec mon cours</button></div></div>';
+}
+function qBuild(){
+  var u=ui.q;if(!u.cards)u.cards=[{q:'',a:''},{q:'',a:''},{q:'',a:''}];
+  var h='<div class="panel stack"><p style="margin:0">Ouvre une leçon que tu dois apprendre (cahier, manuel, ENT). Écris au moins <b>3 questions</b>, avec leur réponse courte.</p>'+
+    '<div class="fields"><label class="field">Matière<input data-bind="q.subject" value="'+esc(u.subject||'')+'" placeholder="Ex. : Histoire, SVT, Espagnol…" maxlength="40"></label>'+
+    '<label class="field">Titre de la leçon <span class="help">(facultatif)</span><input data-bind="q.title" value="'+esc(u.title||'')+'" placeholder="Ex. : La bataille de Verdun" maxlength="80"></label></div>'+
+    '<div><div class="help" style="margin-bottom:6px">Pour démarrer une question, touche un début de phrase :</div><div class="starters">'+STARTERS.map(function(s){return '<button class="starter" data-action="q-starter" data-v="'+esc(s.replace(' ?','').replace('…',''))+'">'+s+'</button>';}).join('')+'</div></div><div class="stack" style="gap:10px">';
+  u.cards.forEach(function(c,i){
+    h+='<div class="qa"><span class="n">'+(i+1)+'</span><label class="field"><span class="help">Question</span><textarea data-bind="q.cards.'+i+'.q" data-card="'+i+'" rows="2" maxlength="300">'+esc(c.q)+'</textarea></label>'+
+      '<label class="field qa-a"><span class="help">Réponse</span><textarea data-bind="q.cards.'+i+'.a" rows="2" maxlength="400">'+esc(c.a)+'</textarea></label>'+
+      '<button class="icon-btn" data-action="q-del" data-i="'+i+'" aria-label="Supprimer la question '+(i+1)+'" '+(u.cards.length<=1?'disabled':'')+'>'+ic('trash',17)+'</button></div>';
+  });
+  var ok=qValid();
+  h+='</div><div class="btns"><button class="btn ghost" data-action="q-add" '+(u.cards.length>=15?'disabled':'')+'>'+ic('plus',17)+' Ajouter une question</button></div>'+
+    '<div class="btns end" style="border-top:1px solid var(--line);padding-top:16px"><span class="small muted" id="qstatus" style="margin-right:auto">'+qStatus()+'</span><button class="btn teal" data-action="q-save" id="qsave" '+(ok?'':'disabled')+'>'+ic('play',17)+' Je me teste maintenant</button></div></div>';
+  return h;
+}
+function qFilled(){return (ui.q.cards||[]).filter(function(c){return c.q.trim()&&c.a.trim();});}
+function qValid(){return qFilled().length>=3&&(ui.q.subject||'').trim();}
+function qStatus(){var n=qFilled().length;if(!(ui.q.subject||'').trim())return 'Indique la matière.';return n>=3?n+' questions prêtes.':'Encore '+(3-n)+' question'+(3-n>1?'s':'')+' complète'+(3-n>1?'s':'')+' (question + réponse).';}
+function qHub(){
+  var d=S.lab.questions,n=d.sessions.length,qd=qDueAt();
+  var h='<div class="panel stack"><div style="display:flex;gap:10px;align-items:baseline;flex-wrap:wrap"><h2>'+esc(d.subject)+(d.title?' · '+esc(d.title):'')+'</h2><span class="pill">'+d.cards.length+' questions</span></div>';
+  if(n){
+    h+='<div class="vbars" style="height:140px;max-width:420px;--dot:#FF7F6E">';
+    for(var i=0;i<3;i++){var s=d.sessions[i];h+='<div class="vbar '+(s?'':'light')+'"><b>'+(s?sessScore(s)+' %':'–')+'</b><span style="height:'+(s?Math.max(3,sessScore(s)):3)+'%"></span><em>'+(i===0?'Aujourd’hui':(i===1?'Révision 2':'Révision 3'))+(s?'<br>'+fmtDate(s.at):'')+'</em></div>';}
+    h+='</div>';
+    if(n===1)h+='<div class="callout">'+ic('calendar',22)+'<div><strong style="color:var(--ink)">Et maintenant, on espace.</strong><p class="muted">Reviens dans 2 jours sans relire ta leçon avant, puis encore quelques jours après. À chaque fois, ce que tu retrouves de mémoire se fixe un peu plus. C’est le principe des révisions espacées.</p></div></div>';
+    if(n>=2){var a=sessScore(d.sessions[0]),b=sessScore(d.sessions[n-1]);
+      h+='<div class="callout">'+ic('scale',22)+'<div><strong style="color:var(--ink)">'+(b>a?'Tu retiens mieux qu’au premier essai !':(b===a?'Tu as tout gardé, malgré le temps qui passe.':'Le temps a fait son œuvre… et c’est normal.'))+'</strong><p class="muted">'+(b>=a?'Malgré les jours écoulés, tes réponses sont au moins aussi bonnes. Se tester à intervalles, ça marche.':'Les questions ratées te montrent exactement quoi retravailler. Repasse-les une fois de plus avant le contrôle.')+'</p></div></div>';}
+  }
+  if(qd){var ok=now()>=qd;h+='<div class="timesup">'+ic(ok?'bell':'calendar',26)+'<strong>'+(ok?'Révision n° '+(n+1)+' prête':'Prochaine révision '+fmtWait(qd-now()))+'</strong>'+(ok?'<button class="btn teal" data-action="q-run">'+ic('play',16)+' Je me teste</button>':'<span class="muted">À partir du '+fmtDate(qd)+'.</span>')+'</div>';}
+  else if(n>=3)h+='<p class="note">'+ic('star',18)+'<span>Trois séances espacées : l’expérience est complète. Tu peux te retester quand tu veux avant ton contrôle.</span></p>';
+  h+='<div class="btns">'+(!qd||n>=3?'<button class="btn ghost" data-action="q-run">'+ic(n?'refresh':'play',16)+(n?' Me retester':' Me tester')+'</button>':'')+'<a class="btn ghost" href="#/m2">Retour au laboratoire</a><button class="link" data-action="q-new">'+ic('plus',15)+' Nouvelle leçon</button></div></div>';
+  return h;
+}
+function qRun(){
+  var r=ui.q.run,c=r.cards[r.i],d=S.lab.questions;
+  if(r.i>=r.cards.length){
+    var sc=r.res.reduce(function(a,b){return a+b;},0);
+    return '<div class="panel phase"><h2>'+pct(sc,r.res.length*2)+' %</h2><p class="muted" style="margin:0">'+r.res.filter(function(x){return x===2;}).length+' sues · '+r.res.filter(function(x){return x===1;}).length+' à moitié · '+r.res.filter(function(x){return x===0;}).length+' pas sues</p>'+
+      '<button class="btn teal" data-action="q-finish" data-autofocus>'+ic('check',17)+' Continuer</button></div>';
+  }
+  return '<div class="panel phase" style="--dot:#FF7F6E"><div class="dots">'+r.cards.map(function(x,i){return '<span class="dot '+(i===r.i?'cur':(i<r.i?'done':''))+'"></span>';}).join('')+'</div>'+
+    '<p class="muted" style="margin:0">Réponds dans ta tête (ou à voix haute), <b>puis</b> retourne la carte.</p>'+
+    '<button class="fc '+(r.flip?'flip':'')+'" data-action="q-flip" aria-label="Retourner la carte"><div class="fc-in"><div class="fc-face"><span class="fc-lab">Question '+(r.i+1)+' / '+r.cards.length+'</span><span class="fc-txt">'+esc(c.q)+'</span><span class="fc-hint">Touche pour voir la réponse</span></div>'+
+    '<div class="fc-face back"><span class="fc-lab">Réponse</span><span class="fc-txt">'+esc(c.a)+'</span></div></div></button>'+
+    (r.flip?'<p class="small muted" style="margin:0">Sois honnête avec toi-même :</p><div class="grade3"><button class="g ko" data-action="q-grade" data-v="0">Pas su</button><button class="g mid" data-action="q-grade" data-v="1">À moitié</button><button class="g ok" data-action="q-grade" data-v="2">Su</button></div>':'<button class="btn primary" data-action="q-flip">'+ic('refresh',16)+' Retourner</button>')+'</div>';
+}
+
+/* ===== Expérience 3 : expliquer ===== */
+function viewExpliquer(){
+  var d=S.lab.expliquer,u=ui.x||(ui.x={step:0,subject:'',notion:'',recall:'',gaps:'',fuzzy:'',help:0});
+  var labels=['Ma notion','De mémoire','À voix haute','Je compare','Bilan'];
+  if(d&&d.done&&!u.redo)return labShell('expliquer',xDone(),stepsBar(labels,5));
+  var b='';
+  if(u.step===0){
+    b='<div class="panel stack"><p style="margin:0">Choisis une notion que tu as étudiée récemment et que tu crois connaître. L’idée : vérifier si tu la sais <b>vraiment</b>, en l’expliquant comme à un élève de 6e.</p>'+
+      '<div class="fields"><label class="field">Matière<input data-bind="x.subject" value="'+esc(u.subject)+'" placeholder="Ex. : SVT" maxlength="40"></label><label class="field">Notion<input data-bind="x.notion" value="'+esc(u.notion)+'" placeholder="Ex. : la photosynthèse" maxlength="80"></label></div>'+
+      '<p class="note">'+ic('info',18)+'<span>Range ton cours pour l’instant : tu le ressortiras à l’étape 4.</span></p>'+
+      '<div class="btns"><button class="btn teal" data-action="x-next" data-need="subject,notion">Étape suivante '+ic('chev',16)+'</button></div></div>';
+  }else if(u.step===1){
+    b='<div class="panel stack"><div class="phase-top"><h2>Tout ce dont tu te souviens</h2>'+timerHtml()+'</div><p class="muted" style="margin:0">Sans ton cours, note les mots-clés, les idées, les exemples liés à « '+esc(u.notion)+' ». Des mots en vrac suffisent.</p>'+
+      '<label class="field"><span class="help">Mes souvenirs</span><textarea data-bind="x.recall" rows="7" maxlength="2000" data-autofocus>'+esc(u.recall)+'</textarea></label>'+
+      '<div class="btns"><button class="btn teal" data-action="x-next" data-need="recall">J’ai fini '+ic('chev',16)+'</button><span class="small muted">Le minuteur est indicatif : 3 minutes suffisent.</span></div></div>';
+  }else if(u.step===2){
+    b='<div class="panel phase"><div class="phase-top"><h2>Explique à voix haute</h2>'+timerHtml()+'</div>'+
+      '<p style="margin:0;max-width:52ch">Explique « '+esc(u.notion)+' » comme si tu parlais à un élève de 6e, pendant une minute. Parle vraiment, à voix haute (ou à un camarade, ou au prof en atelier BAR).</p>'+
+      '<div class="callout" style="max-width:520px">'+ic('bulb',22)+'<div><strong style="color:var(--ink)">Pendant que tu parles, repère les moments où…</strong><p class="muted">tu hésites, tu dis « euh, en gros… », tu sautes une étape, ou tu ne trouves pas le mot exact. Ce sont tes zones floues.</p></div></div>'+
+      '<button class="btn teal" data-action="x-next">J’ai expliqué '+ic('chev',16)+'</button></div>';
+  }else if(u.step===3){
+    b='<div class="panel stack"><h2>Ressors ton cours et compare</h2><p class="muted" style="margin:0">Relis ta leçon et compare avec ce que tu as noté et dit.</p>'+
+      '<div class="lesson" style="white-space:pre-wrap"><h3>Ce que tu avais noté de mémoire</h3>'+esc(u.recall)+'</div>'+
+      '<label class="field">Ce que j’avais oublié<textarea data-bind="x.gaps" rows="3" maxlength="1000" placeholder="Ex. : le rôle de la chlorophylle">'+esc(u.gaps)+'</textarea></label>'+
+      '<label class="field">Ce qui était flou quand j’ai expliqué<textarea data-bind="x.fuzzy" rows="3" maxlength="1000" placeholder="Ex. : je confonds respiration et photosynthèse">'+esc(u.fuzzy)+'</textarea></label>'+
+      '<div class="btns"><button class="btn teal" data-action="x-next">Étape suivante '+ic('chev',16)+'</button></div></div>';
+  }else{
+    b='<div class="panel stack"><h2>Ton bilan</h2><h3>Cette méthode t’a-t-elle aidé(e) à voir ce que tu ne savais pas ?</h3><div class="opts">'+
+      ['','Pas vraiment','Un peu','Oui','Beaucoup'].map(function(l,i){return i?'<button class="opt '+(u.help===i?'on':'')+'" data-action="x-help" data-v="'+i+'">'+l+'</button>':'';}).join('')+'</div>'+
+      ((u.gaps||u.fuzzy)?'<p class="note">'+ic('target',18)+'<span>Tes trous sont maintenant écrits noir sur blanc. C’est par eux que ta prochaine séance de révision doit commencer, pas par toute la leçon.</span></p>':'<p class="note">'+ic('star',18)+'<span>Aucun trou repéré ? Bravo ! Vérifie quand même dans quelques jours : c’est là que l’oubli se voit.</span></p>')+
+      '<div class="btns"><button class="btn teal" data-action="x-save" '+(u.help?'':'disabled')+'>'+ic('check',18)+' Ranger dans mon carnet</button></div></div>';
+  }
+  return labShell('expliquer',b,stepsBar(labels,u.step));
+}
+function xDone(){
+  var d=S.lab.expliquer;
+  return '<div class="panel stack"><h2>'+esc(d.subject)+' · '+esc(d.notion)+'</h2>'+
+    (d.gaps?'<div><h3 style="margin-bottom:4px">Ce que j’avais oublié</h3><p style="margin:0;white-space:pre-wrap">'+esc(d.gaps)+'</p></div>':'')+
+    (d.fuzzy?'<div><h3 style="margin-bottom:4px">Ce qui était flou</h3><p style="margin:0;white-space:pre-wrap">'+esc(d.fuzzy)+'</p></div>':'')+
+    '<p class="note">'+ic('info',18)+'<span>Cette méthode '+['','ne t’a pas vraiment aidé(e)','t’a un peu aidé(e)','t’a aidé(e)','t’a beaucoup aidé(e)'][d.help]+' à repérer ce qui te manquait.</span></p>'+
+    '<div class="btns"><a class="btn ghost" href="#/m2">Retour au laboratoire</a><button class="link" data-action="x-redo">'+ic('refresh',15)+' Recommencer avec une autre notion</button></div></div>';
+}
+
+/* ===== Expérience 4 : vrai ou faux ===== */
+function viewIdees(){
+  var d=S.lab.idees,u=ui.idees;
+  if(!u&&d&&d.done){
+    return labShell('idees','<div class="panel phase"><h2>'+d.score+' / '+MYTHS.length+'</h2><p class="muted" style="margin:0">bonnes réponses le '+fmtDate(d.at)+'</p>'+
+      '<div class="btns" style="justify-content:center"><button class="btn teal" data-action="i-start">'+ic('refresh',16)+' Rejouer</button><a class="btn ghost" href="#/m2">Retour au laboratoire</a></div></div>');
+  }
+  if(!u)return labShell('idees','<div class="panel stack"><p style="margin:0">Huit affirmations qu’on entend souvent sur la façon d’apprendre. Pour chacune : vrai ou faux ? Après chaque réponse, tu découvres ce que dit la recherche.</p><div class="btns"><button class="btn teal lg" data-action="i-start">'+ic('play',18)+' Commencer</button></div></div>');
+  if(u.i>=MYTHS.length){
+    return labShell('idees','<div class="panel phase"><span class="kick">Résultat</span><h2 style="font-size:34px">'+u.score+' / '+MYTHS.length+'</h2><p style="max-width:48ch;margin:0">'+(u.score>=7?'Impressionnant : tu as déjà de bons réflexes. Reste à les appliquer !':(u.score>=5?'Pas mal ! Certaines idées reçues ont la vie dure, même chez les adultes.':'Beaucoup d’idées reçues sont tombées aujourd’hui. C’est exactement à ça que sert le laboratoire.'))+'</p>'+
+      '<button class="btn teal" data-action="i-save" data-autofocus>'+ic('check',17)+' Ranger dans mon carnet</button></div>');
+  }
+  var m=MYTHS[u.i],a=u.ans;
+  var b='<div class="panel phase"><div class="dots">'+MYTHS.map(function(x,i){return '<span class="dot '+(i===u.i?'cur':(i<u.i?'done':''))+'"></span>';}).join('')+'</div>'+
+    '<p class="statement">« '+m.s+' »</p>';
+  if(a==null){
+    b+='<div class="vf"><button class="opt" data-action="i-ans" data-v="1">Vrai</button><button class="opt" data-action="i-ans" data-v="0">Faux</button></div>';
+  }else{
+    var good=(a===1)===m.v;
+    b+='<div class="verdict '+(good?'ok':'ko')+' pop"><strong>'+ic(good?'check':'x',20)+(good?'Bien vu !':'Pas tout à fait…')+' C’est '+(m.v?'vrai':'faux')+'.</strong><p>'+m.e+'</p></div>'+
+      '<button class="btn primary" data-action="i-next" data-autofocus>'+(u.i===MYTHS.length-1?'Voir mon résultat':'Suivante')+' '+ic('chev',16)+'</button>';
+  }
+  return labShell('idees',b+'</div>');
+}
+
+/* ----- Mission 05 : passeport ----- */
+function viewM5(){
+  var M=MISSIONS[4];
+  var h=crumbs('#/','Missions','<button class="link" data-action="print">'+ic('print',15)+' Imprimer</button>');
+  if(!m5Open()){
+    return h+'<div class="narrow"><div class="page-head">'+chip(M.color,'Mission 05')+'<h1>Construis ta méthode</h1></div><div class="panel stack"><p style="margin:0">Ton passeport se remplit avec ce que tu as vécu dans les autres missions. Pour l’ouvrir, il te faut :</p>'+
+      '<ol class="proto"><li><span>'+(S.diag?'✓ ':'')+'la <a href="#/m1">mission 01</a> (ta carte de départ)</span></li><li><span>au moins une expérience du <a href="#/m2">laboratoire</a></span></li></ol></div></div>';
+  }
+  var P=S.pass,tm=testedMethods(),pr=priorities();
+  h+='<div class="page-head no-print">'+chip(M.color,'Mission 05'+(P.done?' · Terminée':''))+'<h1>Construis ta méthode</h1><p class="lead">Fais le tri dans ce que tu as testé, puis choisis tes engagements. Ce passeport peut servir de base à un échange avec ton professeur.</p></div>';
+  h+='<div class="pass"><div class="pass-card">'+LOGO+'<div><h2>Passeport méthode</h2><p>Mission Méthode · '+(P.done?'validé le '+fmtDate(P.done):'en cours')+'</p>'+
+    '<div style="margin-top:10px"><input data-bind="name" value="'+esc(S.name)+'" placeholder="Ton prénom (facultatif)" maxlength="30" aria-label="Ton prénom"></div></div>'+
+    '<div class="seal '+(P.done?'ok':'')+'">'+(P.done?'Validé':'À valider')+'</div></div>';
+  h+='<div class="panel stack"><h2>1. Ma carte de départ</h2><div class="tags">'+pr.map(function(a){return '<span class="pill" style="font-size:14px;padding:5px 12px;background:color-mix(in srgb,'+AXES[a].color+' 18%,var(--surface));color:var(--ink)">'+ic(AXES[a].icon,14)+' Priorité : '+AXES[a].label+'</span>';}).join('')+
+    strengths().map(function(a){return '<span class="pill ok" style="font-size:14px;padding:5px 12px">'+ic('star',14)+' Point d’appui : '+AXES[a].label+'</span>';}).join('')+'</div></div>';
+  h+='<div class="panel stack"><h2>2. Les méthodes que j’ai testées</h2><p class="muted" style="margin:-8px 0 0">Pour chacune : je la garde, je l’adapte ou je la laisse de côté ?</p>';
+  PMETHODS.forEach(function(m){
+    var t=tm[m.k],v=P.verdicts[m.k]||'';
+    h+='<div class="meth '+(t?(v?'':'nov'):'untested')+'"><div><strong>'+m.t+'</strong><span class="ev">'+(t?evidence(m.k):'Pas encore testée · <a href="'+m.href+'">'+m.hl+'</a>')+'</span></div>'+
+      (t?'<div class="seg" role="group" aria-label="Mon choix">'+[['k','Je garde'],['a','J’adapte'],['l','Je laisse']].map(function(o){return '<button class="'+o[0]+' '+(v===o[0]?'on':'')+'" data-action="p-verdict" data-m="'+m.k+'" data-v="'+o[0]+'" aria-pressed="'+(v===o[0])+'">'+o[1]+'</button>';}).join('')+'</div>'+
+       (v==='k'||v==='a'?'<label class="note-in"><input data-bind="pass.notes.'+m.k+'" value="'+esc(P.notes[m.k]||'')+'" placeholder="'+(v==='a'?'Comment je l’adapte ? Ex. : seulement en histoire, avec un camarade…':'Pour quelles matières ? Ex. : SVT, espagnol…')+'" maxlength="120"></label>':''):'')+'</div>';
+  });
+  h+='</div><div class="panel stack"><h2>3. Mes engagements</h2><p class="muted" style="margin:-8px 0 0">Choisis 1 à 3 engagements précis. Un bon engagement dit <b>quand</b> et <b>quoi</b>.</p><div class="eng">';
+  var sug=pr.concat(['q','x']);AXIS_KEYS.forEach(function(a){if(sug.indexOf(a)<0)sug.push(a);});
+  sug.forEach(function(k){var on=P.eng.indexOf(k)>=0;
+    h+='<button class="eng-it '+(on?'on':'')+'" data-action="p-eng" data-k="'+k+'" aria-pressed="'+on+'"><span class="box">'+(on?ic('check',15):'')+'</span><span>'+ENGAGE[k]+'</span></button>';});
+  var cu=P.custom;
+  h+='</div><div class="no-print"><div class="help" style="margin-bottom:6px">Ou écris le tien :</div><div class="custom"><span>Quand</span><input data-bind="pass.custom.when" value="'+esc(cu.when)+'" placeholder="je rentre le mardi soir" maxlength="80"><span>, je</span><input data-bind="pass.custom.then" value="'+esc(cu.then)+'" placeholder="révise 15 minutes l’espagnol" maxlength="100"><span>.</span></div></div>'+
+    ((cu.when&&cu.then)?'<div class="print-only eng-it on"><span class="box">'+ic('check',15)+'</span><span>Quand '+esc(cu.when)+', je '+esc(cu.then)+'.</span></div>':'')+'</div>';
+  var nE=P.eng.length+((cu.when.trim()&&cu.then.trim())?1:0),nV=Object.keys(P.verdicts).filter(function(k){return tm[k];}).length;
+  var ready=nE>=1&&nE<=3&&nV>=1;
+  h+='<div class="panel btns no-print" style="justify-content:space-between"><span class="small muted" id="pstatus">'+passStatus(nV,nE)+'</span><div class="btns"><button class="btn ghost" data-action="print">'+ic('print',17)+' Imprimer</button>'+
+    '<button class="btn teal" data-action="p-validate" '+(ready?'':'disabled')+'>'+ic('check',17)+' '+(P.done?'Mettre à jour':'Valider mon passeport')+'</button></div></div>';
+  h+='<p class="print-only small muted">Mission Méthode · '+CREDIT_TXT+'</p></div>';
+  return h;
+}
+function passStatus(nV,nE){
+  if(!nV)return 'Donne ton avis sur au moins une méthode testée.';
+  if(!nE)return 'Choisis au moins un engagement.';
+  if(nE>3)return 'Trois engagements maximum : mieux vaut peu, mais tenus.';
+  return 'Tout est prêt.';
+}
+function evidence(k){
+  var d=S.lab;
+  if(k==='tester'||k==='relire'){var m=d.duel;return 'Duel : '+m.imm[k]+'/8 juste après'+(m.def?', '+m.def[k]+'/8 plus tard':' (test différé à venir)');}
+  if(k==='questions')return d.questions.cards.length+' questions en '+esc(d.questions.subject)+' · '+sessScore(d.questions.sessions[0])+' % au premier essai';
+  if(k==='espacer'){var s=d.questions.sessions;return s.length+' séances espacées : '+s.map(function(x){return sessScore(x)+' %';}).join(' → ');}
+  if(k==='expliquer')return esc(d.expliquer.notion)+' · '+['','pas vraiment utile','un peu utile','utile','très utile'][d.expliquer.help];
+  if(k==='cartes'){var cs=S.m3.sessions,ok=cs.reduce(function(a,x){return a+x.ok;},0),n=cs.reduce(function(a,x){return a+x.n;},0);return cs.length+' révision'+(cs.length>1?'s':'')+' · '+pct(ok,n)+' % de cartes sues';}
+  if(k==='planifier'){var pd=S.m4.plan.filter(function(s){return s.done;}).length;return S.m4.plan.length+' séances prévues · '+pd+' faite'+(pd>1?'s':'');}
+  if(k==='focus'){var f=S.m4.focus,ok2=f.filter(function(x){return x.res==='oui';}).length;return f.length+' séance'+(f.length>1?'s':'')+' · objectif atteint '+ok2+' fois';}
+}
+
+/* ================= Outils communs ================= */
+function uid(){return Math.random().toString(36).slice(2,9);}
+function dayKey(t){var d=new Date(t);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function keyDate(k){var p=k.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+function dayLabel(k,long){return keyDate(k).toLocaleDateString('fr-FR',long?{weekday:'long',day:'numeric',month:'long'}:{weekday:'short',day:'numeric'});}
+function nextDays(n){var o=[],d=new Date();d.setHours(12,0,0,0);for(var i=0;i<n;i++){o.push(dayKey(d.getTime()));d.setDate(d.getDate()+1);}return o;}
+function daysLeft(k){var t=keyDate(dayKey(now()));return Math.round((keyDate(k)-t)/DAY);}
+function logA(k){S.log.push({at:now(),k:k});if(S.log.length>400)S.log=S.log.slice(-400);}
+function objList(objs){return '<ul class="objs">'+objs.map(function(o){return '<li class="'+(o.ok?'ok':'')+'"><span class="box">'+(o.ok?ic('check',14):'')+'</span><span>'+o.t+'</span></li>';}).join('')+'</ul>';}
+function allOk(objs){return objs.every(function(o){return o.ok;});}
+function sel(name,opts,val,attrs){return '<select data-bind="'+name+'" '+(attrs||'')+'>'+opts.map(function(o){return '<option value="'+esc(o[0])+'" '+(String(val)===String(o[0])?'selected':'')+'>'+esc(o[1])+'</option>';}).join('')+'</select>';}
+
+/* ================= Mission 03 : Muscle ta mémoire ================= */
+var BOX_DAYS=[0,1,2,4,7,14];
+function boxDelay(b){return DEMO?0:BOX_DAYS[b]*DAY;}
+function getDeck(id){for(var i=0;i<S.m3.decks.length;i++)if(S.m3.decks[i].id===id)return S.m3.decks[i];return null;}
+function allCards(){var o=[];S.m3.decks.forEach(function(d){d.cards.forEach(function(c){o.push({d:d,c:c});});});return o;}
+function dueCards(deckId){return allCards().filter(function(x){return (!deckId||x.d.id===deckId)&&x.c.due<=now();});}
+function nextDue(){var m=Infinity;allCards().forEach(function(x){if(x.c.due>now()&&x.c.due<m)m=x.c.due;});return m===Infinity?null:m;}
+function m3Obj(){
+  var m=S.m3,days={};m.sessions.forEach(function(s){days[dayKey(s.at)]=1;});
+  return [
+    {t:'Crée un paquet d’au moins 5 cartes',ok:m.decks.some(function(d){return d.cards.length>=5;})},
+    {t:'Révise les cartes du jour',ok:m.sessions.length>=1},
+    {t:'Fais un quiz sur un paquet',ok:m.quizzes.length>=1},
+    {t:'Reviens réviser un autre jour',ok:Object.keys(days).length>=2||(DEMO&&m.sessions.length>=2)}
+  ];
+}
+function viewM3(){
+  if(ui.sub==='deck')return viewDeckEdit();
+  if(ui.sub==='review')return viewReview();
+  if(ui.sub==='quiz')return viewQuiz();
+  var M=MISSIONS[2],due=dueCards(),nd=nextDue(),obj=m3Obj();
+  var h=crumbs('#/','Missions');
+  h+='<div class="page-head">'+chip(M.color,'Mission 03'+(allOk(obj)?' · Terminée':''))+'<h1>Muscle ta mémoire</h1>'+
+    '<p class="lead">Fabrique tes cartes mémoire, révise-les au bon moment et teste-toi en quiz. Ici, c’est le calendrier qui travaille pour toi.</p></div>';
+  h+='<div class="two"><div class="panel today" style="--dot:'+M.color+'"><span class="kick">Aujourd’hui</span><div class="today-n">'+due.length+'<small> carte'+(due.length>1?'s':'')+' à réviser</small></div>'+
+    (due.length?'<a class="btn teal lg" href="#/m3/review">'+ic('play',18)+' Réviser maintenant</a>':
+      '<p class="muted" style="margin:0">'+(S.m3.decks.length?(nd?'Rien à réviser. Prochaines cartes '+fmtWait(nd-now())+'.':'Rien à réviser.'):'Crée ton premier paquet pour commencer.')+'</p>')+
+    '</div><div class="panel"><h2 style="margin-bottom:10px">Objectifs de la mission</h2>'+objList(obj)+'</div></div>';
+  h+='<div class="callout" style="margin-top:18px">'+ic('bulb',22)+'<div><strong style="color:var(--ink)">Comment ça marche ?</strong><p class="muted">Chaque carte vit dans une boîte, de 1 à 5. Tu la sais : elle monte d’une boîte et revient plus tard (1, 2, 4, 7 puis 14 jours). Tu ne la sais pas : retour en boîte 1, et elle revient demain. Résultat : tu passes ton temps sur ce que tu ne sais pas encore.</p></div></div>';
+  h+='<div class="sec-h"><h2>Mes paquets</h2>'+(S.lab.questions&&!S.m3.decks.some(function(d){return d.fromLab;})?'<button class="link" data-action="d-import">'+ic('cards',15)+' Importer mes questions du laboratoire</button>':'')+'</div><div class="decks">';
+  S.m3.decks.forEach(function(d){
+    var boxes=[0,0,0,0,0,0];d.cards.forEach(function(c){boxes[c.box]++;});
+    var dn=dueCards(d.id).length;
+    h+='<div class="deck"><div class="deck-top"><span class="pill rec">'+esc(d.subject)+'</span>'+(dn?'<span class="pill hot">'+dn+' à réviser</span>':'')+'</div>'+
+      '<strong>'+esc(d.title||'Sans titre')+'</strong><span class="small muted">'+d.cards.length+' carte'+(d.cards.length>1?'s':'')+'</span>'+
+      '<div class="boxes" title="Répartition dans les boîtes 1 à 5">'+[1,2,3,4,5].map(function(b){return '<div class="bx"><span style="height:'+(d.cards.length?Math.max(4,boxes[b]/d.cards.length*100):4)+'%"></span><em>'+b+'</em></div>';}).join('')+'</div>'+
+      '<div class="btns">'+(dn?'<a class="btn primary sm" href="#/m3/review/'+d.id+'">Réviser</a>':'')+
+      (d.cards.length>=4?'<a class="btn ghost sm" href="#/m3/quiz/'+d.id+'">'+ic('target',15)+' Quiz</a>':'')+
+      '<a class="btn ghost sm" href="#/m3/deck/'+d.id+'">'+ic('pen',15)+' Modifier</a></div></div>';
+  });
+  h+='<a class="deck new" href="#/m3/deck/new">'+ic('plus',30)+'<strong>Nouveau paquet</strong><span>Une leçon, un paquet de cartes.</span></a></div>';
+  if(S.m3.decks.length){
+    var days=nextDays(7),cnt=days.map(function(k,i){return allCards().filter(function(x){return i===0?x.c.due<=keyDate(k).getTime()+DAY:dayKey(x.c.due)===k;}).length;});
+    var mx=Math.max.apply(null,cnt.concat([1]));
+    h+='<div class="sec-h"><h2>Mes révisions des 7 prochains jours</h2></div><div class="panel"><div class="vbars week-bars" style="--dot:'+M.color+'">'+
+      days.map(function(k,i){return '<div class="vbar '+(i?'light':'')+'"><b>'+cnt[i]+'</b><span style="height:'+Math.max(3,cnt[i]/mx*100)+'%"></span><em>'+(i?dayLabel(k):'Aujourd’hui')+'</em></div>';}).join('')+'</div></div>';
+  }
+  return h;
+}
+function viewDeckEdit(){
+  var u=ui.deck;
+  if(!u)return crumbs('#/m3','Mission 03')+'<p class="muted">Ce paquet n’existe plus.</p>';
+  var h=crumbs('#/m3','Mission 03')+'<div class="narrow"><div class="page-head">'+chip(MISSIONS[2].color,'Mission 03')+'<h1>'+(u.id?'Modifier le paquet':'Nouveau paquet')+'</h1></div><div class="panel stack">'+
+    '<div class="fields"><label class="field">Matière<input data-bind="deck.subject" value="'+esc(u.subject)+'" placeholder="Ex. : SVT" maxlength="40"></label>'+
+    '<label class="field">Titre de la leçon<input data-bind="deck.title" value="'+esc(u.title)+'" placeholder="Ex. : La génétique" maxlength="80"></label></div>'+
+    '<div class="stack" style="gap:10px">';
+  u.cards.forEach(function(c,i){
+    h+='<div class="qa"><span class="n">'+(i+1)+'</span><label class="field"><span class="help">Recto (question)</span><textarea data-bind="deck.cards.'+i+'.q" data-card="'+i+'" rows="2" maxlength="300">'+esc(c.q)+'</textarea></label>'+
+      '<label class="field qa-a"><span class="help">Verso (réponse)</span><textarea data-bind="deck.cards.'+i+'.a" rows="2" maxlength="400">'+esc(c.a)+'</textarea></label>'+
+      '<button class="icon-btn" data-action="d-delcard" data-i="'+i+'" aria-label="Supprimer la carte '+(i+1)+'">'+ic('trash',17)+'</button></div>';
+  });
+  h+='</div><div class="btns"><button class="btn ghost" data-action="d-addcard" '+(u.cards.length>=80?'disabled':'')+'>'+ic('plus',17)+' Ajouter une carte</button></div>'+
+    '<details class="bulk"><summary>'+ic('copy',16)+' Coller plusieurs cartes d’un coup</summary><p class="help">Une carte par ligne : la question, puis un point-virgule (ou une tabulation, si tu copies depuis un tableur), puis la réponse.<br>Ex. : <code>Capitale de l’Espagne ; Madrid</code></p>'+
+    '<label class="field"><textarea data-bind="deck.bulk" rows="5" placeholder="Question ; réponse">'+esc(u.bulk)+'</textarea></label><div class="btns"><button class="btn ghost sm" data-action="d-bulk">Ajouter ces lignes</button></div></details>'+
+    '<div class="btns end" style="border-top:1px solid var(--line);padding-top:16px">'+(u.id?'<button class="btn danger '+(ui.armed?'armed':'')+'" data-action="d-delete" style="margin-right:auto">'+ic('trash',16)+' '+(ui.armed?'Confirmer la suppression':'Supprimer le paquet')+'</button>':'')+
+    '<a class="btn ghost" href="#/m3">Annuler</a><button class="btn teal" data-action="d-save">'+ic('check',17)+' Enregistrer</button></div></div></div>';
+  return h;
+}
+function viewReview(){
+  var r=ui.rev,M=MISSIONS[2];
+  var h=crumbs('#/m3','Mission 03')+'<div class="narrow"><div class="page-head">'+chip(M.color,'Révision du jour')+'<h1>Je révise mes cartes</h1></div>';
+  if(!r||!r.items.length)return h+'<div class="panel phase"><p style="margin:0">Aucune carte à réviser pour le moment.</p><a class="btn ghost" href="#/m3">Retour</a></div></div>';
+  if(r.i>=r.items.length){
+    var ok=r.res.filter(function(x){return x===2;}).length;
+    return h+'<div class="panel phase"><span class="kick">Révision terminée</span><h2 style="font-size:34px">'+ok+' / '+r.items.length+'</h2><p class="muted" style="margin:0;max-width:46ch">Les cartes sues montent d’une boîte et reviendront plus tard. Les autres reviennent demain : c’est sur elles que tu progresses.</p>'+
+      '<a class="btn teal" href="#/m3" data-autofocus>'+ic('check',17)+' Terminer</a></div></div>';
+  }
+  var it=r.items[r.i],d=getDeck(it.d),c=d&&d.cards.filter(function(x){return x.id===it.c;})[0];
+  if(!c){r.i++;return viewReview();}
+  return h+'<div class="panel phase" style="--dot:'+M.color+'"><p class="small muted" style="margin:0">'+(r.i+1)+' / '+r.items.length+' · '+esc(d.subject)+' · boîte '+c.box+'</p>'+barHtml(r.i/r.items.length,M.color)+
+    '<button class="fc '+(r.flip?'flip':'')+'" data-action="r-flip" aria-label="Retourner la carte"><div class="fc-in"><div class="fc-face"><span class="fc-lab">Question</span><span class="fc-txt">'+esc(c.q)+'</span><span class="fc-hint">Réponds dans ta tête, puis touche la carte</span></div>'+
+    '<div class="fc-face back"><span class="fc-lab">Réponse</span><span class="fc-txt">'+esc(c.a)+'</span></div></div></button>'+
+    (r.flip?'<div class="grade3"><button class="g ko" data-action="r-grade" data-v="0">Pas su<small>demain</small></button><button class="g mid" data-action="r-grade" data-v="1">À moitié<small>même boîte</small></button><button class="g ok" data-action="r-grade" data-v="2">Su<small>boîte '+Math.min(5,c.box+1)+'</small></button></div>':'<button class="btn primary" data-action="r-flip">'+ic('refresh',16)+' Retourner</button>')+'</div></div>';
+}
+function viewQuiz(){
+  var z=ui.quiz,M=MISSIONS[2];
+  var h=crumbs('#/m3','Mission 03')+'<div class="narrow"><div class="page-head">'+chip(M.color,'Quiz')+'<h1>'+(z?esc(z.title):'Quiz')+'</h1></div>';
+  if(!z)return h+'<div class="panel phase"><p style="margin:0">Il faut au moins 4 cartes dans un paquet pour lancer un quiz.</p><a class="btn ghost" href="#/m3">Retour</a></div></div>';
+  if(z.i>=z.items.length){
+    return h+'<div class="panel phase"><span class="kick">Résultat</span><h2 style="font-size:34px">'+z.score+' / '+z.items.length+'</h2><p class="muted" style="margin:0">'+(z.score===z.items.length?'Sans faute !':(z.score/z.items.length>=.7?'Très bien. Les erreurs te disent quoi revoir.':'Les cartes ratées sont à revoir en priorité.'))+'</p>'+
+      (z.miss.length?'<ul class="recap">'+z.miss.map(function(m){return '<li><span>'+esc(m.q)+'</span><span class="a">→ '+esc(m.a)+'</span></li>';}).join('')+'</ul>':'')+
+      '<div class="btns" style="justify-content:center"><button class="btn teal" data-action="z-again">'+ic('refresh',16)+' Rejouer</button><a class="btn ghost" href="#/m3">Retour</a></div></div></div>';
+  }
+  var it=z.items[z.i];
+  return h+'<div class="panel phase"><div class="dots">'+z.items.map(function(x,i){return '<span class="dot '+(i===z.i?'cur':(i<z.i?(x.ok?'okd':'kod'):''))+'"></span>';}).join('')+'</div>'+
+    '<p class="statement">'+esc(it.q)+'</p><div class="qcm">'+it.opts.map(function(o,k){
+      var cls=z.pick==null?'':(o===it.a?'ok':(k===z.pick?'ko':'dim'));
+      return '<button class="qo '+cls+'" data-action="z-pick" data-k="'+k+'" '+(z.pick!=null?'disabled':'')+'>'+esc(o)+'</button>';}).join('')+'</div>'+
+    (z.pick!=null?'<button class="btn primary" data-action="z-next" data-autofocus>'+(z.i===z.items.length-1?'Voir mon résultat':'Suivante')+' '+ic('chev',16)+'</button>':'')+'</div></div>';
+}
+function startQuiz(id){
+  var d=getDeck(id);if(!d||d.cards.length<4){ui.quiz=null;return;}
+  var answers=[];d.cards.forEach(function(c){if(answers.indexOf(c.a)<0)answers.push(c.a);});
+  var items=shuffle(d.cards).slice(0,10).map(function(c){
+    var others=shuffle(answers.filter(function(a){return a!==c.a;})).slice(0,3);
+    return {q:c.q,a:c.a,opts:shuffle(others.concat([c.a])),ok:false};
+  });
+  ui.quiz={id:id,title:(d.title||d.subject),items:items,i:0,pick:null,score:0,miss:[]};
+}
+function parseBulk(txt){
+  var out=[];String(txt||'').split(/\r?\n/).forEach(function(l){
+    var m=l.split(/\t|;/);if(m.length<2)return;
+    var q=m[0].trim(),a=m.slice(1).join(';').trim();if(q&&a)out.push({q:q,a:a});
+  });return out;
+}
+
+/* ================= Mission 04 : Maîtrise ton temps ================= */
+var KINDS={controle:{t:'Contrôle',imp:1},oral:{t:'Oral / exposé',imp:1},devoir:{t:'Devoir',imp:0},autre:{t:'Autre',imp:0}};
+var MOMENTS=[['matin','Matin'],['midi','Midi'],['aprem','Après-midi'],['soir','Soir']];
+var DISTRACT=[
+  {k:'tel',t:'Mon téléphone (notifications, messages)',p:['Je le mets dans une autre pièce','Je l’éteins ou je passe en mode avion','Je le confie à quelqu’un pendant la séance']},
+  {k:'reseaux',t:'Les réseaux sociaux et les vidéos',p:['Je les regarde seulement après ma séance, en récompense','Je me déconnecte de l’ordinateur de travail','Je règle un minuteur d’utilisation sur mon téléphone']},
+  {k:'jeux',t:'Les jeux vidéo',p:['Je travaille avant de jouer, jamais après','Je fixe une heure de fin de jeu à l’avance','Je joue le week-end seulement en période de contrôles']},
+  {k:'bruit',t:'Le bruit, la télé, la famille',p:['Je m’installe dans une pièce calme','Je mets un casque, sans musique à paroles','Je préviens ma famille de mon heure de travail']},
+  {k:'fatigue',t:'La fatigue',p:['Je fais une pause de 5 minutes toutes les 20 minutes','Je travaille plus tôt dans la soirée','Je bouge un peu et je bois de l’eau avant de commencer']},
+  {k:'tete',t:'Mes pensées qui partent ailleurs',p:['Je note l’idée sur un papier pour plus tard','Je me fixe un objectif précis pour la séance','J’alterne : 20 minutes d’une matière, puis une autre']},
+  {k:'debut',t:'Je ne sais pas par où commencer',p:['Je regarde mes priorités avant de m’installer','Je commence par la tâche la plus courte','Je découpe le travail en petites étapes']}
+];
+function getTask(id){for(var i=0;i<S.m4.tasks.length;i++)if(S.m4.tasks[i].id===id)return S.m4.tasks[i];return null;}
+function taskLabel(t){return t?KINDS[t.kind].t+' de '+t.subject+(t.what?' : '+t.what:''):'';}
+function sessLabel(s){if(s.task==='cartes')return 'Réviser mes cartes';if(s.task==='autre'||!s.task)return s.what||'Travail libre';var t=getTask(s.task);return t?(t.kind==='controle'||t.kind==='oral'?'Réviser ':'')+t.subject+(t.what?' – '+t.what:''):'Travail supprimé';}
+function m4Obj(){
+  var m=S.m4;
+  return [
+    {t:'Liste au moins 2 travaux, avec leur échéance',ok:m.tasks.length>=2},
+    {t:'Planifie au moins 3 séances dans la semaine',ok:m.plan.length>=3},
+    {t:'Choisis ta parade contre une distraction',ok:Object.keys(m.dist).some(function(k){return m.dist[k].p>=0;})},
+    {t:'Fais une séance focus',ok:m.focus.length>=1}
+  ];
+}
+function pendingTasks(){return S.m4.tasks.filter(function(t){return !t.done;}).sort(function(a,b){return a.due<b.due?-1:(a.due>b.due?1:0);});}
+function urgency(t){var d=daysLeft(t.due);if(d<0)return ['En retard','hot'];if(d<=2)return ['Urgent','hot'];if(d<=7)return ['Cette semaine',''];return ['Plus tard',''];}
+function firstTask(){
+  var p=pendingTasks();if(!p.length)return null;
+  return p.slice().sort(function(a,b){return (daysLeft(a.due)-2*KINDS[a.kind].imp)-(daysLeft(b.due)-2*KINDS[b.kind].imp);})[0];
+}
+function planWarnings(){
+  var w=[],days=nextDays(7),m=S.m4;
+  days.forEach(function(k){var tot=0;m.plan.forEach(function(s){if(s.day===k)tot+=s.dur;});if(tot>90)w.push('Le '+dayLabel(k,true)+', tu prévois '+tot+' minutes. Au-delà de 1 h 30, l’efficacité baisse : répartis sur un autre jour.');});
+  pendingTasks().forEach(function(t){
+    if(!KINDS[t.kind].imp||daysLeft(t.due)<2)return;
+    var before=m.plan.filter(function(s){return s.task===t.id&&s.day<t.due;});
+    if(before.length<2)w.push('Ton '+KINDS[t.kind].t.toLowerCase()+' de '+t.subject+' tombe le '+dayLabel(t.due,true)+' : prévois au moins 2 séances avant, sur des jours différents.');
+    else if(before.every(function(s){return daysLeft(s.day)>=daysLeft(t.due)-1;}))w.push('Toutes tes séances pour '+t.subject+' sont la veille : espace-les dans la semaine.');
+  });
+  return w;
+}
+function spreadTask(t){
+  var dl=daysLeft(t.due);if(dl<1)return 0;
+  var offs=dl>=5?[5,3,1]:(dl>=3?[3,1]:[1]);var n=0;
+  offs.forEach(function(o){
+    var d=keyDate(t.due);d.setDate(d.getDate()-o);var k=dayKey(d.getTime());if(daysLeft(k)<0)return;
+    if(S.m4.plan.some(function(s){return s.task===t.id&&s.day===k;}))return;
+    S.m4.plan.push({id:uid(),day:k,moment:'soir',dur:20,task:t.id,done:false});n++;
+  });
+  return n;
+}
+var M4TABS=[['priorites','Mes priorités','target'],['planning','Mon planning','calendar'],['distractions','Mes distractions','focus'],['focus','Séance focus','clock']];
+function viewM4(){
+  var M=MISSIONS[3],tab=ui.sub||'priorites',obj=m4Obj();
+  var h=crumbs('#/','Missions','<button class="link" data-action="print">'+ic('print',15)+' Imprimer mon programme</button>');
+  h+='<div class="page-head no-print">'+chip(M.color,'Mission 04'+(allOk(obj)?' · Terminée':''))+'<h1>Maîtrise ton temps</h1><p class="lead">Un programme réaliste vaut mieux qu’un programme parfait que tu ne tiens pas. Note ce que tu as à faire, répartis-le dans la semaine, et protège tes séances.</p></div>';
+  h+='<div class="two m4top no-print"><nav class="seg" aria-label="Rubriques">'+M4TABS.map(function(t){return '<a class="seg-b '+(tab===t[0]?'on':'')+'" href="#/m4/'+t[0]+'">'+ic(t[2],16)+' '+t[1]+'</a>';}).join('')+'</nav>'+
+    '<details class="panel objbox"><summary>'+obj.filter(function(o){return o.ok;}).length+' / 4 objectifs de la mission</summary>'+objList(obj)+'</details></div>';
+  h+='<h1 class="print-only" style="margin-bottom:12px">Mon programme de travail'+(S.name?' – '+esc(S.name):'')+'</h1>';
+  if(tab==='planning')h+=m4Planning();
+  else if(tab==='distractions')h+=m4Distractions();
+  else if(tab==='focus')h+=m4Focus();
+  else h+=m4Priorities();
+  return h;
+}
+function m4Priorities(){
+  var f=ui.tf,p=pendingTasks(),done=S.m4.tasks.filter(function(t){return t.done;}),ft=firstTask();
+  var h='<div class="panel stack no-print"><h2>Ajouter un travail</h2><div class="fields four">'+
+    '<label class="field">Type'+sel('tf.kind',Object.keys(KINDS).map(function(k){return [k,KINDS[k].t];}),f.kind)+'</label>'+
+    '<label class="field">Matière<input data-bind="tf.subject" value="'+esc(f.subject)+'" placeholder="Ex. : Maths" maxlength="40"></label>'+
+    '<label class="field">Pour le<input type="date" data-bind="tf.due" value="'+esc(f.due)+'" min="'+dayKey(now())+'"></label>'+
+    '<label class="field">Temps estimé'+sel('tf.dur',[[15,'15 min'],[30,'30 min'],[45,'45 min'],[60,'1 h'],[90,'1 h 30'],[120,'2 h et plus']],f.dur)+'</label>'+
+    '<label class="field full">Quoi exactement ? <span class="help">(facultatif)</span><input data-bind="tf.what" value="'+esc(f.what)+'" placeholder="Ex. : chapitre 4, les fonctions" maxlength="80"></label></div>'+
+    '<div class="btns"><button class="btn teal" data-action="t-add">'+ic('plus',17)+' Ajouter</button></div></div>';
+  if(ft)h+='<div class="callout" style="margin-top:18px">'+ic('target',22)+'<div><strong style="color:var(--ink)">Par quoi commencer ? '+esc(taskLabel(ft))+'</strong><p class="muted">'+(daysLeft(ft.due)<=2?'C’est pour très bientôt.':'C’est le travail le plus important parmi les plus proches.')+' Les contrôles et les oraux passent avant les devoirs, à échéance égale.</p></div></div>';
+  h+='<div class="sec-h"><h2>À faire ('+p.length+')</h2></div>';
+  if(!p.length)h+='<div class="empty-s">'+ic('check',26)+'<p>Rien à faire pour l’instant. Ajoute tes devoirs et tes contrôles à venir.</p></div>';
+  else h+='<div class="tasks">'+p.map(taskRow).join('')+'</div>';
+  if(done.length)h+='<div class="sec-h"><h2>Terminé ('+done.length+')</h2></div><div class="tasks">'+done.slice(-8).map(taskRow).join('')+'</div>';
+  return h;
+}
+function taskRow(t){
+  var u=urgency(t),n=S.m4.plan.filter(function(s){return s.task===t.id;}).length;
+  return '<div class="task '+(t.done?'done':'')+'"><button class="tick" data-action="t-done" data-id="'+t.id+'" aria-pressed="'+!!t.done+'" aria-label="Marquer comme fait">'+(t.done?ic('check',15):'')+'</button>'+
+    '<div class="t-main"><strong>'+esc(taskLabel(t))+'</strong><span class="small muted">Pour le '+dayLabel(t.due,true)+' · environ '+(t.dur>=120?'2 h et plus':(t.dur>=60?(t.dur/60+' h').replace('.',','):t.dur+' min'))+(n?' · '+n+' séance'+(n>1?'s':'')+' prévue'+(n>1?'s':''):'')+'</span></div>'+
+    '<div class="t-tags">'+(t.done?'':'<span class="pill '+u[1]+'">'+u[0]+'</span>')+(KINDS[t.kind].imp?'<span class="pill rec">Important</span>':'')+'</div>'+
+    '<div class="t-act no-print">'+(!t.done&&KINDS[t.kind].imp&&daysLeft(t.due)>=1?'<button class="btn ghost sm" data-action="t-spread" data-id="'+t.id+'" title="Créer des séances de révision espacées avant l’échéance">'+ic('calendar',15)+' Répartir</button>':'')+
+    '<button class="icon-btn" data-action="t-del" data-id="'+t.id+'" aria-label="Supprimer">'+ic('trash',16)+'</button></div></div>';
+}
+function m4Planning(){
+  var days=nextDays(7),f=ui.pf,pt=pendingTasks(),w=planWarnings();
+  var taskOpts=pt.map(function(t){return [t.id,taskLabel(t)];});
+  if(S.m3.decks.length)taskOpts.push(['cartes','Réviser mes cartes (mission 03)']);
+  taskOpts.push(['autre','Autre chose…']);
+  if(!taskOpts.some(function(o){return o[0]===f.task;}))f.task=taskOpts[0][0];
+  var h='<div class="panel stack no-print"><h2>Ajouter une séance</h2><div class="fields four">'+
+    '<label class="field">Jour'+sel('pf.day',days.map(function(k,i){return [k,i?dayLabel(k,true):'Aujourd’hui'];}),f.day)+'</label>'+
+    '<label class="field">Moment'+sel('pf.moment',MOMENTS,f.moment)+'</label>'+
+    '<label class="field">Durée'+sel('pf.dur',[[15,'15 min'],[20,'20 min'],[30,'30 min'],[45,'45 min']],f.dur)+'</label>'+
+    '<label class="field">Pour'+sel('pf.task',taskOpts,f.task,'data-rerender="1"')+'</label>'+
+    (f.task==='autre'?'<label class="field full">Quoi ?<input data-bind="pf.what" value="'+esc(f.what)+'" placeholder="Ex. : relire mon cahier d’histoire" maxlength="60"></label>':'')+'</div>'+
+    '<div class="btns"><button class="btn teal" data-action="p-addsess">'+ic('plus',17)+' Ajouter au planning</button>'+(pt.some(function(t){return KINDS[t.kind].imp;})?'<span class="small muted">Astuce : dans « Mes priorités », le bouton « Répartir » crée les séances d’un contrôle pour toi.</span>':'')+'</div></div>';
+  if(w.length)h+='<div class="warns no-print">'+w.map(function(x){return '<p class="note warn">'+ic('info',18)+'<span>'+x+'</span></p>';}).join('')+'</div>';
+  else if(S.m4.plan.length)h+='<p class="note no-print" style="margin-top:18px">'+ic('check',18)+'<span>Ton planning est réaliste : pas de journée surchargée, et tes contrôles sont préparés en plusieurs fois.</span></p>';
+  h+='<div class="week">';
+  days.forEach(function(k,i){
+    var ss=S.m4.plan.filter(function(s){return s.day===k;}).sort(function(a,b){return MOMENTS.map(function(m){return m[0];}).indexOf(a.moment)-MOMENTS.map(function(m){return m[0];}).indexOf(b.moment);});
+    var tot=ss.reduce(function(a,s){return a+s.dur;},0);
+    var dueHere=pendingTasks().filter(function(t){return t.due===k;});
+    h+='<div class="day '+(i===0?'today-d':'')+'"><div class="day-h"><strong>'+(i?dayLabel(k):'Aujourd’hui')+'</strong><span class="small '+(tot>90?'over':'muted')+'">'+(tot?tot+' min':'')+'</span></div>'+
+      dueHere.map(function(t){return '<div class="due-chip">'+ic('target',13)+' '+KINDS[t.kind].t+' de '+esc(t.subject)+'</div>';}).join('')+
+      (ss.length?ss.map(function(s){return '<div class="sess '+(s.done?'done':'')+'"><button class="tick sm" data-action="s-done" data-id="'+s.id+'" aria-label="Séance faite" aria-pressed="'+!!s.done+'">'+(s.done?ic('check',12):'')+'</button><div><span class="small muted">'+MOMENTS.filter(function(m){return m[0]===s.moment;})[0][1]+' · '+s.dur+' min</span><b>'+esc(sessLabel(s))+'</b></div><button class="icon-btn xs no-print" data-action="s-del" data-id="'+s.id+'" aria-label="Retirer">'+ic('x',14)+'</button></div>';}).join(''):'<p class="small muted free">Libre</p>')+'</div>';
+  });
+  h+='</div>';
+  var par=DISTRACT.filter(function(d){return S.m4.dist[d.k]&&S.m4.dist[d.k].p>=0;});
+  if(par.length)h+='<div class="print-only" style="margin-top:18px"><h2>Mes parades</h2><ul>'+par.map(function(d){return '<li><b>'+d.t+'</b> : '+d.p[S.m4.dist[d.k].p]+'</li>';}).join('')+'</ul></div>';
+  return h;
+}
+function m4Distractions(){
+  var h='<p class="lead no-print" style="margin:0 0 18px">Coche ce qui te fait décrocher, puis choisis une parade que tu es prêt(e) à essayer. Une seule parade bien tenue vaut mieux que cinq bonnes intentions.</p><div class="dists">';
+  DISTRACT.forEach(function(d){
+    var st=S.m4.dist[d.k];
+    h+='<div class="dist '+(st?'on':'')+'"><button class="dist-h" data-action="di-toggle" data-k="'+d.k+'" aria-pressed="'+!!st+'"><span class="box">'+(st?ic('check',14):'')+'</span><span>'+d.t+'</span></button>'+
+      (st?'<div class="opts">'+d.p.map(function(p,i){return '<button class="opt sm '+(st.p===i?'on':'')+'" data-action="di-pick" data-k="'+d.k+'" data-i="'+i+'">'+p+'</button>';}).join('')+'</div>':'')+'</div>';
+  });
+  return h+'</div>';
+}
+function m4Focus(){
+  var f=ui.focus||(ui.focus={step:'setup',dur:20,goal:'',checks:{},lost:0});
+  var hist=S.m4.focus;
+  var h='';
+  if(f.step==='setup'){
+    h+='<div class="narrow"><div class="panel stack"><h2>Prépare ta séance</h2><p class="muted" style="margin:-6px 0 0">Une séance courte, un seul objectif, zéro distraction. C’est tout.</p>'+
+      '<div><h3 style="margin-bottom:8px">Durée</h3><div class="opts">'+[15,20,25].map(function(d){return '<button class="opt '+(f.dur===d?'on':'')+'" data-action="f-dur" data-v="'+d+'">'+d+' min</button>';}).join('')+'</div></div>'+
+      '<label class="field">Mon objectif pour cette séance<input data-bind="focus.goal" value="'+esc(f.goal)+'" placeholder="Ex. : faire les exercices 3 et 4 de maths" maxlength="100"></label>'+
+      '<div><h3 style="margin-bottom:8px">Avant de commencer</h3><div class="eng">'+[['tel','Mon téléphone est loin de moi (ou éteint)'],['mat','J’ai tout le matériel nécessaire'],['eau','J’ai de l’eau, je n’aurai pas besoin de me lever']].map(function(c){var on=!!f.checks[c[0]];return '<button class="eng-it '+(on?'on':'')+'" data-action="f-check" data-k="'+c[0]+'" aria-pressed="'+on+'"><span class="box">'+(on?ic('check',15):'')+'</span><span>'+c[1]+'</span></button>';}).join('')+'</div></div>'+
+      '<div class="btns"><button class="btn teal lg" data-action="f-start" '+(f.goal.trim()?'':'disabled')+' id="fstart">'+ic('play',18)+' Lancer la séance</button><span class="small muted" id="fhint">'+(f.goal.trim()?'':'Écris d’abord ton objectif.')+'</span></div></div>';
+  }else if(f.step==='run'){
+    h+='<div class="narrow"><div class="panel phase focus-run"><span class="kick">Séance focus · '+f.dur+' min</span><div class="timer big" id="timer"><svg viewBox="0 0 76 76"><circle class="tr" cx="38" cy="38" r="33"/><circle class="tp" cx="38" cy="38" r="33" stroke-dasharray="207.3" stroke-dashoffset="0"/></svg><b>--</b></div>'+
+      '<p class="statement" style="font-size:20px">'+esc(f.goal)+'</p><p class="muted small" style="margin:0">Tu as décroché ? Pas grave : touche le bouton, puis reviens à ton objectif.</p>'+
+      '<div class="btns" style="justify-content:center"><button class="btn ghost" data-action="f-lost">'+ic('zap',16)+' J’ai décroché ('+f.lost+')</button><button class="link" data-action="f-stop">Arrêter la séance</button></div></div></div>';
+  }else if(f.step==='end'){
+    h+='<div class="narrow"><div class="panel phase"><span class="kick">'+(f.stopped?'Séance arrêtée':'Séance terminée !')+'</span><h2>As-tu atteint ton objectif ?</h2><p class="muted" style="margin:0">« '+esc(f.goal)+' »</p><div class="opts" style="justify-content:center">'+
+      [['oui','Oui'],['partie','En partie'],['non','Non']].map(function(o){return '<button class="opt '+(f.res===o[0]?'on':'')+'" data-action="f-res" data-v="'+o[0]+'">'+o[1]+'</button>';}).join('')+'</div>'+
+      '<button class="btn teal" data-action="f-save" '+(f.res?'':'disabled')+'>'+ic('check',17)+' Enregistrer</button></div></div>';
+  }else{
+    h+='<div class="narrow"><div class="panel phase"><span class="kick">Bravo</span><h2>Pause de 5 minutes</h2><p class="muted" style="margin:0;max-width:44ch">Lève-toi, bouge, bois un verre d’eau. Évite les écrans : la pause sert à reposer ton attention.</p>'+
+      '<div class="btns" style="justify-content:center"><button class="btn teal" data-action="f-new">'+ic('play',16)+' Nouvelle séance</button><a class="btn ghost" href="#/m4/planning">Mon planning</a></div></div></div>';
+  }
+  if(hist.length&&f.step!=='run'){
+    var mins=hist.reduce(function(a,x){return a+x.dur;},0);
+    h+='<div class="sec-h"><h2>Mes séances focus</h2><span class="small muted">'+hist.length+' séance'+(hist.length>1?'s':'')+' · '+mins+' min</span></div><div class="tasks">'+hist.slice(-6).reverse().map(function(x){
+      return '<div class="task"><span class="tick on">'+ic(x.res==='oui'?'check':(x.res==='partie'?'clock':'x'),15)+'</span><div class="t-main"><strong>'+esc(x.goal)+'</strong><span class="small muted">'+fmtDate(x.at)+' · '+x.dur+' min · décroché '+x.lost+' fois</span></div><div class="t-tags"><span class="pill '+(x.res==='oui'?'ok':(x.res==='partie'?'hot':''))+'">'+{oui:'Objectif atteint',partie:'En partie',non:'Pas atteint'}[x.res]+'</span></div></div>';}).join('')+'</div>';
+  }
+  return h;
+}
+
+/* ================= Mon suivi ================= */
+function viewSuivi(){
+  var m3=S.m3,m4=S.m4;
+  var cards=m3.sessions.reduce(function(a,s){return a+s.n;},0),fmin=m4.focus.reduce(function(a,x){return a+x.dur;},0);
+  var h='<div class="page-head"><h1>Mon suivi</h1><p class="lead">Ce que tu as fait, semaine après semaine. Le but n’est pas de faire plus, mais de faire régulièrement.</p></div>';
+  h+='<div class="stats4">'+[[labsDone()+' / 4','expériences menées','flask'],[cards,'cartes révisées','cards'],[m4.focus.length,'séances focus ('+fmin+' min)','clock'],[S.checks.length,'bilans de la semaine','check']].map(function(s){return '<div class="stat big"><span class="s-ic">'+ic(s[2],18)+'</span><strong>'+s[0]+'</strong><span>'+s[1]+'</span></div>';}).join('')+'</div>';
+  var days=[],d=new Date();d.setHours(12,0,0,0);d.setDate(d.getDate()-13);
+  for(var i=0;i<14;i++){days.push(dayKey(d.getTime()));d.setDate(d.getDate()+1);}
+  var cnt=days.map(function(k){return S.log.filter(function(l){return dayKey(l.at)===k;}).length;}),mx=Math.max.apply(null,cnt.concat([1]));
+  var active=cnt.filter(function(c){return c>0;}).length;
+  h+='<div class="sec-h"><h2>Mon activité des 14 derniers jours</h2><span class="small muted">'+active+' jour'+(active>1?'s':'')+' actif'+(active>1?'s':'')+'</span></div><div class="panel"><div class="vbars act-bars" style="--dot:var(--teal)">'+
+    days.map(function(k,i){return '<div class="vbar"><b>'+(cnt[i]||'')+'</b><span style="height:'+(cnt[i]?Math.max(8,cnt[i]/mx*100):3)+'%;'+(cnt[i]?'':'background:var(--line)')+'"></span><em>'+keyDate(k).toLocaleDateString('fr-FR',{weekday:'narrow'})+'<br>'+keyDate(k).getDate()+'</em></div>';}).join('')+'</div></div>';
+  h+='<div class="sec-h"><h2>Le bilan de la semaine</h2></div><div class="panel stack">';
+  var engs=engagementTexts();
+  if(!engs.length){
+    h+='<p style="margin:0">Pour faire ton bilan, choisis d’abord tes engagements dans ton <a href="#/m5">passeport méthode</a>.</p>';
+  }else{
+    var today=S.checks.filter(function(c){return dayKey(c.at)===dayKey(now());})[0];
+    h+='<div><h3 style="margin-bottom:8px">Mes engagements</h3><ul class="plain">'+engs.map(function(e){return '<li>'+ic('check',15)+' '+esc(e)+'</li>';}).join('')+'</ul></div>'+
+      '<div><h3 style="margin-bottom:10px">Cette semaine, je les ai tenus…</h3><div class="opts">'+[['oui','Oui'],['partie','En partie'],['non','Pas vraiment']].map(function(o){return '<button class="opt '+(today&&today.v===o[0]?'on':'')+'" data-action="c-check" data-v="'+o[0]+'">'+o[1]+'</button>';}).join('')+'</div></div>'+
+      (today&&today.v!=='oui'?'<label class="field">Qu’est-ce qui a bloqué ? <span class="help">(facultatif)</span><input data-bind="check.note" value="'+esc(today.note||'')+'" placeholder="Ex. : trop de devoirs le mardi" maxlength="120"></label><p class="note">'+ic('bulb',18)+'<span>Un engagement trop gros ne tient pas. Tu peux le rendre plus petit dans ton <a href="#/m5">passeport</a> : 10 minutes tenues valent mieux que 45 minutes rêvées.</span></p>':'')+
+      (today&&today.v==='oui'?'<p class="note">'+ic('star',18)+'<span>Bravo ! C’est la régularité qui transforme une méthode en habitude.</span></p>':'');
+    if(S.checks.length){
+      h+='<div class="checks">'+S.checks.slice(-8).map(function(c){return '<span class="chk '+c.v+'" title="'+fmtDate(c.at)+(c.note?' : '+esc(c.note):'')+'">'+ic(c.v==='oui'?'check':(c.v==='partie'?'clock':'x'),14)+' '+fmtDate(c.at)+'</span>';}).join('')+'</div>';
+    }
+  }
+  h+='</div>';
+  h+='<div class="sec-h"><h2>Ma carte de départ, avant et maintenant</h2></div><div class="panel stack">';
+  if(!S.diag)h+='<p style="margin:0">Fais d’abord la <a href="#/m1">mission 01</a>.</p>';
+  else{
+    var first=S.diagHist.length?S.diagHist[0]:null,age=now()-S.diag.at;
+    if(first){
+      h+='<p class="muted" style="margin:0">Questionnaire du '+fmtDate(first.at)+' (trait) comparé à celui du '+fmtDate(S.diag.at)+' (barre). Une barre plus courte qu’avant, c’est un progrès.</p><div class="axes">';
+      AXIS_KEYS.forEach(function(a){var p=first.res[a],c=S.diag.res[a];h+='<div class="axis" style="--dot:'+AXES[a].color+'"><b>'+AXES[a].label+'</b><div class="bar cmp"><span style="width:'+Math.max(3,c*100)+'%"></span><i style="left:'+(p*100)+'%"></i></div>'+(c<p-.05?'<em class="up">'+ic('check',13)+' Progrès</em>':'<em></em>')+'</div>';});
+      h+='</div>';
+    }else h+='<p style="margin:0">'+(age>=(DEMO?0:28*DAY)?'Ton questionnaire date du '+fmtDate(S.diag.at)+'. C’est le bon moment pour le refaire et voir ce qui a changé.':'Dans quelques semaines, refais le questionnaire de la mission 01 : tu verras ici ce qui a changé.')+'</p>';
+    h+='<div class="btns"><button class="btn ghost" data-action="diag-redo-go">'+ic('refresh',16)+' Refaire le questionnaire</button></div>';
+  }
+  return h+'</div>';
+}
+function engagementTexts(){var o=S.pass.eng.map(function(k){return ENGAGE[k];});var c=S.pass.custom;if(c.when.trim()&&c.then.trim())o.push('Quand '+c.when.trim()+', je '+c.then.trim()+'.');return o;}
+function checkDue(){
+  if(!engagementTexts().length||!S.pass.done)return false;
+  if(!S.checks.length)return now()-S.pass.done>=(DEMO?0:6*DAY);
+  return now()-S.checks[S.checks.length-1].at>=(DEMO?DAY:6*DAY);
+}
+
+/* ================= Fiche élève et espace enseignant ================= */
+function ficheData(){
+  var L=S.lab,q=L.questions,e=L.expliquer;
+  return {v:1,n:S.name||'',at:now(),
+    diag:S.diag?{r:S.diag.res,at:S.diag.at}:null,first:S.diagHist.length?{r:S.diagHist[0].res,at:S.diagHist[0].at}:null,
+    duel:L.duel?{imm:L.duel.imm,def:L.duel.def||null,pred:L.duel.pred,concl:L.duel.concl||''}:null,
+    q:q?{s:q.subject,n:q.cards.length,sc:q.sessions.map(sessScore)}:null,
+    ex:e&&e.done?{s:e.subject,h:e.help,gaps:!!(e.gaps||e.fuzzy)}:null,
+    id:L.idees?L.idees.score:null,
+    m3:{d:S.m3.decks.length,c:allCards().length,s:S.m3.sessions.length,z:S.m3.quizzes.length},
+    m4:{t:S.m4.tasks.length,p:S.m4.plan.length,f:S.m4.focus.length,fm:S.m4.focus.reduce(function(a,x){return a+x.dur;},0),fr:S.m4.focus.map(function(x){return x.res;}).slice(-5),d:Object.keys(S.m4.dist).filter(function(k){return S.m4.dist[k].p>=0;})},
+    pass:{v:S.pass.verdicts,e:engagementTexts(),ok:S.pass.done||0},
+    ch:S.checks.slice(-6).map(function(c){return {at:c.at,v:c.v,n:c.note||''};}),
+    ms:MISSIONS.map(function(m){return missionState(m);}),
+    last:S.log.length?S.log[S.log.length-1].at:0
+  };
+}
+function ficheCode(){try{return 'MMF1-'+btoa(unescape(encodeURIComponent(JSON.stringify(ficheData()))));}catch(e){return '';}}
+function readFiche(c){c=String(c||'').replace(/\s+/g,'');if(c.indexOf('MMF1-')!==0)throw 0;var d=JSON.parse(decodeURIComponent(escape(atob(c.slice(5)))));if(!d||d.v!==1)throw 0;return d;}
+var TARGETS=[['#/m1','Mission 01 : Mon profil de travail'],['#/m2','Mission 02 : Le laboratoire'],['#/lab/duel','Expérience : le duel'],['#/lab/questions','Expérience : transforme ton cours en questions'],['#/lab/expliquer','Expérience : explique-le comme à un camarade'],['#/lab/idees','Expérience : vrai ou faux'],['#/m3','Mission 03 : Muscle ta mémoire'],['#/m4','Mission 04 : Maîtrise ton temps'],['#/m4/focus','Mission 04 : une séance focus'],['#/m5','Mission 05 : Mon passeport méthode'],['#/suivi','Mon suivi : le bilan de la semaine']];
+function targetLabel(t){var f=TARGETS.filter(function(x){return x[0]===t;})[0];return f?f[1]:'Mission Méthode';}
+function assignLink(){
+  var p=ui.prof,payload=btoa(unescape(encodeURIComponent(JSON.stringify({t:p.target,m:(p.msg||'').trim().slice(0,140)}))));
+  return location.origin+location.pathname+'?mission='+encodeURIComponent(payload);
+}
+function readAssign(){
+  var m=/[?&]mission=([^&]+)/.exec(location.search);if(!m)return;
+  try{var d=JSON.parse(decodeURIComponent(escape(atob(decodeURIComponent(m[1])))));if(d&&TARGETS.some(function(x){return x[0]===d.t;})){S.assigned={t:d.t,m:String(d.m||'').slice(0,140),at:now()};save();}}catch(e){}
+  try{history.replaceState(null,'',location.pathname+(DEMO?'?demo':'')+location.hash);}catch(e){}
+}
+function profTips(f){
+  var t=[],pr=[];
+  if(f.diag){pr=AXIS_KEYS.slice().sort(function(a,b){return f.diag.r[b]-f.diag.r[a];}).filter(function(a){return f.diag.r[a]>=.3;}).slice(0,2);
+    if(pr.length)t.push('Priorités déclarées : '+pr.map(function(a){return AXES[a].label.toLowerCase();}).join(' et ')+'. Lui demander un exemple concret de la dernière fois où c’est arrivé.');}
+  else t.push('Le questionnaire de la mission 01 n’est pas fait : commencer par là (3 minutes).');
+  if(f.first&&f.diag){var up=AXIS_KEYS.filter(function(a){return f.diag.r[a]<f.first.r[a]-.05;});if(up.length)t.push('Progrès depuis le premier questionnaire : '+up.map(function(a){return AXES[a].label.toLowerCase();}).join(', ')+'. Le valoriser.');}
+  if(f.duel){
+    if(!f.duel.def)t.push('Le test différé du duel n’est pas fait : le lancer en début d’atelier, sans revoir les mots.');
+    else if(f.duel.def.tester>f.duel.def.relire)t.push('Le duel a donné raison au rappel actif ('+f.duel.def.tester+'/8 contre '+f.duel.def.relire+'/8 en différé). Comment l’appliquer cette semaine, dans quelle matière ?');
+    else t.push('La relecture a fait jeu égal ou mieux au duel. Proposer de refaire l’essai sur un vrai cours (expérience « questions »).');
+  }
+  if(f.id!=null&&f.id<5)t.push('Plusieurs idées reçues au vrai-faux ('+f.id+'/8) : revenir sur relire / se tester et sur les « styles d’apprentissage ».');
+  if(f.m3.c&&!f.m3.s)t.push('Des cartes créées mais jamais révisées : faire une révision ensemble.');
+  if(f.m4.t&&!f.m4.p)t.push('Des travaux listés mais rien de planifié : construire ensemble le planning de la semaine.');
+  if(f.m4.fr.length&&f.m4.fr.filter(function(r){return r!=='oui';}).length>=2)t.push('Plusieurs séances focus sans objectif atteint : l’objectif est-il trop gros ? La durée trop longue ?');
+  if(!f.pass.ok)t.push('Passeport méthode à compléter ensemble en fin d’atelier.');
+  var lastC=f.ch[f.ch.length-1];
+  if(lastC&&lastC.v!=='oui')t.push('Dernier bilan : engagements '+(lastC.v==='partie'?'tenus en partie':'pas tenus')+(lastC.n?' (« '+lastC.n+' »)':'')+'. Qu’est-ce qui a bloqué ? Faut-il rendre l’engagement plus petit ?');
+  return t;
+}
+function viewProf(){
+  var p=ui.prof;
+  var h='<div class="page-head"><span class="m-chip" style="--dot:var(--navy)">Espace enseignant</span><h1>Accompagner en atelier BAR</h1><p class="lead">Aucune donnée d’élève n’est stockée sur ce site : les fiches que tu lis ici restent dans cette page et disparaissent quand tu la fermes.</p></div>';
+  h+='<div class="seg no-print">'+[['fiches','Fiches élèves','user'],['attribuer','Proposer une mission','star'],['guide','Animer un atelier','bulb']].map(function(t){return '<button class="seg-b '+(p.tab===t[0]?'on':'')+'" data-action="pr-tab" data-v="'+t[0]+'">'+ic(t[2],16)+' '+t[1]+'</button>';}).join('')+'</div>';
+  if(p.tab==='attribuer'){
+    var link=assignLink();
+    h+='<div class="narrow" style="margin:0"><div class="panel stack"><h2>Proposer une mission à un élève ou à un groupe</h2><p class="muted" style="margin:-6px 0 0">Tu obtiens un lien à envoyer par l’ENT. En l’ouvrant, l’élève voit ta proposition en haut de son accueil. Rien ne t’est renvoyé.</p>'+
+      '<label class="field">Mission ou expérience'+sel('prof.target',TARGETS,p.target,'data-rerender="1"')+'</label>'+
+      '<label class="field">Ton message <span class="help">(facultatif, 140 caractères)</span><input data-bind="prof.msg" value="'+esc(p.msg)+'" placeholder="Ex. : À faire avant notre atelier de jeudi !" maxlength="140" data-rerender-lazy="1"></label>'+
+      '<label class="field"><span class="help">Lien à envoyer</span><textarea class="code-box" id="assignlink" rows="3" readonly>'+esc(link)+'</textarea></label>'+
+      '<div class="btns"><button class="btn primary" data-action="pr-copylink">'+ic('copy',17)+' Copier le lien</button></div></div></div>';
+  }else if(p.tab==='guide'){
+    h+='<div class="guide">'+[
+      ['Atelier 1 · Se connaître et lancer le duel','30 min',['5 min : présenter l’idée (on teste, on mesure, on garde ce qui marche).','5 min : questionnaire de la mission 01, puis lecture de la carte de départ ensemble.','10 min : duel relire / se tester (les élèves font leur prédiction avant).','10 min : vrai ou faux sur les idées reçues, puis discussion courte.'],'Le test différé du duel s’ouvre le lendemain : à faire en début d’atelier 2.'],
+      ['Atelier 2 · Verdict et vrai cours','30 min',['5 min : test différé du duel et comparaison des résultats du groupe.','15 min : chaque élève transforme une vraie leçon en questions et se teste.','10 min : création d’un paquet de cartes (mission 03) à partir de ces questions.'],'Les révisions espacées reviennent à J+2 : à faire à la maison.'],
+      ['Atelier 3 · Le temps et le passeport','30 min',['10 min : mission 04, lister les travaux et répartir les révisions du prochain contrôle.','5 min : choisir une parade contre sa principale distraction.','10 min : passeport méthode : garder, adapter, laisser, puis 1 à 3 engagements.','5 min : entretien individuel rapide avec la fiche élève.'],'Une semaine plus tard : bilan de la semaine dans « Mon suivi », et nouvelle fiche si besoin.']
+    ].map(function(g){return '<div class="panel stack"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><h2>'+g[0]+'</h2><span class="pill">'+ic('clock',12)+' '+g[1]+'</span></div><ol class="proto">'+g[2].map(function(x){return '<li><span>'+x+'</span></li>';}).join('')+'</ol><p class="note">'+ic('info',18)+'<span>'+g[3]+'</span></p></div>';}).join('')+
+      '<div class="panel stack"><h2>Ce que l’application ne fait pas</h2><p style="margin:0">Elle ne remplace pas l’échange : elle rend visibles les difficultés et garde une trace des essais. La fiche élève ne contient ni le contenu des cours, ni ce que l’élève a écrit dans ses cartes ou ses explications : seulement ses résultats, ses choix et ses engagements.</p></div></div>';
+  }else{
+    h+='<div class="panel stack no-print"><h2>Lire des fiches élèves</h2><p class="muted" style="margin:-6px 0 0">L’élève crée sa fiche dans <b>Mes données &gt; Fiche pour mon professeur</b>, puis te l’envoie (par l’ENT) ou te la montre. Colle une ou plusieurs fiches ci-dessous, une par ligne.</p>'+
+      '<label class="field"><textarea class="code-box" id="fiches" rows="4" placeholder="MMF1-…"></textarea></label>'+(p.err?'<p class="small" style="color:var(--danger);margin:0">'+p.err+'</p>':'')+
+      '<div class="btns"><button class="btn teal" data-action="pr-read">'+ic('user',17)+' Lire les fiches</button>'+(p.list.length?'<button class="btn ghost" data-action="print">'+ic('print',17)+' Imprimer</button><button class="link" data-action="pr-clear">Tout retirer</button>':'')+'</div></div>';
+    if(p.list.length){
+      h+='<div class="sec-h"><h2>'+p.list.length+' fiche'+(p.list.length>1?'s':'')+'</h2></div><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Élève</th><th>Missions</th><th>Priorités</th><th>Expériences</th><th>Dernier bilan</th><th>Dernière activité</th></tr></thead><tbody>'+
+        p.list.map(function(f,i){
+          var pr=f.diag?AXIS_KEYS.slice().sort(function(a,b){return f.diag.r[b]-f.diag.r[a];}).filter(function(a){return f.diag.r[a]>=.3;}).slice(0,2):[];
+          var nl=[f.duel&&f.duel.concl,f.q&&f.q.sc.length,f.ex,f.id!=null].filter(Boolean).length,lc=f.ch[f.ch.length-1];
+          return '<tr><td><a href="#prof-'+i+'"><b>'+esc(f.n||'Élève '+(i+1))+'</b></a></td><td>'+f.ms.filter(function(s){return s==='done';}).length+' / 5</td><td>'+(pr.map(function(a){return AXES[a].label;}).join(', ')||'–')+'</td><td>'+nl+' / 4</td><td>'+(lc?{oui:'Tenus',partie:'En partie',non:'Pas tenus'}[lc.v]:'–')+'</td><td>'+(f.last?fmtDate(f.last):'–')+'</td></tr>';}).join('')+'</tbody></table></div>';
+      p.list.forEach(function(f,i){h+=ficheCard(f,i);});
+    }
+  }
+  return h;
+}
+function ficheCard(f,i){
+  var h='<div class="panel stack fiche" id="prof-'+i+'"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap"><h2>'+esc(f.n||'Élève '+(i+1))+'</h2><span class="small muted">Fiche du '+fmtDate(f.at)+'</span></div>';
+  h+='<div class="fiche-grid"><div><h3>Carte de départ</h3>';
+  if(f.diag){h+='<div class="axes sm">';AXIS_KEYS.forEach(function(a){h+='<div class="axis" style="--dot:'+AXES[a].color+'"><b>'+AXES[a].label+'</b><div class="bar'+(f.first?' cmp':'')+'"><span style="width:'+Math.max(3,f.diag.r[a]*100)+'%"></span>'+(f.first?'<i style="left:'+(f.first.r[a]*100)+'%"></i>':'')+'</div></div>';});h+='</div>';}
+  else h+='<p class="muted small">Pas encore fait.</p>';
+  h+='</div><div><h3>Laboratoire</h3><ul class="plain sm">'+
+    '<li><b>Duel :</b> '+(f.duel?'relire '+f.duel.imm.relire+'/8, se tester '+f.duel.imm.tester+'/8 juste après'+(f.duel.def?' ; '+f.duel.def.relire+'/8 et '+f.duel.def.tester+'/8 en différé':' (différé à faire)'):'–')+'</li>'+
+    '<li><b>Questions :</b> '+(f.q?esc(f.q.s)+', '+f.q.n+' questions, '+(f.q.sc.map(function(x){return x+' %';}).join(' → ')||'pas encore testé'):'–')+'</li>'+
+    '<li><b>Expliquer :</b> '+(f.ex?esc(f.ex.s)+', '+['','pas utile','un peu utile','utile','très utile'][f.ex.h]+(f.ex.gaps?', des trous repérés':''):'–')+'</li>'+
+    '<li><b>Vrai ou faux :</b> '+(f.id!=null?f.id+' / 8':'–')+'</li></ul>'+
+    '<h3>Missions 03 et 04</h3><ul class="plain sm"><li>'+f.m3.d+' paquet(s), '+f.m3.c+' cartes, '+f.m3.s+' révision(s), '+f.m3.z+' quiz</li><li>'+f.m4.t+' travaux listés, '+f.m4.p+' séances planifiées, '+f.m4.f+' séance(s) focus ('+f.m4.fm+' min)</li>'+
+    (f.m4.d.length?'<li>Parades choisies : '+f.m4.d.map(function(k){return DISTRACT.filter(function(d){return d.k===k;})[0].t.toLowerCase();}).join(', ')+'</li>':'')+'</ul></div>'+
+    '<div><h3>Passeport</h3>';
+  var vk=Object.keys(f.pass.v);
+  h+=vk.length?'<ul class="plain sm">'+vk.map(function(k){var m=PMETHODS.filter(function(x){return x.k===k;})[0];return m?'<li>'+{k:'Garde',a:'Adapte',l:'Laisse'}[f.pass.v[k]]+' : '+m.t.toLowerCase()+'</li>':'';}).join('')+'</ul>':'<p class="muted small">Pas encore rempli.</p>';
+  if(f.pass.e.length)h+='<h3>Engagements</h3><ul class="plain sm">'+f.pass.e.map(function(e){return '<li>'+esc(e)+'</li>';}).join('')+'</ul>';
+  h+='</div></div><div class="callout">'+ic('bulb',22)+'<div><strong style="color:var(--ink)">Pistes pour l’entretien</strong><ul class="tips">'+profTips(f).map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div></div></div>';
+  return h;
+}
+
+/* ================= Actions des nouvelles missions ================= */
+function act2(a,t){
+  var u,id;
+  switch(a){
+    case 'd-import':
+      var q=S.lab.questions;S.m3.decks.push({id:uid(),subject:q.subject,title:q.title,fromLab:1,created:now(),cards:q.cards.map(function(c){return {id:uid(),q:c.q,a:c.a,box:1,due:now()};})});
+      save();render();toast('Tes questions sont devenues un paquet de cartes.');checkRewards();break;
+    case 'd-addcard':ui.deck.cards.push({q:'',a:''});render();var tas=app.querySelectorAll('textarea[data-card]');if(tas.length)tas[tas.length-1].focus();break;
+    case 'd-delcard':ui.deck.cards.splice(+t.dataset.i,1);if(!ui.deck.cards.length)ui.deck.cards.push({q:'',a:''});render();break;
+    case 'd-bulk':
+      var rows=parseBulk(ui.deck.bulk);if(!rows.length){toast('Aucune ligne reconnue : sépare la question et la réponse par « ; ».');return;}
+      ui.deck.cards=ui.deck.cards.filter(function(c){return c.q.trim()||c.a.trim();}).concat(rows).slice(0,80);ui.deck.bulk='';render();toast(rows.length+' carte'+(rows.length>1?'s':'')+' ajoutée'+(rows.length>1?'s':'')+'.');break;
+    case 'd-save':
+      u=ui.deck;var cards=u.cards.filter(function(c){return c.q.trim()&&c.a.trim();});
+      if(!u.subject.trim()){toast('Indique la matière.');return;}
+      if(!cards.length){toast('Ajoute au moins une carte complète.');return;}
+      var old=u.id?getDeck(u.id):null;
+      var deck=old||{id:uid(),created:now(),cards:[]};
+      deck.subject=u.subject.trim();deck.title=u.title.trim();
+      deck.cards=cards.map(function(c){var prev=c.id&&deck.cards.filter(function(x){return x.id===c.id;})[0];return {id:c.id||uid(),q:c.q.trim(),a:c.a.trim(),box:prev?prev.box:1,due:prev?prev.due:now()};});
+      if(!old)S.m3.decks.push(deck);
+      ui.deck=null;save();location.hash='#/m3';checkRewards();break;
+    case 'd-delete':
+      if(!ui.armed){ui.armed=true;render();return;}
+      S.m3.decks=S.m3.decks.filter(function(d){return d.id!==ui.deck.id;});ui.deck=null;ui.armed=false;save();location.hash='#/m3';break;
+    case 'r-flip':if(ui.rev&&!ui.rev.flip){ui.rev.flip=true;render();}break;
+    case 'r-grade':
+      var r=ui.rev,it=r.items[r.i],dk=getDeck(it.d),c=dk&&dk.cards.filter(function(x){return x.id===it.c;})[0],v=+t.dataset.v;
+      if(c){if(v===2)c.box=Math.min(5,c.box+1);else if(v===0)c.box=1;c.due=now()+(v===0?(DEMO?0:DAY):boxDelay(c.box));}
+      r.res.push(v);r.i++;r.flip=false;
+      if(r.i>=r.items.length){S.m3.sessions.push({at:now(),n:r.items.length,ok:r.res.filter(function(x){return x===2;}).length});logA('review');}
+      save();render();if(r.i>=r.items.length)checkRewards();break;
+    case 'z-pick':
+      var z=ui.quiz,zi=z.items[z.i];z.pick=+t.dataset.k;zi.ok=zi.opts[z.pick]===zi.a;if(zi.ok)z.score++;else z.miss.push(zi);
+      if(z.i===z.items.length-1){S.m3.quizzes.push({at:now(),score:z.score,n:z.items.length});logA('quiz');save();}
+      render();break;
+    case 'z-next':ui.quiz.i++;ui.quiz.pick=null;render();if(ui.quiz.i>=ui.quiz.items.length)checkRewards();break;
+    case 'z-again':startQuiz(ui.quiz.id);render();break;
+
+    case 't-add':
+      u=ui.tf;if(!u.subject.trim()){toast('Indique la matière.');return;}if(!u.due){toast('Indique la date.');return;}
+      S.m4.tasks.push({id:uid(),kind:u.kind,subject:u.subject.trim(),what:u.what.trim(),due:u.due,dur:+u.dur,done:false,at:now()});
+      ui.tf={kind:u.kind,subject:'',what:'',due:'',dur:30};logA('task');save();render();checkRewards();break;
+    case 't-done':id=getTask(t.dataset.id);id.done=!id.done;save();render();break;
+    case 't-del':S.m4.tasks=S.m4.tasks.filter(function(x){return x.id!==t.dataset.id;});S.m4.plan=S.m4.plan.filter(function(s){return s.task!==t.dataset.id;});save();render();break;
+    case 't-spread':var n=spreadTask(getTask(t.dataset.id));save();toast(n?n+' séance'+(n>1?'s':'')+' de 20 min ajoutée'+(n>1?'s':'')+' à ton planning.':'Tes séances sont déjà prévues.');render();checkRewards();break;
+    case 'p-addsess':
+      u=ui.pf;if(u.task==='autre'&&!u.what.trim()){toast('Dis ce que tu vas faire.');return;}
+      S.m4.plan.push({id:uid(),day:u.day,moment:u.moment,dur:+u.dur,task:u.task,what:u.task==='autre'?u.what.trim():'',done:false});
+      u.what='';logA('plan');save();render();checkRewards();break;
+    case 's-done':S.m4.plan.forEach(function(s){if(s.id===t.dataset.id)s.done=!s.done;});save();render();break;
+    case 's-del':S.m4.plan=S.m4.plan.filter(function(s){return s.id!==t.dataset.id;});save();render();break;
+    case 'di-toggle':var k=t.dataset.k;if(S.m4.dist[k])delete S.m4.dist[k];else S.m4.dist[k]={p:-1};save();render();break;
+    case 'di-pick':S.m4.dist[t.dataset.k].p=+t.dataset.i;save();render();checkRewards();break;
+    case 'f-dur':ui.focus.dur=+t.dataset.v;render();break;
+    case 'f-check':ui.focus.checks[t.dataset.k]=!ui.focus.checks[t.dataset.k];render();break;
+    case 'f-start':
+      u=ui.focus;if(!u.goal.trim())return;u.step='run';u.lost=0;u.startAt=now();
+      startTimer(DEMO?8:u.dur*60,function(){ui.focus.step='end';ui.focus.stopped=false;render();});go(true);break;
+    case 'f-lost':ui.focus.lost++;var b=t;b.innerHTML=ic('zap',16)+' J’ai décroché ('+ui.focus.lost+')';break;
+    case 'f-stop':stopTimer();ui.focus.step='end';ui.focus.stopped=true;render();break;
+    case 'f-res':ui.focus.res=t.dataset.v;render();break;
+    case 'f-save':
+      u=ui.focus;var mins=u.stopped?Math.max(1,Math.round((now()-u.startAt)/60000)):u.dur;
+      S.m4.focus.push({at:now(),dur:mins,goal:u.goal.trim(),res:u.res,lost:u.lost});logA('focus');
+      ui.focus={step:'pause',dur:u.dur,goal:'',checks:u.checks,lost:0};save();render();checkRewards();break;
+    case 'f-new':ui.focus={step:'setup',dur:ui.focus.dur,goal:'',checks:ui.focus.checks||{},lost:0};render();break;
+
+    case 'c-check':
+      var tk=dayKey(now()),ex=S.checks.filter(function(c){return dayKey(c.at)===tk;})[0];
+      if(ex)ex.v=t.dataset.v;else{S.checks.push({at:now(),v:t.dataset.v,note:''});logA('check');}
+      save();render();break;
+    case 'diag-redo-go':ui.diag={i:0,ans:[]};location.hash='#/m1';break;
+    case 'assign-close':S.assigned=null;save();render();break;
+    case 'fiche-copy':copyFrom('fichecode');break;
+
+    case 'pr-tab':ui.prof.tab=t.dataset.v;render();break;
+    case 'pr-copylink':copyFrom('assignlink');break;
+    case 'pr-read':
+      var raw=document.getElementById('fiches').value.split(/\s+/).filter(Boolean),ok=0,bad=0;
+      raw.forEach(function(c){try{var f=readFiche(c);ui.prof.list=ui.prof.list.filter(function(x){return !(x.n===f.n&&x.diag&&f.diag&&x.diag.at===f.diag.at);});ui.prof.list.push(f);ok++;}catch(e){bad++;}});
+      ui.prof.err=bad?bad+' fiche'+(bad>1?'s':'')+' illisible'+(bad>1?'s':'')+' (vérifie qu’elle commence par MMF1- et qu’elle est complète).':'';
+      render();if(ok)toast(ok+' fiche'+(ok>1?'s':'')+' ajoutée'+(ok>1?'s':'')+'.');break;
+    case 'pr-clear':ui.prof.list=[];ui.prof.err='';render();break;
+  }
+}
+function copyFrom(elId){
+  var ta=document.getElementById(elId);if(!ta)return;
+  (navigator.clipboard?navigator.clipboard.writeText(ta.value):Promise.reject()).then(function(){toast('Copié !');},function(){ta.select();try{document.execCommand('copy');toast('Copié !');}catch(e){toast('Sélectionne le texte et copie-le.');}});
+}
+
+/* ----- Mes données ----- */
+function viewData(){
+  var h=crumbs('#/','Missions')+'<div class="narrow"><div class="page-head"><h1>Mes données</h1><p class="lead">Tout ce que tu fais dans Mission Méthode reste dans ce navigateur, sur cet appareil. Rien n’est envoyé sur Internet, et il n’y a pas de compte.</p></div><div class="stack">';
+  h+='<div class="panel stack"><h2>'+ic('save',20)+' Mon code de sauvegarde</h2><p class="muted" style="margin:0">Pour continuer sur un autre appareil (ou après avoir effacé ce navigateur), copie ce code et garde-le (dans ton ENT, par mail à toi-même…). Colle-le ensuite ci-dessous sur l’autre appareil.</p>'+
+    '<label class="field"><span class="help">Ton code</span><textarea class="code-box" id="exportcode" rows="4" readonly>'+esc(exportCode())+'</textarea></label>'+
+    '<div class="btns"><button class="btn primary" data-action="copy-code">'+ic('copy',17)+' Copier le code</button></div></div>';
+  h+='<div class="panel stack"><h2>'+ic('refresh',20)+' Reprendre avec un code</h2><label class="field"><span class="help">Colle ton code ici. Attention : il remplace la progression enregistrée sur cet appareil.</span><textarea class="code-box" id="importcode" rows="3"></textarea></label>'+
+    (ui.importErr?'<p class="small" style="color:var(--danger);margin:0">'+ui.importErr+'</p>':'')+
+    '<div class="btns"><button class="btn ghost" data-action="import-code">Reprendre ma progression</button></div></div>';
+  h+='<div class="panel stack"><h2>'+ic('user',20)+' Fiche pour mon professeur</h2><p class="muted" style="margin:0">Pour préparer un entretien (par exemple en atelier BAR), copie cette fiche et envoie-la à ton professeur par l’ENT. Elle contient ton prénom, ta carte de départ, tes résultats d’expériences, tes chiffres de révision et tes engagements. Elle ne contient pas le contenu de tes cours ni ce que tu as écrit dans tes cartes.</p>'+
+    '<label class="field"><span class="help">Ma fiche</span><textarea class="code-box" id="fichecode" rows="3" readonly>'+esc(ficheCode())+'</textarea></label><div class="btns"><button class="btn primary" data-action="fiche-copy">'+ic('copy',17)+' Copier ma fiche</button></div></div>';
+  h+='<div class="panel stack"><h2>'+ic('trash',20)+' Ordinateur partagé ?</h2><p class="muted" style="margin:0">Sur un ordinateur du collège, pense à copier ton code, puis efface tes données avant de partir.</p>'+
+    '<div class="btns"><button class="btn danger '+(ui.armed?'armed':'')+'" data-action="wipe">'+ic('trash',17)+' '+(ui.armed?'Confirmer : tout effacer':'Effacer mes données sur cet appareil')+'</button></div></div>';
+  return h+'</div></div>';
+}
+function exportCode(){try{return 'MM1-'+btoa(unescape(encodeURIComponent(JSON.stringify(S))));}catch(e){return '';}}
+function importCode(c){
+  c=String(c||'').replace(/\s+/g,'');if(c.indexOf('MM1-')!==0)throw 0;
+  var d=JSON.parse(decodeURIComponent(escape(atob(c.slice(4)))));
+  if(!d||d.v!==1)throw 0;return fix(d);
+}
+
+/* ----- Fenêtres ----- */
+function modalHtml(){
+  var m=ui.modal;if(!m)return '';
+  if(m.type==='reward'){
+    var r=REWARDS[m.k],sp='';
+    for(var i=0;i<14;i++){var a=i/14*Math.PI*2,dist=95+Math.random()*40;sp+='<span class="spark" style="left:50%;top:50%;background:'+['#FBBF24','#14B8A6','#FF7F6E','#8B5CF6'][i%4]+';--x:'+Math.round(Math.cos(a)*dist)+'px;--y:'+Math.round(Math.sin(a)*dist)+'px;animation-delay:.25s"></span>';}
+    var next={carte:'Direction le laboratoire pour tester des méthodes.',carnet:'Tu peux maintenant remplir ton passeport méthode.',boite:'Tes cartes reviendront toutes seules au bon moment.',programme:'Pense à imprimer ton programme de la semaine.',passeport:'Bravo ! Reviens le mettre à jour quand ta méthode évolue.'}[m.k];
+    return '<div class="modal-bg" data-action="modal-close"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="mt"><span class="kick">Récompense débloquée</span>'+
+      '<div class="reward" style="--dot:'+r.color+'">'+sp+ic(r.icon,58)+'<span>'+r.t+'</span></div><h2 id="mt">'+r.t+'</h2><p>'+next+'</p>'+
+      '<button class="btn teal" data-action="modal-close" data-autofocus>Super !</button></div></div>';
+  }
+  return '';
+}
+var toastT;
+function toast(msg){
+  var el=document.getElementById('toast');
+  if(!el){el=document.createElement('div');el.id='toast';el.className='toast';el.setAttribute('role','status');document.body.appendChild(el);}
+  el.textContent=msg;el.classList.add('show');clearTimeout(toastT);toastT=setTimeout(function(){el.classList.remove('show');},3200);
+}
+
+/* ================= Rendu ================= */
+var app=document.getElementById('app');
+function render(){
+  var v='';
+  switch(ui.view){
+    case 'm1':v=viewM1();break;
+    case 'm2':v=viewM2();break;
+    case 'lab':v={duel:viewDuel,questions:viewQuestions,expliquer:viewExpliquer,idees:viewIdees}[ui.lab]();break;
+    case 'm5':v=viewM5();break;
+    case 'data':v=viewData();break;
+    case 'm3':v=viewM3();break;
+    case 'm4':v=viewM4();break;
+    case 'suivi':v=viewSuivi();break;
+    case 'prof':v=viewProf();break;
+    default:v=viewHome();
+  }
+  app.innerHTML=header()+'<main class="wrap" id="main">'+v+'</main>'+credit()+bnav()+modalHtml()+(DEMO?'<span class="demo-flag">Mode démo : minuteurs courts</span>':'');
+  var af=app.querySelector('[data-autofocus]');if(af){try{af.focus({preventScroll:true});}catch(e){af.focus();}}
+  tick();
+}
+function go(top){render();if(top)window.scrollTo(0,0);}
+
+/* ---------- Minuteur ---------- */
+var TM={iv:null,end:0,total:0,cb:null};
+function startTimer(sec,cb){stopTimer();TM.end=now()+sec*1000;TM.total=sec*1000;TM.cb=cb;TM.iv=setInterval(tick,250);}
+function stopTimer(){if(TM.iv)clearInterval(TM.iv);TM.iv=null;TM.cb=null;}
+function tick(){
+  if(!TM.iv)return;
+  var left=Math.max(0,TM.end-now()),el=document.getElementById('timer');
+  if(el){
+    var s=Math.ceil(left/1000);el.querySelector('b').textContent=Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
+    el.querySelector('.tp').setAttribute('stroke-dashoffset',String(207.3*(1-left/TM.total)));
+    el.classList.toggle('low',left<10000);
+  }
+  if(left<=0){var cb=TM.cb;stopTimer();if(cb)cb();}
+}
+
+/* ---------- Navigation ---------- */
+function route(){
+  var p=location.hash.replace(/^#\/?/,'').split('/');
+  var prev=ui.view+'/'+ui.lab+'/'+ui.sub+'/'+(p[2]||'');
+  var prevFull=ui.routeKey;ui.routeKey=p.join('/');
+  ui.armed=false;ui.importErr='';ui.sub=null;
+  if(p[0]==='m1')ui.view='m1';
+  else if(p[0]==='m2')ui.view='m2';
+  else if(p[0]==='lab'&&LABS[p[1]]){ui.view='lab';ui.lab=p[1];}
+  else if(p[0]==='m5')ui.view='m5';
+  else if(p[0]==='donnees')ui.view='data';
+  else if(p[0]==='m3'){ui.view='m3';ui.sub=['deck','review','quiz'].indexOf(p[1])>=0?p[1]:null;
+    if(prevFull!==ui.routeKey){
+      if(ui.sub==='deck'){var dk=p[2]==='new'?null:getDeck(p[2]);ui.deck=(p[2]==='new'||dk)?{id:dk?dk.id:null,subject:dk?dk.subject:'',title:dk?dk.title:'',cards:dk?dk.cards.map(function(c){return {id:c.id,q:c.q,a:c.a};}):[{q:'',a:''},{q:'',a:''},{q:'',a:''}],bulk:''}:null;}
+      if(ui.sub==='review')ui.rev={items:shuffle(dueCards(p[2]||null)).slice(0,40).map(function(x){return {d:x.d.id,c:x.c.id};}),i:0,flip:false,res:[]};
+      if(ui.sub==='quiz')startQuiz(p[2]);
+    }}
+  else if(p[0]==='m4'){ui.view='m4';ui.sub=M4TABS.some(function(t){return t[0]===p[1];})?p[1]:'priorites';
+    if(!ui.tf)ui.tf={kind:'controle',subject:'',what:'',due:'',dur:30};
+    if(!ui.pf)ui.pf={day:dayKey(now()),moment:'soir',dur:20,task:'',what:''};
+    if(nextDays(7).indexOf(ui.pf.day)<0)ui.pf.day=dayKey(now());}
+  else if(p[0]==='suivi')ui.view='suivi';
+  else if(p[0]==='prof'){ui.view='prof';if(!ui.prof)ui.prof={tab:'fiches',list:[],target:'#/m2',msg:'',err:''};}
+  else ui.view='home';
+  if(ui.view!=='lab')ui.lab=null;
+  if(prev!==ui.view+'/'+ui.lab+'/'+ui.sub+'/'+(p[2]||'')){
+    stopTimer();
+    if(ui.focus&&ui.focus.step==='run')ui.focus=null;
+    /* Un duel interrompu reprend du début ; les brouillons de formulaires sont gardés */
+    if(ui.duel&&ui.duel.step!=='done')ui.duel=null;
+    if(ui.q)ui.q.run=null;
+    if(ui.view!=='m1')ui.diag=null;
+    if(ui.idees&&ui.view!=='lab')ui.idees=null;
+  }
+  go(true);
+  if(ui.view==='lab'&&ui.lab==='expliquer'&&ui.x)xTimers();
+}
+window.addEventListener('hashchange',route);
+
+/* ================= Actions ================= */
+function act(a,t){
+  var u;
+  switch(a){
+    /* Diagnostic */
+    case 'diag-start':ui.diag={i:0,ans:[]};go(true);break;
+    case 'diag-prev':if(ui.diag.i>0){ui.diag.i--;go();}else{ui.diag.i=-1;go();}break;
+    case 'diag-pick':
+      ui.diag.ans[ui.diag.i]=+t.dataset.k;render();
+      setTimeout(function(){
+        if(ui.view!=='m1'||!ui.diag)return;
+        if(ui.diag.i<DIAG.length-1){ui.diag.i++;go();}
+        else{if(S.diag)S.diagHist.push({res:S.diag.res,at:S.diag.at});S.diag={ans:ui.diag.ans.slice(),res:diagResult(ui.diag.ans),at:now()};logA('diag');ui.diag=null;save();go(true);checkRewards();}
+      },260);break;
+    case 'diag-redo':ui.diag={i:0,ans:[]};go(true);break;
+
+    /* Duel */
+    case 'duel-pred':ui.duelPred=t.dataset.v;render();break;
+    case 'duel-start':
+      var order=shuffle(['relire','tester']),s0=Math.random()<.5?0:1;
+      ui.duel={step:'phase',idx:0,order:order,sets:{relire:s0,tester:1-s0},pred:ui.duelPred};
+      beginPhase();window.scrollTo(0,0);break;
+    case 'duel-next':
+      if(ui.duel.idx===0){ui.duel.idx=1;beginPhase();}
+      else startDuelTest('imm');
+      break;
+    case 'duel-def':
+      var d=S.lab.duel;ui.duel={step:'phase',order:d.order,sets:d.sets,pred:d.pred};startDuelTest('def');break;
+    case 'duel-concl':ui.duelConcl=t.dataset.v;if(S.lab.duel.concl){S.lab.duel.concl=t.dataset.v;save();}render();break;
+    case 'duel-save':S.lab.duel.concl=ui.duelConcl;logA('lab');save();render();checkRewards();toast('Expérience rangée dans ton carnet.');break;
+    case 'duel-reset':S.lab.duel=null;ui.duel=null;ui.duelPred='';ui.duelConcl='';save();go(true);break;
+
+    /* Questions */
+    case 'q-build':ui.q.build=true;go(true);break;
+    case 'q-starter':
+      u=ui.q;var idx=u.cards.findIndex(function(c){return !c.q.trim();});
+      if(idx<0){if(u.cards.length>=15)return;u.cards.push({q:'',a:''});idx=u.cards.length-1;}
+      u.cards[idx].q=t.dataset.v+' ';render();
+      var ta=app.querySelector('textarea[data-card="'+idx+'"]');if(ta){ta.focus();ta.setSelectionRange(ta.value.length,ta.value.length);}
+      break;
+    case 'q-add':ui.q.cards.push({q:'',a:''});render();var tas=app.querySelectorAll('textarea[data-card]');if(tas.length)tas[tas.length-1].focus();break;
+    case 'q-del':ui.q.cards.splice(+t.dataset.i,1);render();break;
+    case 'q-save':
+      if(!qValid())return;
+      S.lab.questions={subject:ui.q.subject.trim(),title:(ui.q.title||'').trim(),cards:qFilled().map(function(c){return {q:c.q.trim(),a:c.a.trim()};}),sessions:[],at:now()};
+      save();ui.q={run:{cards:shuffle(S.lab.questions.cards),i:0,res:[],flip:false}};go(true);break;
+    case 'q-run':ui.q.run={cards:shuffle(S.lab.questions.cards),i:0,res:[],flip:false};go(true);break;
+    case 'q-flip':var r=ui.q.run;if(r&&!r.flip){r.flip=true;render();}break;
+    case 'q-grade':var rr=ui.q.run;rr.res.push(+t.dataset.v);rr.i++;rr.flip=false;render();break;
+    case 'q-finish':
+      var run=ui.q.run;S.lab.questions.sessions.push({at:now(),res:run.res});logA('lab');save();ui.q.run=null;go(true);checkRewards();break;
+    case 'q-new':S.lab.questions=null;ui.q={build:true};save();go(true);break;
+
+    /* Expliquer */
+    case 'x-next':
+      u=ui.x;var need=(t.dataset.need||'').split(',').filter(Boolean);
+      for(var i=0;i<need.length;i++)if(!String(u[need[i]]||'').trim()){toast(need[i]==='recall'?'Note au moins quelques mots.':'Remplis la matière et la notion.');return;}
+      u.step++;go(true);xTimers();break;
+    case 'x-help':ui.x.help=+t.dataset.v;render();break;
+    case 'x-save':
+      u=ui.x;S.lab.expliquer={subject:u.subject.trim(),notion:u.notion.trim(),gaps:u.gaps.trim(),fuzzy:u.fuzzy.trim(),help:u.help,done:now()};
+      ui.x=null;logA('lab');save();go(true);checkRewards();toast('Expérience rangée dans ton carnet.');break;
+    case 'x-redo':ui.x={step:0,subject:'',notion:'',recall:'',gaps:'',fuzzy:'',help:0,redo:true};go(true);break;
+
+    /* Idées reçues */
+    case 'i-start':ui.idees={i:0,ans:null,score:0};go(true);break;
+    case 'i-ans':u=ui.idees;u.ans=+t.dataset.v;if((u.ans===1)===MYTHS[u.i].v)u.score++;render();break;
+    case 'i-next':ui.idees.i++;ui.idees.ans=null;render();break;
+    case 'i-save':S.lab.idees={done:now(),at:now(),score:ui.idees.score};ui.idees=null;logA('lab');save();go(true);checkRewards();toast('Expérience rangée dans ton carnet.');break;
+
+    /* Passeport */
+    case 'p-verdict':var vv=S.pass.verdicts;vv[t.dataset.m]=vv[t.dataset.m]===t.dataset.v?'':t.dataset.v;if(!vv[t.dataset.m])delete vv[t.dataset.m];save();render();break;
+    case 'p-eng':var e=S.pass.eng,k=t.dataset.k,pos=e.indexOf(k);
+      if(pos>=0)e.splice(pos,1);else{var cu=S.pass.custom;if(e.length+((cu.when.trim()&&cu.then.trim())?1:0)>=3){toast('Trois engagements maximum : mieux vaut peu, mais tenus.');return;}e.push(k);}
+      save();render();break;
+    case 'p-validate':S.pass.done=now();logA('pass');save();render();checkRewards();if(S.rewards.passeport&&!queue.length&&!ui.modal)toast('Passeport mis à jour.');break;
+    case 'print':window.print();break;
+
+    /* Données */
+    case 'copy-code':
+      var ta2=document.getElementById('exportcode');
+      (navigator.clipboard?navigator.clipboard.writeText(ta2.value):Promise.reject()).then(function(){toast('Code copié !');},function(){ta2.select();try{document.execCommand('copy');toast('Code copié !');}catch(e){toast('Sélectionne le code et copie-le.');}});break;
+    case 'import-code':
+      try{S=importCode(document.getElementById('importcode').value);save();ui.importErr='';toast('Progression reprise !');location.hash='#/';route();}
+      catch(e){ui.importErr='Ce code ne fonctionne pas. Vérifie que tu l’as copié en entier (il commence par MM1-).';render();}
+      break;
+    case 'wipe':
+      if(!ui.armed){ui.armed=true;render();return;}
+      try{localStorage.removeItem(KEY);}catch(e){}
+      S=blank();ui=Object.assign(ui,{armed:false,diag:null,duel:null,q:null,x:null,idees:null});toast('Données effacées de cet appareil.');location.hash='#/';route();break;
+
+    case 'modal-close':ui.modal=null;render();if(queue.length)setTimeout(showNextReward,200);break;
+    default:act2(a,t);
+  }
+}
+
+/* Phases du duel */
+function beginPhase(){
+  var u=ui.duel,m=u.order[u.idx];u.timeUp=false;
+  if(m==='relire'){u.sub='read';startTimer(T.relire,function(){u.timeUp=true;render();});render();return;}
+  u.sub='read';
+  startTimer(T.lecture,function(){
+    u.sub='quiz';var set=SETS[u.sets.tester];
+    u.quiz={queue:shuffle(set),cur:null,fb:null,val:'',tries:0,ok:0,set:set};
+    nextQuiz();
+    startTimer(T.quiz,function(){u.timeUp=true;render();});
+    render();
+  });
+  render();
+}
+function nextQuiz(){var q=ui.duel.quiz;if(!q.queue.length)q.queue=shuffle(q.set).filter(function(x){return x!==q.cur;}).concat(q.cur?[q.cur]:[]);q.cur=q.queue.shift();q.fb=null;q.val='';}
+function startDuelTest(kind){
+  var u=ui.duel,items=[];
+  ['relire','tester'].forEach(function(m){SETS[u.sets[m]].forEach(function(p){items.push({w:p.w,a:p.a,m:m});});});
+  stopTimer();u.step='test';u.kind=kind;u.test={items:shuffle(items),i:0,ans:[]};go(true);
+}
+function finishDuelTest(){
+  var u=ui.duel,t=u.test,sc={relire:0,tester:0};
+  t.ans.forEach(function(r){if(r.ok)sc[r.m]++;});
+  if(u.kind==='imm'){
+    S.lab.duel={order:u.order,sets:u.sets,pred:u.pred,imm:sc,immAt:now()};
+  }else{
+    var d=S.lab.duel;d.def=sc;d.defAt=now();d.defAns=t.ans.slice().sort(function(a,b){return a.m<b.m?-1:1;});
+  }
+  ui.duel=null;save();go(true);
+}
+function xTimers(){
+  stopTimer();
+  if(!ui.x)return;
+  if(ui.x.step===1)startTimer(T.recall,function(){toast('Les 3 minutes sont passées. Termine ta phrase, puis continue.');});
+  if(ui.x.step===2)startTimer(T.oral,function(){toast('Une minute ! Tu peux finir ton explication.');});
+  tick();
+}
+
+/* ---------- Évènements ---------- */
+document.addEventListener('click',function(e){
+  var t=e.target.closest('[data-action]');
+  if(ui.armed&&(!t||(t.dataset.action!=='wipe'&&t.dataset.action!=='d-delete'))){ui.armed=false;if(!t){render();return;}}
+  if(!t||t.disabled)return;
+  if(t.classList.contains('modal-bg')&&e.target!==t)return;
+  e.preventDefault();
+  act(t.dataset.action,t);
+});
+document.addEventListener('submit',function(e){
+  var f=e.target.closest('[data-form]');if(!f)return;e.preventDefault();
+  var inp=f.querySelector('input'),u=ui.duel;
+  if(f.dataset.form==='duel-quiz'){
+    var q=u.quiz;
+    if(q.fb){nextQuiz();render();return;}
+    q.val=inp.value;q.tries++;var ok=correct(inp.value,q.cur.a);if(ok)q.ok++;q.fb=ok?'ok':'ko';render();
+    var nb=document.getElementById('nextbtn');if(nb)nb.focus();
+  }else if(f.dataset.form==='duel-test'){
+    var t=u.test,it=t.items[t.i];
+    t.ans.push({w:it.w,a:it.a,m:it.m,v:inp.value.trim(),ok:correct(inp.value,it.a)});
+    t.i++;if(t.i>=t.items.length)finishDuelTest();else render();
+  }
+});
+document.addEventListener('input',function(e){
+  var b=e.target.dataset&&e.target.dataset.bind;if(!b)return;
+  var parts=b.split('.'),root;
+  var ROOTS={q:ui.q,x:ui.x,pass:S.pass,deck:ui.deck,tf:ui.tf,pf:ui.pf,focus:ui.focus,prof:ui.prof};root=ROOTS[parts[0]];
+  var v=e.target.value;
+  if(b==='name'){S.name=v.trim();save();return;}
+  if(b==='check.note'){var tc=S.checks.filter(function(c){return dayKey(c.at)===dayKey(now());})[0];if(tc){tc.note=v.trim();save();}return;}
+  if(!root)return;
+  var o=root;for(var i=1;i<parts.length-1;i++)o=o[parts[i]];
+  o[parts[parts.length-1]]=v;
+  if(parts[0]==='pass'){save();
+    var st=document.getElementById('pstatus');
+    if(st){var tm=testedMethods(),cu=S.pass.custom,nE=S.pass.eng.length+((cu.when.trim()&&cu.then.trim())?1:0),nV=Object.keys(S.pass.verdicts).filter(function(k){return tm[k];}).length;
+      st.textContent=passStatus(nV,nE);var btn=app.querySelector('[data-action="p-validate"]');if(btn)btn.disabled=!(nE>=1&&nE<=3&&nV>=1);}
+  }
+  if(e.target.dataset.rerender){render();return;}
+  if(b==='prof.msg'){var al=document.getElementById('assignlink');if(al)al.value=assignLink();}
+  if(b==='focus.goal'){var fs=document.getElementById('fstart'),fh=document.getElementById('fhint');if(fs)fs.disabled=!v.trim();if(fh)fh.textContent=v.trim()?'':'Écris d’abord ton objectif.';}
+  if(parts[0]==='q'){var s2=document.getElementById('qstatus'),bt=document.getElementById('qsave');if(s2)s2.textContent=qStatus();if(bt)bt.disabled=!qValid();}
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'&&ui.modal){ui.modal=null;render();return;}
+  if(ui.view==='m1'&&ui.diag&&ui.diag.i>=0&&!e.target.matches('input,textarea')){
+    var k='abcde'.indexOf(e.key.toLowerCase());if(k<0)k=['1','2','3','4','5'].indexOf(e.key);
+    if(k>=0&&k<DIAG[ui.diag.i].o.length){var btn=app.querySelector('[data-action="diag-pick"][data-k="'+k+'"]');if(btn)btn.click();}
+  }
+});
+document.addEventListener('visibilitychange',function(){if(!document.hidden&&(ui.view==='home'||ui.view==='m2'||ui.view==='m3'))render();});
+
+readAssign();
+route();
+checkRewards();
+})();
+</script>
+</body>
+</html>
